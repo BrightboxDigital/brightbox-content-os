@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Wrapper: runs performance_check.py inside the repo venv.
+# A bash wrapper is needed because shebang lines cannot contain spaces and the
+# repository path does. Do not replace this with a direct shebang.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV="$DIR/../.venv/bin/python3"
+if [ ! -x "$VENV" ]; then
+  echo "venv missing. Create it with:" >&2
+  echo "  python3 -m venv '$DIR/../.venv'" >&2
+  echo "  '$DIR/../.venv/bin/pip' install google-analytics-data google-api-python-client google-auth" >&2
+  exit 1
+fi
+exec "$VENV" "$DIR/performance_check.py" "$@"

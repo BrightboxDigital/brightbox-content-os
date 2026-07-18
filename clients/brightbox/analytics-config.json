@@ -1,0 +1,9 @@
+{
+  "_comment": "Property identifiers only. No secrets. The service account key lives at ~/.config/brightbox/service-account.json and is never stored in this repository.",
+  "site_url": "https://brightboxdigital.io/",
+  "ga4_property_id": "393864986",
+  "gsc_site_url": "https://brightboxdigital.io/",
+  "_gsc_note": "gsc_site_url is auto-detected on first run and written back here. Search Console properties are either 'sc-domain:brightboxdigital.io' or 'https://brightboxdigital.io/' depending on how the property was verified.",
+  "cloud_project_id": "brightbox-digita-1743176991871",
+  "service_account_email": "content-os-reader@brightbox-digita-1743176991871.iam.gserviceaccount.com"
+}
