@@ -7,6 +7,74 @@ before anyone touches the site.
 
 ---
 
+## Critical
+
+### 0. Real traffic is landing on 404 pages. No redirects were set up.
+
+Found July 18, 2026, from GA4 page path data cross checked against live HTTP status codes.
+This was not visible in the read only audit and only surfaced once analytics was connected.
+
+GA4 recorded sessions on these paths in the last 28 days. Every one of them returns **404 with no
+redirect**:
+
+| Path | Sessions (28d) | Status |
+|---|---|---|
+| `/should-i-redesign-my-website/` | 18 | 404, no redirect |
+| `/google-business-profile-the-ultimate-guide/` | 12 | 404, no redirect |
+| `/should-i-redesign-my-website-signs-its-time/` | 9 | 404, no redirect |
+| `/local-seo-in-2025/` | 6 | 404, no redirect |
+| `/blog-new/` | 5 | 404, no redirect |
+
+That is **50 sessions out of 405 site wide, roughly 12 percent of all traffic, landing on a page
+that does not exist.**
+
+The live versions all sit under `/blog/`:
+`/blog/should-i-redesign-my-website/`, `/blog/google-business-profile-the-ultimate-guide/`,
+`/blog/local-seo-in-2025/` all return 200.
+
+**What this looks like:** the blog moved from root level URLs to `/blog/` at some point, and the
+slug of the redesign article changed from `should-i-redesign-my-website-signs-its-time` to
+`should-i-redesign-my-website`. Neither migration got 301 redirects. `/blog-new/` looks like a
+staging page that was removed while still receiving traffic.
+
+**Why it matters:** these are real people, plus whatever external links and existing Google results
+point at the old URLs. All of that is being thrown away. Any ranking signal accumulated by the old
+URLs is lost rather than passed forward.
+
+**Fix:** add 301 redirects from each old path to its live equivalent. Rank Math has a Redirections
+module, so this does not need a plugin or manual htaccess editing.
+
+| From | To |
+|---|---|
+| `/should-i-redesign-my-website/` | `/blog/should-i-redesign-my-website/` |
+| `/should-i-redesign-my-website-signs-its-time/` | `/blog/should-i-redesign-my-website/` |
+| `/google-business-profile-the-ultimate-guide/` | `/blog/google-business-profile-the-ultimate-guide/` |
+| `/local-seo-in-2025/` | `/blog/local-seo-in-2025/` |
+| `/blog-new/` | `/blog/` |
+
+Then re-run `./scripts/performance-check --site --days 28` in a few weeks and confirm those paths
+stop appearing.
+
+**Also worth checking:** the four posts not listed above may have the same problem at lower volume.
+Run a full crawl for root level blog slugs before assuming this list is complete.
+
+### 0b. GA4 has no key events configured, so leads cannot be measured
+
+The 28 day pull returned **keyEvents 0** across 405 sessions. Not zero conversions. Zero
+**configured** key events.
+
+This means GA4 currently cannot answer whether any article produced a lead, which is the measure the
+content system is built around. Engagement rate is 65.2 percent and contact page sessions exist, so
+there is activity to measure. Nothing is set up to record it.
+
+**Fix:** configure key events in GA4 for the actions that represent a lead. At minimum a contact
+form submission. Ideally also phone link clicks and any quote or review request.
+
+Until this exists, the 28 and 90 day checks can report traffic and engagement but must state
+plainly that conversion data is unavailable. **Do not infer leads from sessions.**
+
+---
+
 ## High priority
 
 ### 1. Authorship is inconsistent across the blog

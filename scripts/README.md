@@ -41,4 +41,4 @@ rather than estimating.
 ### Status, July 18, 2026
 
 - Search Console: working. Property auto-detected as `https://brightboxdigital.io/`.
-- GA4: blocked. The Google Analytics Data API is not enabled on the Cloud project.
+- GA4: working. Property 393864986. No key events configured, so conversions read as zero.

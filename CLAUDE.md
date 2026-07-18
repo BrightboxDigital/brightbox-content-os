@@ -49,8 +49,10 @@ Verified July 18, 2026. Re-verify before relying on any of these.
 - NeuronWriter: connected. Brightbox project `0bdb5139dc86fbe7` (`brightboxdigital.io`).
 - Google Drive: connected, read tools.
 - Canva: connected.
-- Google Search Console: not connected. Produce manual inspection instructions instead of data.
-- GA4: not connected. Create a manual review task instead of inventing numbers.
+- Google Search Console: **connected and verified.** Property `https://brightboxdigital.io/`.
+- GA4: **connected and verified.** Property `393864986`. Note: **no key events are configured**, so
+  conversion data is unavailable. Report traffic and engagement only, and say plainly that lead
+  data cannot be measured yet. Never infer leads from sessions.
 - Google Business Profile: **not approved for the API.** Approval is pending, not just unconnected.
   Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
 - WordPress: **declined by Archie.** Not connecting. Output HTML files only, Archie pastes them in.
