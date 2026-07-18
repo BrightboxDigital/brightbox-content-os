@@ -53,9 +53,12 @@ Verified July 18, 2026. Re-verify before relying on any of these.
 - GA4: not connected. Create a manual review task instead of inventing numbers.
 - Google Business Profile: **not approved for the API.** Approval is pending, not just unconnected.
   Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
-- WordPress: not connected. Output HTML files only.
-- Social scheduler: not connected. Build a distribution queue. Brightbox posts to Instagram,
-  Facebook, TikTok, LinkedIn and YouTube.
+- WordPress: **declined by Archie.** Not connecting. Output HTML files only, Archie pastes them in.
+- Social: **declined by Archie.** Not connecting any platform or scheduler. Build a distribution
+  queue only. Brightbox posts manually to Instagram, Facebook, TikTok, LinkedIn and YouTube.
+- Google Cloud project `brightbox-digita-1743176991871` exists. Search Console API and Google
+  Analytics Data API are enabled. Service account key is at `~/.config/brightbox/service-account.json`.
+  Access grants inside Search Console and GA4 are still outstanding.
 
 **Editorial disclosure: declined.** Do not add an AI-assistance statement to articles and do not
 re-propose one.

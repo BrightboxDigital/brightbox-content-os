@@ -34,6 +34,22 @@ the safest thing is for the file to never live in the repo directory at all.
 **Never paste the contents of that file into chat.** I do not need to see it. I only need to know
 the path.
 
+### Done, July 18, 2026
+
+| Item | Value |
+|---|---|
+| Cloud project ID | `brightbox-digita-1743176991871` |
+| Service account email | `content-os-reader@brightbox-digita-1743176991871.iam.gserviceaccount.com` |
+| Key path | `~/.config/brightbox/service-account.json`, mode 600 |
+| Search Console API | Enabled |
+| Google Analytics Data API | Enabled |
+
+The service account email is not a secret. It is an identifier and it needs to be pasted into
+Search Console and GA4. The **key file** is the secret.
+
+Still outstanding: granting that service account access inside Search Console and GA4, and the
+GA4 numeric property ID.
+
 ---
 
 ## 1. Google Business Profile API. Start this first, it is the slowest.
@@ -44,21 +60,50 @@ takes weeks. Everything else here you control. Start the clock now even though t
 **Value:** removes the manual step from GBP launch and follow up posts. Right now every GBP post is
 copy and paste.
 
-**Steps:**
+### Eligibility, confirm before applying
 
-1. In the Cloud project, enable these APIs:
-   - Google My Business API (v4.9)
-   - My Business Business Information API
-   - My Business Account Management API
-2. Submit the Business Profile API access request form. Google requires a written justification
-   describing what you will build and why.
-3. Wait. This is genuinely weeks, sometimes longer, and Google does reject applications.
-4. Once approved, grant the service account access to the Brightbox location, or use OAuth against
-   your own account.
+Google requires all of these. Verified against the Business Profile API prerequisites, July 18, 2026.
 
-**What you need before starting:** the Google account that manages the Brightbox GBP listing, and a
-short written description of the use case. I can draft that justification if you want. Keep it
-honest and narrow: publishing posts linking to published articles, and reading post insights.
+- A verified, active Google Business Profile for **60 or more days**. Brightbox is well past this.
+- A website listed on the profile. Brightbox has one.
+- The request submitted from an email that is an **owner or manager** on the profile. Use that
+  account, not a different Google login.
+
+### APIs to enable
+
+Of the seven that surface when searching the API Library, enable **three**:
+
+| API | Why |
+|---|---|
+| My Business Account Management API | Lists accounts. Needed to find the profile |
+| My Business Business Information API | Lists locations. Needed to target the right listing |
+| Business Profile Performance API | Post views and CTA interactions for the 28 day check |
+
+Skip My Business Q&A, Lodging (hotels only), Notifications and Place Actions. None are in scope.
+
+**The Google My Business API (v4.9) does not appear in that search result list.** That is the one
+holding the `localPosts` endpoint, which is what actually creates a GBP post. The three APIs above
+give read access to accounts, locations and performance data. They do not give posting. Posting is
+what the approval process gates.
+
+### Confirming approval status
+
+Do not guess. Google gives a concrete test:
+
+> Open the API quotas page in the Cloud console. **0 QPM means the project is not approved.
+> 300 QPM means it is approved.**
+
+Check this after submitting, and check it again before assuming any posting workflow can run.
+
+### Steps
+
+1. Enable the three APIs above.
+2. Submit the Business Profile API access request form from the owner or manager account.
+   Justification text is drafted in `clients/brightbox/gbp-api-request-draft.md`.
+3. Wait. Genuinely weeks. Google does reject applications.
+4. Check quota. 0 QPM means still waiting.
+5. Once approved, grant the service account access to the Brightbox location, or use OAuth against
+   the owner account.
 
 **What I will build once approved:** a `scripts/gbp-post` limited to list accounts, list locations,
 create post, get post, list posts, and read insights. Nothing that can touch business name,
@@ -112,7 +157,15 @@ tells you whether people found the article. GA4 tells you what they did next.
 
 ---
 
-## 4. WordPress. Easy, but genuinely optional.
+## 4. WordPress. Declined.
+
+**Archie declined July 18, 2026.** Not connecting. Articles stay as WordPress ready HTML that Archie
+pastes in himself. Do not re-propose this.
+
+The detail below is kept only in case that decision changes later.
+
+<details>
+<summary>Original WordPress notes</summary>
 
 **Why it is optional:** you chose HTML output. The system already produces WordPress ready HTML that
 you paste in. Connecting WordPress saves you a paste, and adds a credential to protect. That is a
@@ -136,9 +189,19 @@ connected or not.
 
 **Time:** about five minutes.
 
+</details>
+
 ---
 
-## 5. Social scheduling. Lowest priority, and I would skip it.
+## 5. Social scheduling. Declined.
+
+**Archie declined July 18, 2026.** Not connecting any social platform or scheduler. All social
+distribution stays manual through the queue in `clients/brightbox/distribution/`. Do not re-propose.
+
+The reasoning below still holds and is why this was the right call.
+
+<details>
+<summary>Original social notes</summary>
 
 You post to Instagram, Facebook, TikTok, LinkedIn and YouTube. Automating all five means either a
 paid scheduler with an API, or five separate platform apps each with its own review process. TikTok
@@ -154,6 +217,8 @@ scheduler queue and you would still confirm.
 
 **Recommendation:** leave this manual. The distribution queue in `clients/brightbox/distribution/`
 is sufficient.
+
+</details>
 
 ---
 
