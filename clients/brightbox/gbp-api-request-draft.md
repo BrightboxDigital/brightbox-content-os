@@ -6,7 +6,15 @@ overreaching requests get rejected.
 
 Submit from the Google account that is an owner or manager on the Brightbox Business Profile.
 
-**Project ID:** `brightbox-digita-1743176991871`
+**Where:** [Business Profile APIs: Application Form For Basic Access](https://docs.google.com/forms/d/e/1FAIpQLSfC_FKSWzbSae_5rOpgwFeIUzXUF1JCQnlsZM_gC1I2UHjA3w/viewform)
+Select **"Application for Basic API Access"** from the drop-down.
+
+| | |
+|---|---|
+| Project ID | `brightbox-digita-1743176991871` |
+| Project Number (the form asks for this) | `824815042391` |
+
+Confirm the project number on the Cloud console Dashboard, Project info card, before submitting.
 
 ---
 
