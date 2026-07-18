@@ -1,0 +1,25 @@
+url,type,title,category,apparent_primary_topic,visible_author,published_date,sitemap_lastmod,http_status,issues,notes
+https://brightboxdigital.io/,page,Homepage,,brand and services overview,,,2026-06-16,200,,
+https://brightboxdigital.io/web-design-fort-wayne/,page,Web Design Fort Wayne,Web Design,fort wayne web design,,,2026-06-16,200,,primary service page
+https://brightboxdigital.io/seo/,page,SEO,SEO,seo services,,,2026-06-16,200,,primary service page; canonical SEO destination
+https://brightboxdigital.io/fort-wayne-seo/,page,Fort Wayne SEO (redirect),SEO,fort wayne seo,,,2025-12-22,301,redirects to /seo but still listed in page sitemap,remove from sitemap or restore as a real page
+https://brightboxdigital.io/google-and-facebook-ads/,page,Google and Facebook Ads,PPC,paid advertising services,,,2026-06-16,200,,primary service page; only PPC surface on the site
+https://brightboxdigital.io/google-business-profile-optimization/,page,Google Business Profile Optimization,Local SEO,gbp optimization,,,2026-06-16,200,,primary service page
+https://brightboxdigital.io/social-media-marketing-fort-wayne/,page,Social Media Marketing Fort Wayne,Social,social media marketing,,,2026-06-16,200,,not listed in the prompt's URL set
+https://brightboxdigital.io/logo-design-fort-wayne/,page,Logo Design Fort Wayne,Design,logo design,,,2026-06-16,200,,not listed in the prompt's URL set
+https://brightboxdigital.io/locations/,page,Locations,,location hub,,,2025-12-22,,not verified,check for thin or duplicated location content
+https://brightboxdigital.io/locations/fort-wayne/,page,Fort Wayne,Local SEO,fort wayne location,,,2026-02-13,200,,
+https://brightboxdigital.io/seo-web-design-car-detailing-fort-wayne/,page,SEO and Web Design for Car Detailing Fort Wayne,Niche,car detailing niche landing page,,,2025-11-01,not verified,possible doorway pattern if replicated per niche,review before creating similar niche pages
+https://brightboxdigital.io/portfolio/,page,Portfolio,,work samples,,,2026-07-07,200,,
+https://brightboxdigital.io/about/,page,About,,company and owner,,,2026-06-17,200,,current fallback destination for author bio links
+https://brightboxdigital.io/contact/,page,Contact,,contact,,,2026-06-17,200,,
+https://brightboxdigital.io/blog/,page,Blog,,blog archive,,,2026-07-18,200,surfaces only 4 of 7 posts and has no pagination,3 posts are undiscoverable from the archive
+https://brightboxdigital.io/privacy-policy/,page,Privacy Policy,,legal,,,2025-05-24,not verified,,
+https://brightboxdigital.io/blog/should-i-redesign-my-website/,post,Should I Redesign My Website? Signs It's Time,Web Design,website redesign decision,Archie Brady,2026-06-29,2026-07-02,200,no author bio and no author page link,strongest existing article; real Archie quote present
+https://brightboxdigital.io/blog/fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025/,post,Fort Wayne SEO Guide: How to Rank Your Business Locally in 2025,SEO,fort wayne local seo,not verified,,2026-06-12,not verified,2025 in slug and title; overlaps local-seo-in-2025,cannibalization candidate
+https://brightboxdigital.io/blog/google-business-profile-the-ultimate-guide/,post,Google Business Profile: The Ultimate Guide,Local SEO,google business profile,not verified,,2025-07-23,not verified,not surfaced on the blog archive; a year old,refresh candidate; GBP has changed since
+https://brightboxdigital.io/blog/ai-logo-design-should-you-use-an-ai-logo-generator/,post,AI Logo Design: Should You Use an AI Logo Generator?,Design,ai logo generators,not verified,,2025-07-10,not verified,not surfaced on the blog archive; AI tooling moves fast,refresh candidate
+https://brightboxdigital.io/blog/local-seo-in-2025/,post,Local SEO in 2025: A Complete Guide to Boost Your Local Search Rankings,Local SEO,local seo,Brightbox Digital Team,2025-02-22,2025-06-26,200,authorship conflict; 2025 in slug and title; cites a BrightLocal 2020 study and an unsourced HubSpot 46% figure,cannibalization candidate with the fort wayne seo guide
+https://brightboxdigital.io/blog/is-your-website-secure/,post,Is your website secure? Protect your visitors with an SSL certificate!,Web Design,ssl certificates,not verified,,2025-06-26,not verified,title uses an exclamation point against brand voice,low strategic value; consolidation candidate
+https://brightboxdigital.io/blog/fort-wayne-web-design-2025/,post,The Importance of Professional Fort Wayne Web Design for Your Business in 2025,Web Design,fort wayne web design,not verified,,2025-05-24,not verified,2025 in slug and title; oldest post,refresh or consolidate with the redesign article
+https://brightboxdigital.io/author/archie/,page,Author archive,,author,,,,404,no author page exists,blocks the authorship requirement

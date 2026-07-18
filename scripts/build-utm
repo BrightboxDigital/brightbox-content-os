@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Build a GBP post destination URL with the standard UTM parameters.
+# Usage: ./scripts/build-utm <article-slug> <launch|followup>
+set -euo pipefail
+slug="${1:-}"; kind="${2:-launch}"
+[ -z "$slug" ] && { echo "usage: build-utm <article-slug> <launch|followup>"; exit 1; }
+case "$kind" in launch|followup) ;; *) echo "second arg must be launch or followup"; exit 1 ;; esac
+url="https://brightboxdigital.io/blog/${slug}/?utm_source=google&utm_medium=organic&utm_campaign=gbp_blog&utm_content=${slug}-${kind}"
+echo "$url"
+echo
+echo "Verify the base URL resolves before using this:"
+echo "  ./scripts/validate-links https://brightboxdigital.io/blog/${slug}/"

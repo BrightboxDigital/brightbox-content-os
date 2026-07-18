@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Validate URLs. Reports final status and redirect chain.
+# Usage: ./scripts/validate-links url [url...]
+#        ./scripts/validate-links -f urls.txt
+#        grep -o 'https\?://[^"]*' article.html | ./scripts/validate-links -
+# A 200 means the URL resolves. It does NOT mean the source supports your claim.
+set -uo pipefail
+urls=()
+if [ "${1:-}" = "-f" ]; then mapfile -t urls < "$2"
+elif [ "${1:-}" = "-" ]; then mapfile -t urls
+else urls=("$@"); fi
+[ ${#urls[@]} -eq 0 ] && { echo "usage: validate-links url... | -f file | -"; exit 1; }
+fail=0
+printf "%-8s %-6s %s\n" "STATUS" "HOPS" "URL"
+for u in "${urls[@]}"; do
+  [ -z "$u" ] && continue
+  out=$(curl -sIL --max-time 20 -o /dev/null -w "%{http_code} %{num_redirects} %{url_effective}" "$u" 2>/dev/null) || out="000 0 $u"
+  code=$(echo "$out" | cut -d' ' -f1); hops=$(echo "$out" | cut -d' ' -f2); final=$(echo "$out" | cut -d' ' -f3-)
+  printf "%-8s %-6s %s\n" "$code" "$hops" "$u"
+  [ "$hops" != "0" ] && echo "         -> final: $final"
+  case "$code" in 2*) ;; *) fail=1; echo "         !! FAILED" ;; esac
+done
+echo
+[ $fail -ne 0 ] && echo "One or more links failed. Fix before delivery." && exit 1
+echo "All links resolved. Claim-level validation is still required."
