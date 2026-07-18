@@ -82,3 +82,8 @@ Checked July 18, 2026. Validate again before using in an article.
 **Do not use `/fort-wayne-seo/`.** It 301s to `/seo`. Link directly to `https://brightboxdigital.io/seo/`.
 
 There is currently no author page. `/author/archie/` returns 404. See `clients/brightbox/site-fix-backlog.md`.
+
+## Connections
+
+See `CONNECTIONS.md` for what is connected, what is not, and the steps to connect each one.
+Never put a credential in this repository and never paste one into chat.
