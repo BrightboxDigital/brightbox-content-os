@@ -9,7 +9,7 @@ before anyone touches the site.
 
 ## Critical
 
-### 0. Real traffic is landing on 404 pages. No redirects were set up.
+### 0. RESOLVED July 18, 2026. Traffic was landing on 404 pages with no redirects.
 
 Found July 18, 2026, from GA4 page path data cross checked against live HTTP status codes.
 This was not visible in the read only audit and only surfaced once analytics was connected.
@@ -41,8 +41,14 @@ staging page that was removed while still receiving traffic.
 point at the old URLs. All of that is being thrown away. Any ranking signal accumulated by the old
 URLs is lost rather than passed forward.
 
-**Fix:** add 301 redirects from each old path to its live equivalent. Rank Math has a Redirections
-module, so this does not need a plugin or manual htaccess editing.
+**Fixed July 18, 2026.** Archie added all nine redirects in Rank Math, plus corrected the
+`/fort-wayne-seo/` destination to include its trailing slash.
+
+Verified: every source returns 200 in exactly one hop to the correct destination, and all nine live
+destinations still return 200 with zero hops, confirming no rule caught its own target and no loop
+was created.
+
+The original mappings, kept for reference:
 
 | From | To |
 |---|---|
@@ -52,13 +58,20 @@ module, so this does not need a plugin or manual htaccess editing.
 | `/local-seo-in-2025/` | `/blog/local-seo-in-2025/` |
 | `/blog-new/` | `/blog/` |
 
-Then re-run `./scripts/performance-check --site --days 28` in a few weeks and confirm those paths
-stop appearing.
+**Root cause worth remembering:** the original `/fort-wayne-seo/` redirect pointed at
+`https://brightboxdigital.io/seo` without a trailing slash, and WordPress then redirected again to
+`/seo/`. A missing trailing slash on a destination silently creates a second hop. Always end
+destination URLs with a slash.
 
-**Also worth checking:** the four posts not listed above may have the same problem at lower volume.
-Run a full crawl for root level blog slugs before assuming this list is complete.
+**Follow up:** re-run `./scripts/performance-check --site --days 28` in a few weeks. The root level
+paths should stop appearing in the GA4 page list. If they persist, something still links to them
+internally and those links should be updated to point at the canonical URL directly rather than
+relying on the redirect.
 
-### 0b. GA4 has no key events configured, so leads cannot be measured
+The crawl confirmed all seven blog slugs 404ed at root, not only the five with observed traffic.
+All seven are now redirected.
+
+### 0b. OPEN. GA4 has no key events configured, so leads cannot be measured
 
 The 28 day pull returned **keyEvents 0** across 405 sessions. Not zero conversions. Zero
 **configured** key events.

@@ -5,9 +5,14 @@ the GA4 and Search Console APIs.
 
 ---
 
-# 1. The 301 redirects
+# 1. The 301 redirects  [DONE July 18, 2026]
 
-## What is wrong
+## Status: complete and verified
+
+All nine redirects live. Every source returns 200 in one hop to the correct destination. All live
+destinations still return 200 with zero hops, so no rule caught its own target.
+
+The original problem, kept for reference:
 
 The blog moved from root level URLs to `/blog/` and never got redirects. **All seven** blog slugs
 return 404 at root level, not just the five that showed traffic. The redesign article also changed
@@ -142,7 +147,7 @@ data is unavailable. **Sessions are not leads and must never be presented as a p
 
 ---
 
-# 3. GBP API access request
+# 3. GBP API access request  [SUBMITTED July 18, 2026]
 
 ## Where
 
