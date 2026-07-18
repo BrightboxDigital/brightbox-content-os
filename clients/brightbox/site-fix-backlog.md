@@ -86,8 +86,21 @@ Three posts carry 2025 in the title and slug while it is July 2026:
 `fort-wayne-web-design-2025`, `local-seo-in-2025`, and
 `fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025`.
 
-**Fix:** when these are refreshed, move to evergreen titles and slugs. Changing a slug requires a
-301 from the old URL. Do not simply swap the year, that creates the same problem next year.
+**Archie's position, July 18, 2026:** worth doing, but not a first priority, since the content is
+only a year old and is not necessarily outdated. Scheduled late in the calendar accordingly
+(cycles 8 and 12). Do not front load these.
+
+**One distinction worth keeping separate.** Whether the *content* is stale and whether the *title*
+is stale are two different problems. The content may well be fine. But a searcher scanning results
+in 2026 sees "2025" in the title and reads it as last year's advice before clicking. That is a
+click-through cost that applies even to accurate content, and it gets worse every month.
+
+If the year stamps become a priority ahead of schedule, the cheap version is a title and slug change
+with a 301, without a full content rewrite. That is a much smaller job than a refresh and can be
+done independently.
+
+**Fix, when scheduled:** move to evergreen titles and slugs. Changing a slug requires a 301 from the
+old URL. Do not simply swap 2025 for 2026, that recreates the same problem next year.
 
 ### 8. Two posts are a year old and cover fast moving subjects
 

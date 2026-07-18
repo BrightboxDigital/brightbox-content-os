@@ -55,14 +55,24 @@ If Archie does not want to record:
 
 ## Platform versions
 
-Produce distinct versions for Instagram, Facebook, TikTok, LinkedIn and YouTube Shorts.
+Brightbox posts to five platforms. Confirmed by Archie, July 18, 2026.
 
-Each needs: caption, title where applicable, CTA, link instructions, relevant hashtags, suggested
-posting date, and a suggested follow up engagement action.
+| Platform | Notes |
+|---|---|
+| Instagram | Reels and carousels. Link goes in bio or a story sticker, not the caption |
+| Facebook | Links work in the caption. Tolerates more context than Instagram |
+| TikTok | Front load the hook in the first two seconds. Link in bio |
+| LinkedIn | Longest tolerated context. Business owner framing, not agency jargon |
+| YouTube | Both Shorts and longer form. Needs a real title and description, and the article link belongs in the description |
 
-Do not reuse an identical caption across platforms where behavior differs. LinkedIn tolerates
-longer context. TikTok and Shorts need front loaded hooks. Instagram link handling differs from
-Facebook.
+Each version needs: caption, title where applicable, CTA, link instructions, relevant hashtags,
+suggested posting date, and a suggested follow up engagement action.
+
+Do not reuse an identical caption across platforms. YouTube in particular needs a genuine keyword
+aware title and a description with the article link, which the other four do not.
+
+If a piece is built as a Reel, it can serve Instagram, Facebook, TikTok and YouTube Shorts from one
+recording. Say so in the package rather than implying five separate shoots.
 
 ## Publishing
 
@@ -81,8 +91,12 @@ insights, and delete a post when explicitly authorized.
 **Do not grant or use tools that change business name, categories, address, phone, hours, service
 areas, managers or ownership.**
 
-GBP is not currently connected. Generate the complete ready to post package, mark status
-`Connection Needed`, and never claim it was published.
+**Brightbox is not approved for the GBP API as of July 18, 2026.** Approval is a prerequisite, not a
+connection step. Until Google approves the application and Google My Business API v4.9 is enabled,
+every GBP post is manual.
+
+Generate the complete ready to post package, mark status `Connection Needed`, and never claim it was
+published. Do not build or call a `gbp-post` script until approval lands.
 
 ### Launch post
 

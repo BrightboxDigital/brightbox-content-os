@@ -51,9 +51,14 @@ Verified July 18, 2026. Re-verify before relying on any of these.
 - Canva: connected.
 - Google Search Console: not connected. Produce manual inspection instructions instead of data.
 - GA4: not connected. Create a manual review task instead of inventing numbers.
-- Google Business Profile: not connected. Produce ready to post packages, mark Connection Needed.
+- Google Business Profile: **not approved for the API.** Approval is pending, not just unconnected.
+  Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
 - WordPress: not connected. Output HTML files only.
-- Social scheduler: not connected. Build a distribution queue.
+- Social scheduler: not connected. Build a distribution queue. Brightbox posts to Instagram,
+  Facebook, TikTok, LinkedIn and YouTube.
+
+**Editorial disclosure: declined.** Do not add an AI-assistance statement to articles and do not
+re-propose one.
 
 Never claim a check was performed against a system that is not connected.
 

@@ -56,17 +56,32 @@ Archie Brady. There is currently **no author page**; `/author/archie/` returns 4
 substantive author page is a recommended site fix, tracked in `site-fix-backlog.md`. Until it
 exists, link author bios to `https://brightboxdigital.io/about/`.
 
-## Optional editorial disclosure
+## Editorial disclosure
 
-Pending Archie's decision. Proposed wording:
+**Declined by Archie, July 18, 2026.** Do not add an AI-assistance statement to articles. Do not
+re-propose it. Google does not require one.
 
-> Brightbox Digital uses AI-assisted research and editing tools. Every article is reviewed,
-> fact-checked and approved by Archie Brady and incorporates Brightbox's direct experience.
+This does not change any other rule. Archie is still the genuine author, the byline still names him,
+and no article may contain fabricated experience.
 
-Google does not require this. It is an editorial choice.
+## Brand assets
 
-## Assets
+Source of truth: `~/Desktop/Brightbox Digital/`. Confirmed by Archie, July 18, 2026.
 
-Location to be confirmed. Candidate: `~/Desktop/Brightbox Digital/` contains Logo, Stock Images,
-Portfolio, Mockups and Templates folders, plus profile photos. Canva and Google Drive connectors are
-available. Confirm with Archie before referencing any asset path in an article brief.
+| Folder | Contains |
+|---|---|
+| `Logo/New/` and `Logo/Old/` | Brand marks. Use `New`. Verify before referencing `Old` |
+| `Portfolio/` | Client work by name, plus ad creative PNGs. Real client sites, permission required before publishing any image |
+| `Stock Images/` | Licensed AdobeStock and Depositphotos files, plus a `Construction` subfolder |
+| `Mockups/Brightbox Portfolio Mobile Images/` | Device mockups |
+| `Templates/` | HVAC, painting contractor, WordPress blueprint templates |
+| `profile pic.JPG`, `profile pic square.JPG` | Archie headshots, for author page and bylines |
+
+Rules for image briefs:
+
+- Prefer an original screenshot, diagram or annotated example over anything in `Stock Images/`.
+  Stock is the fallback, not the default.
+- Portfolio images show real client work. Confirm permission with Archie before any brief calls for one.
+- Strip location and device metadata from photographs before publishing.
+- Canva and Google Drive connectors are available for producing diagrams and checklists.
+- Reference an asset by folder path in the brief. Never invent a filename or a live image URL.
