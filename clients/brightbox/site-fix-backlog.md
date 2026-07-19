@@ -86,6 +86,20 @@ form submission. Ideally also phone link clicks and any quote or review request.
 Until this exists, the 28 and 90 day checks can report traffic and engagement but must state
 plainly that conversion data is unavailable. **Do not infer leads from sessions.**
 
+### 0c. A site navigation link points at a 404
+
+`/social-media-marketing/` is linked from the site navigation and returns **404**. The real page is
+`/social-media-marketing-fort-wayne/`, which returns 200.
+
+This link appears in the header or footer, so it is on every page of the site.
+
+**Fix:** correct the menu link to `/social-media-marketing-fort-wayne/`. Add a 301 from
+`/social-media-marketing/` as well, since the wrong URL may have been shared or indexed.
+
+Also on the contact page: the nav links to `/fort-wayne-seo/`, which now 301s correctly but still
+costs a redirect hop on every click. Update menu links to point at `/seo/` directly. Redirects are
+a safety net for external links, not a substitute for correct internal linking.
+
 ---
 
 ## High priority

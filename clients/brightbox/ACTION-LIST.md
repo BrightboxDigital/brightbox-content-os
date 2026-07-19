@@ -78,72 +78,130 @@ have stopped appearing in the GA4 page list.
 
 # 2. GA4 key events
 
-## Can Claude do this? No, and for two reasons
+## Correction to earlier advice
 
-The service account has **read only** analytics scope by design, so it cannot write configuration.
-That part could be changed.
+I previously told you to try the GA4 Enhanced Measurement "Form interactions" toggle first as a free
+two minute attempt. **That will not work on this site and you should not bother.** I gave that advice
+before inspecting the contact page.
 
-The blocking reason is different: **there is no lead event to mark.** Marking a key event means
-promoting an existing event. Nothing on the site currently fires one.
+## Why: the contact form is a cross domain iframe
 
-Here is every event GA4 collected in the last 28 days:
+The form on `/contact/` is not a WordPress form. It is a GoHighLevel LeadConnector widget embedded
+in an iframe:
 
-| Event | Count | What it is |
+```
+https://api.leadconnectorhq.com/widget/form/sOSZ2rUX7lJynwVlU9uR
+```
+
+There is no `<form>` element anywhere in the page HTML. The form lives entirely on
+`leadconnectorhq.com`.
+
+**GA4 cannot see inside a cross origin iframe.** The browser blocks it. This is a security boundary,
+not a configuration problem. No GA4 setting, no Enhanced Measurement toggle and no amount of tag
+configuration on brightboxdigital.io will ever record that submission, because the submit event
+happens on a domain GA4 has no access to.
+
+This is why `form_submit` has never appeared in the event list, and never would have.
+
+## What GA4 currently collects
+
+| Event | 28d count | What it is |
 |---|---|---|
 | `page_view` | 573 | Automatic |
 | `user_engagement` | 422 | Automatic |
 | `session_start` | 259 | Automatic |
-| `scroll` | 186 | Enhanced measurement, 90 percent scroll depth |
+| `scroll` | 186 | Enhanced measurement, 90 percent depth |
 | `first_visit` | 149 | Automatic |
-| `click` | 55 | Enhanced measurement, outbound links only |
+| `click` | 55 | Enhanced measurement, **outbound links only** |
 
-All six are GA4 defaults. **There is no `form_submit`, no `generate_lead`, no contact event of any
-kind.** There is also no thank-you or confirmation page anywhere in 90 days of page path data.
+All six are defaults. No lead event of any kind. No thank-you or confirmation page in 90 days of
+page path data.
 
-So this is a two part job: make the site fire a lead event, then mark it as a key event.
+## The fix: redirect out of the iframe to a thank-you page
 
-## The most reliable fix: a thank-you page
+The lead signal has to be created on the Brightbox domain, because that is the only place GA4 can
+observe it. A page view on a thank-you page is that signal.
 
-No GTM, no code, works with any form plugin.
+### Step 1. Add the GHL embed script
 
-1. In your form plugin settings, change the contact form's post-submit behavior from an inline
-   success message to a **redirect** to `https://brightboxdigital.io/thank-you/`.
-2. Create that page. Keep it simple and useful. Confirm the message was received and say when you
-   will respond.
-3. Set the page to `noindex` so it stays out of search results.
-4. Submit the form yourself once to generate real data.
-5. Wait up to 24 hours, then in GA4: **Admin > Events > Create event**
-   - Name: `generate_lead`
-   - Condition: `event_name` equals `page_view` **and** `page_location` contains `/thank-you/`
-6. **Admin > Key events > Mark as key event**, select `generate_lead`.
+The page currently loads the iframe **without** GoHighLevel's companion script. The standard GHL
+embed is two parts:
 
-Why this rather than form tracking: a thank-you page view is unambiguous. It fires once, only on
-success, and no plugin behavior can silently break it.
+```html
+<iframe src="https://api.leadconnectorhq.com/widget/form/sOSZ2rUX7lJynwVlU9uR" ...></iframe>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+```
 
-## Free thing to try first, takes two minutes
+Only the iframe is present. That script is what lets the iframe talk to the parent page, and without
+it a redirect configured in GHL will very likely navigate **inside the iframe** rather than taking
+the whole browser to the thank-you page. A redirect that only moves the iframe produces no page view
+on brightboxdigital.io, so GA4 still sees nothing.
 
-**Admin > Data Streams > select the web stream > Enhanced measurement > gear icon > enable
-"Form interactions."**
+Add the script to the contact page, in Elementor via an HTML widget below the form.
 
-That fires `form_start` and `form_submit` automatically. It costs nothing to turn on.
+### Step 2. Create the thank-you page
 
-Be aware it frequently fails on AJAX submitted forms, which most modern WordPress form plugins use.
-Turn it on, submit a test, and check whether `form_submit` appears within 24 hours. If it does, mark
-that as your key event and skip the thank-you page. If it does not, the form is AJAX based and you
-need the redirect method above.
+`https://brightboxdigital.io/thank-you/`
 
-## Worth adding too
+Keep it genuinely useful. Confirm the message was received, say when you will respond, and give a
+next step. Set it to **noindex** so it stays out of search results.
 
-Phone and email taps are leads and are currently invisible. `click` only tracks outbound links, not
-`tel:` or `mailto:`.
+### Step 3. Point the GHL form at it
 
-If your theme or a plugin can fire an event on those, mark them as key events as well. This is
-secondary to the form.
+In GoHighLevel, open the form, go to Settings, and set the on submit action to **Redirect to URL**:
+
+```
+https://brightboxdigital.io/thank-you/
+```
+
+### Step 4. Test it, and confirm the address bar changes
+
+Submit the form yourself. **Watch the browser address bar.** It must change to
+`brightboxdigital.io/thank-you/`.
+
+If the thank-you content appears but the address bar still says `/contact/`, the redirect happened
+inside the iframe and step 1 did not take effect. GA4 will record nothing. Fix that before continuing.
+
+### Step 5. Create the key event
+
+Once a real thank-you page view exists in GA4, wait up to 24 hours, then:
+
+**Admin > Events > Create event**
+- Name: `generate_lead`
+- Condition: `event_name` equals `page_view` **and** `page_location` contains `/thank-you/`
+
+Then **Admin > Key events > Mark as key event** and select `generate_lead`.
+
+### Step 6. Verify
+
+```
+./scripts/performance-check --site --days 28
+```
+
+`keyEvents` should stop reading 0 once submissions come in.
+
+## Phone taps are also invisible
+
+The contact page carries three `tel:` links and one `mailto:`. For a local service business these are
+probably a larger share of real leads than the form.
+
+GA4's `click` event only covers **outbound links**. It does not capture `tel:` or `mailto:`.
+
+Elementor Pro can fire a custom event on a link click, or a small listener on `a[href^="tel:"]` can
+push one. Worth doing after the form is working, and worth marking as a second key event. Track it
+separately from the form so you can tell which channel produces business.
 
 ## Until this exists
 
 The 28 and 90 day checks report traffic and engagement only, and must state plainly that conversion
 data is unavailable. **Sessions are not leads and must never be presented as a proxy for them.**
+
+## A note on GoHighLevel
+
+GHL records these submissions on its own side, so you are not losing the leads themselves. What is
+missing is the connection between a lead and the article or search query that produced it. That
+connection is the entire point of the 28 and 90 day reviews, and it only exists if GA4 sees the
+conversion.
 
 ---
 
