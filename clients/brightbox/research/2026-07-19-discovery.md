@@ -41,7 +41,24 @@ Real data, 90 days, April 18 to July 17, 2026. Brightbox's property.
 | ad agencies in fort wayne | 4 | 0 | 53.2 |
 | ppc management fort wayne | 1 | 0 | 56.0 |
 
-**274 ads-related impressions. Zero clicks. Average position 20 to 56.**
+**274 ads-related impressions. Zero clicks. Average position ranges from 21.4 to 56.**
+
+These figures are now recorded as an immutable baseline in
+`clients/brightbox/performance/query-baselines.csv`, snapshot dated 2026-07-19, label
+"PPC gap baseline". Any future claim that the PPC article helped must be measured against that row,
+not against recollection.
+
+Site wide and page level baselines were captured the same day:
+
+| Scope | Impressions | Clicks | Avg position | Sessions | Key events |
+|---|---|---|---|---|---|
+| Entire site, 90d | 22,408 | 88 | 13.67 | 641 | 0 |
+| `/google-and-facebook-ads/`, 90d | 47 | 1 | 11.28 | 11 | 0 |
+| `/blog/`, 90d | 159 | 1 | 11.29 | 123 | 0 |
+
+The zero key events are expected and not a finding: key events were only configured on 2026-07-19,
+so the counter starts at zero by definition. It is recorded anyway, because a baseline of zero is
+still a baseline.
 
 Brightbox is visible for paid-advertising queries and ranks nowhere near where anyone clicks. This
 is direct measured evidence that the PPC gap identified in the site audit is real, not theoretical.

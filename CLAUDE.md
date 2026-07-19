@@ -15,6 +15,29 @@ Archie Brady must personally approve topic selection, seed keywords, interview a
 8. Do not create a NeuronWriter analysis before Archie approves both topic and seed keyword.
 9. Do not modify Google Business Profile business details. Posts only, and only with approval.
 10. Do not change dateModified or a visible updated date without a substantive update.
+11. **Record a baseline the moment you observe a number.** Any time performance data is pulled for a
+    page, query set or the site, append it to `clients/brightbox/performance/baselines.csv` via
+    `./scripts/snapshot-baseline` before acting on it. A number nobody wrote down is not evidence
+    six months later, and memory is not a baseline. This applies to discovery runs, monitoring
+    checks, and any ad hoc look at the data.
+
+## Baselines
+
+Before starting work that is meant to move a number, record where that number starts.
+
+```
+./scripts/snapshot-baseline --site --days 90 --label "why you are taking this snapshot"
+./scripts/snapshot-baseline --page google-and-facebook-ads --days 90 --label "before supporting content"
+./scripts/snapshot-baseline --queries "google ads,ppc" --days 90 --label "PPC gap baseline"
+./scripts/snapshot-baseline --show
+```
+
+Rows are append only and immutable. To correct a mistake, add a new row with a note explaining it.
+Never edit or delete a historical row, because the whole value of the file is that it was written
+before the outcome was known.
+
+When reporting on an article at 7, 28 or 90 days, always compare against the recorded baseline and
+state both numbers. Never report a current figure alone as though it were progress.
 
 ## Where things live
 

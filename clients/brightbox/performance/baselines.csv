@@ -1,0 +1,4 @@
+snapshot_date,label,scope,target,window_days,window_start,window_end,gsc_impressions,gsc_clicks,gsc_ctr_pct,gsc_avg_position,ga4_sessions,ga4_engaged_sessions,ga4_engagement_rate_pct,ga4_page_views,ga4_key_events,notes
+2026-07-19,content system launch,site,entire site,90,2026-04-18,2026-07-17,22408,88,0.393,13.67,641,349,54.45,1752,0,Before any article produced by the content OS. GA4 key events configured 2026-07-19 so key event counts start near zero by definition.
+2026-07-19,PPC hub before supporting content,page,google-and-facebook-ads,90,2026-04-18,2026-07-17,47,1,2.128,11.28,11,9,81.82,13,0,Cycle 1 article supports this page. Currently zero supporting blog content.
+2026-07-19,blog section before content OS,page,blog,90,2026-04-18,2026-07-17,159,1,0.629,11.29,123,100,81.3,254,0,All 7 legacy posts combined.
