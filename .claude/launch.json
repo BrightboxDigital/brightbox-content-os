@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "bbx-preview", "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m","http.server","4173","--directory","/tmp/bbxpreview"], "port": 4173 }
+  ]
+}

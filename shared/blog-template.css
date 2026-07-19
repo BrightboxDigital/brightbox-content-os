@@ -1,0 +1,415 @@
+/* ==========================================================================
+   BRIGHTBOX DIGITAL — REUSABLE BLOG ARTICLE STYLESHEET
+   Version 1.0, adapted 2026-07-19 from the "Should I Redesign My Website"
+   article by Archie Brady.
+
+   WHAT CHANGED FROM THE ORIGINAL AND WHY
+   1. Prefix changed from .bbx-redesign- to .bbx-post-.
+      The original prefix was article specific, which meant the entire
+      stylesheet had to be pasted into every post. With a stable prefix this
+      file goes into Appearance > Customize > Additional CSS ONCE, and every
+      future article is markup only. Saves roughly 25KB per post and means a
+      design change updates every article at once instead of one at a time.
+
+   2. CTA button text colour fixed.
+      Was #E0900A on #FFAB24, a contrast ratio of 1.36:1. That fails WCAG AA
+      at every size and is close to unreadable. Now #131B3A at 8.91:1.
+
+   3. Added components the original did not have: metric grid, callout box,
+      data table, and FAQ block.
+
+   HOW TO USE
+   - Paste this file into Additional CSS once.
+   - Each article uses only markup, wrapped in <div class="bbx-post">.
+   - The companion JS goes in the footer once, not per article.
+   ========================================================================== */
+
+/* ---------- Scoped reset ---------- */
+.bbx-post,
+.bbx-post *,
+.bbx-post *::before,
+.bbx-post *::after { box-sizing: border-box; }
+
+.bbx-post {
+  margin: 0 auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 17px;
+  line-height: 1.8;
+  color: #2C2A3B;
+  -webkit-font-smoothing: antialiased;
+}
+
+.bbx-post img { max-width: 100%; height: auto; display: block; }
+
+/* ---------- Byline ---------- */
+.bbx-post-byline {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px; font-weight: 500; letter-spacing: 0.03em;
+  text-transform: uppercase; color: #6B6B7D; margin: 0 0 28px;
+}
+.bbx-post-bylineDot {
+  width: 3px; height: 3px; border-radius: 50%; background: #6B6B7D; flex: none;
+}
+
+/* ---------- TL;DR ---------- */
+.bbx-post-tldr {
+  position: relative; background: #F4EFFB; border: 1px solid #E7E0F5;
+  border-left: 4px solid #5C2599; border-radius: 10px;
+  padding: 22px 24px 24px; margin: 0 0 32px; overflow: hidden;
+}
+.bbx-post-tldrChrome { display: flex; align-items: center; gap: 6px; margin-bottom: 14px; }
+.bbx-post-tldrDot { width: 8px; height: 8px; border-radius: 50%; background: #D9D2EC; }
+.bbx-post-tldrDot:nth-child(2) { background: #C7BBE4; }
+.bbx-post-tldrDot:nth-child(3) { background: #5C2599; }
+.bbx-post-tldrLabel {
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: #5C2599; margin-left: 4px;
+}
+.bbx-post-tldrText { font-size: 16.5px; line-height: 1.7; color: #2C2A3B; margin: 0; }
+.bbx-post-tldrList { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.bbx-post-tldrList li {
+  position: relative; padding-left: 22px; font-size: 16.5px; line-height: 1.65; color: #2C2A3B;
+}
+.bbx-post-tldrList li::before {
+  content: ""; position: absolute; left: 0; top: 10px;
+  width: 7px; height: 7px; border-radius: 50%; background: #5C2599;
+}
+
+/* ---------- Metric grid (signature element for data-led articles) ---------- */
+.bbx-post-metrics {
+  background: #FAFAFC; border: 1px solid #E7E5F0; border-radius: 14px;
+  padding: 26px 24px 24px; margin: 0 0 36px;
+}
+.bbx-post-metricsEyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #6B6B7D; margin: 0 0 4px;
+}
+.bbx-post-metricsTitle {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 19px;
+  color: #131B3A; margin: 0 0 20px;
+}
+/* 3 across on desktop so 6 metrics form two balanced rows rather than
+   orphaning one on a second line. 2 across on mobile. */
+.bbx-post-metricsGrid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.bbx-post-metric {
+  background: #FFFFFF; border: 1px solid #E7E5F0; border-radius: 10px;
+  padding: 16px 14px; text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.bbx-post-metric:hover {
+  transform: translateY(-2px); border-color: #D9D2EC;
+  box-shadow: 0 10px 22px -16px rgba(10, 21, 48, 0.4);
+}
+.bbx-post-metricValue {
+  font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px;
+  line-height: 1.15; color: #131B3A; display: block;
+}
+.bbx-post-metricLabel {
+  font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: #6B6B7D;
+  display: block; margin-top: 6px;
+}
+.bbx-post-metricHighlight { border-color: #C7BBE4; background: #F4EFFB; }
+.bbx-post-metricHighlight .bbx-post-metricValue { color: #5C2599; }
+.bbx-post-metricsCaption { font-size: 14.5px; color: #6B6B7D; margin: 16px 0 0; }
+
+/* ---------- Table of contents ---------- */
+.bbx-post-toc {
+  background: #FFFFFF; border: 1px solid #E7E5F0; border-radius: 14px;
+  margin: 0 0 36px; overflow: hidden; box-shadow: 0 1px 2px rgba(10, 21, 48, 0.04);
+}
+.bbx-post-tocHead {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; background: none; border: none; cursor: pointer; padding: 16px 20px;
+  font-family: 'JetBrains Mono', monospace; font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase; color: #131B3A; text-align: left;
+}
+.bbx-post-tocHead svg { flex: none; transition: transform 0.3s ease; color: #5C2599; }
+.bbx-post-tocHead[aria-expanded="true"] svg { transform: rotate(180deg); }
+.bbx-post-tocPanel {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease; border-top: 1px solid #E7E5F0;
+}
+.bbx-post-tocOpen { max-height: 700px; }
+.bbx-post-tocList {
+  list-style: none; margin: 0; padding: 14px 16px 16px; display: grid; gap: 4px;
+}
+.bbx-post-tocList li { margin: 0; }
+.bbx-post-tocList a {
+  display: flex; align-items: baseline; gap: 10px; padding: 8px 10px; border-radius: 8px;
+  font-size: 14.5px; font-weight: 500; color: #2C2A3B; text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+.bbx-post-tocList a:hover { background: #F4EFFB; padding-left: 14px; }
+.bbx-post-tocNum {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+  color: #B7AAD8; flex: none; width: 20px;
+}
+.bbx-post-tocActive { color: #5C2599; background: #F4EFFB; }
+.bbx-post-tocActive .bbx-post-tocNum { color: #5C2599; }
+
+/* ---------- Figure with browser chrome ---------- */
+.bbx-post-figure {
+  margin: 28px 0 32px !important; border-radius: 14px; border: 1px solid #E7E5F0;
+  overflow: hidden; background: #FFFFFF; box-shadow: 0 14px 30px -18px rgba(10, 21, 48, 0.35);
+}
+.bbx-post-figureChrome {
+  display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #131B3A;
+}
+.bbx-post-figureDot { width: 9px; height: 9px; border-radius: 50%; }
+.bbx-post-figureDot:nth-child(1) { background: #FF6B5B; }
+.bbx-post-figureDot:nth-child(2) { background: #FFAB24; }
+.bbx-post-figureDot:nth-child(3) { background: #4FD1A5; }
+.bbx-post-figureUrl {
+  margin-left: 10px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  color: #9AA3C4; letter-spacing: 0.02em;
+}
+.bbx-post-figureImgWrap { overflow: hidden; }
+.bbx-post-figureImg { width: 100%; transition: transform 0.6s ease; }
+.bbx-post-figure:hover .bbx-post-figureImg { transform: scale(1.035); }
+.bbx-post-figureCaption {
+  font-size: 14px; color: #6B6B7D; padding: 12px 16px 14px;
+  border-top: 1px solid #E7E5F0; margin: 0; background: #FAFAFC;
+}
+
+/* ---------- Sections and typography ---------- */
+.bbx-post-section { margin: 0 0 8px; }
+.bbx-post-eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #5C2599;
+  margin: 30px 0 10px 2px;
+}
+.bbx-post-h2 {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 25px;
+  line-height: 1.3; color: #131B3A; margin: 0 0 16px;
+}
+.bbx-post-h3 {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px;
+  color: #131B3A; margin: 28px 0 10px;
+}
+.bbx-post-p { margin: 0 0 20px; color: #2C2A3B; }
+.bbx-post-p:last-child { margin-bottom: 0; }
+.bbx-post-em { font-style: italic; color: #131B3A; }
+
+.bbx-post a.bbx-post-link {
+  position: relative; color: #5C2599; font-weight: 600; text-decoration: none;
+  background-image: linear-gradient(#5C2599, #5C2599); background-repeat: no-repeat;
+  background-position: 0 100%; background-size: 0% 2px;
+  transition: background-size 0.3s ease, color 0.3s ease; padding-bottom: 1px;
+}
+.bbx-post a.bbx-post-link:hover { background-size: 100% 2px; color: #3B1568; }
+
+/* ---------- Numbered cards ---------- */
+.bbx-post-card {
+  position: relative; background: #FFFFFF; border: 1px solid #E7E5F0;
+  border-radius: 16px; margin: 28px 0 0; overflow: hidden;
+  transition: box-shadow 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+.bbx-post-card:hover {
+  box-shadow: 0 18px 38px -22px rgba(10, 21, 48, 0.4);
+  transform: translateY(-3px); border-color: #D9D2EC;
+}
+.bbx-post-cardChrome {
+  display: flex; align-items: center; gap: 6px; padding: 12px 18px;
+  background: linear-gradient(135deg, #0A1530 0%, #5C2599 100%);
+}
+.bbx-post-cardDot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); }
+.bbx-post-card:hover .bbx-post-cardDot:nth-child(3) { background: #FFAB24; }
+.bbx-post-cardEyebrow {
+  margin-left: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+  font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #FFFFFF;
+}
+.bbx-post-cardBody { position: relative; padding: 26px 24px 28px; }
+.bbx-post-cardNum {
+  position: absolute; top: -6px; right: 18px; font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 88px; line-height: 1; color: #FAFAFC;
+  -webkit-text-stroke: 1px #F1EEF9; z-index: 0; pointer-events: none;
+}
+.bbx-post-card .bbx-post-h2 { position: relative; z-index: 1; font-size: 21px; max-width: 85%; }
+.bbx-post-card .bbx-post-h3 { position: relative; z-index: 1; margin-top: 0; }
+.bbx-post-card .bbx-post-p { position: relative; z-index: 1; }
+
+/* ---------- Pull quote ---------- */
+.bbx-post-quote {
+  position: relative; background: #F4EFFB; border-radius: 14px;
+  padding: 28px 28px 24px 60px; margin: 0 0 28px;
+}
+.bbx-post-quoteMark {
+  position: absolute; top: 6px; left: 18px; font-family: 'Poppins', sans-serif;
+  font-weight: 800; font-size: 56px; line-height: 1; color: #C7BBE4;
+}
+.bbx-post-quoteText {
+  font-style: italic; font-size: 16.5px; line-height: 1.75; color: #2C2A3B; margin: 0 0 14px;
+}
+.bbx-post-quoteCite {
+  font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase; color: #5C2599;
+}
+
+/* ---------- Lists ---------- */
+.bbx-post-list { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 10px; }
+.bbx-post-listItem {
+  display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px;
+  background: #FAFAFC; border: 1px solid #E7E5F0; border-radius: 10px; font-size: 16px;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.bbx-post-listItem:hover { background: #F4EFFB; border-color: #D9D2EC; transform: translateX(4px); }
+.bbx-post-listIcon { flex: none; width: 20px; height: 20px; margin-top: 1px; color: #5C2599; }
+.bbx-post-listNum {
+  flex: none; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700;
+  color: #5C2599; min-width: 42px;
+}
+
+/* ---------- Callout ---------- */
+.bbx-post-callout {
+  display: flex; gap: 14px; background: #FFF8EC; border: 1px solid #FFE0AE;
+  border-left: 4px solid #FFAB24; border-radius: 10px; padding: 18px 20px; margin: 0 0 26px;
+}
+.bbx-post-calloutIcon { flex: none; width: 22px; height: 22px; color: #C97F06; margin-top: 2px; }
+.bbx-post-calloutBody { margin: 0; font-size: 16px; line-height: 1.7; color: #2C2A3B; }
+.bbx-post-calloutLabel {
+  display: block; font-family: 'JetBrains Mono', monospace; font-size: 11.5px;
+  font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  color: #C97F06; margin-bottom: 4px;
+}
+
+/* ---------- FAQ ---------- */
+.bbx-post-faq { display: grid; gap: 12px; margin: 0 0 32px; }
+.bbx-post-faqItem {
+  background: #FFFFFF; border: 1px solid #E7E5F0; border-radius: 12px;
+  padding: 20px 22px; transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.bbx-post-faqItem:hover {
+  border-color: #D9D2EC; box-shadow: 0 10px 22px -18px rgba(10, 21, 48, 0.4);
+}
+.bbx-post-faqQ {
+  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px;
+  color: #131B3A; margin: 0 0 8px;
+}
+.bbx-post-faqA { margin: 0; font-size: 16px; color: #2C2A3B; }
+
+/* ---------- Divider ---------- */
+.bbx-post-divider { border: none; border-top: 1px solid #E7E5F0; margin: 44px 0 36px; }
+
+/* ---------- Key takeaways ---------- */
+.bbx-post-takeaways {
+  background: #EAF8F1; border: 1px solid #CFEEDE; border-radius: 16px;
+  padding: 28px 24px; margin: 28px 0 40px;
+}
+.bbx-post-takeawaysEyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #1F9D6B; margin: 0 0 6px;
+}
+.bbx-post-takeawaysTitle {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 21px;
+  color: #131B3A; margin: 0 0 18px;
+}
+.bbx-post-takeawaysGrid { display: grid; gap: 12px; }
+.bbx-post-takeawayCard {
+  display: flex; align-items: flex-start; gap: 12px; background: #FFFFFF;
+  border: 1px solid #CFEEDE; border-radius: 10px; padding: 14px 16px;
+  font-size: 15.5px; line-height: 1.6;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bbx-post-takeawayCard:hover {
+  transform: translateY(-2px); box-shadow: 0 10px 22px -16px rgba(31, 157, 107, 0.55);
+}
+.bbx-post-takeawayIcon {
+  flex: none; width: 24px; height: 24px; border-radius: 50%; background: #1F9D6B;
+  color: #FFFFFF; display: flex; align-items: center; justify-content: center;
+}
+.bbx-post-takeawayIcon svg { width: 13px; height: 13px; }
+
+/* ---------- CTA ---------- */
+.bbx-post-cta {
+  position: relative; background: linear-gradient(135deg, #0A1530 0%, #3B1568 55%, #5C2599 100%);
+  border-radius: 18px; padding: 0; margin: 0 0 24px; overflow: hidden; text-align: center;
+}
+.bbx-post-ctaOrb { position: absolute; border-radius: 50%; filter: blur(40px); opacity: 0.45; pointer-events: none; }
+.bbx-post-ctaOrb1 {
+  width: 220px; height: 220px; background: #FFAB24; top: -90px; right: -60px;
+  animation: bbxPostFloat 9s ease-in-out infinite;
+}
+.bbx-post-ctaOrb2 {
+  width: 160px; height: 160px; background: #7A3FC7; bottom: -70px; left: -50px;
+  animation: bbxPostFloat 11s ease-in-out infinite reverse;
+}
+@keyframes bbxPostFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(14px, -16px); }
+}
+.bbx-post-ctaChrome {
+  position: relative; display: flex; align-items: center; gap: 6px; padding: 14px 22px;
+  background: rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.bbx-post-ctaDot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+.bbx-post-ctaEyebrow {
+  margin-left: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+  font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.65);
+}
+.bbx-post-ctaBody { position: relative; padding: 38px 30px 42px; }
+.bbx-post-ctaTitle {
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 25px;
+  color: #FFFFFF; margin: 0 0 14px;
+}
+.bbx-post .bbx-post-ctaText {
+  font-size: 16px; color: #FFFFFF; max-width: 480px; margin: 0 auto 26px;
+}
+.bbx-post-ctaBtn {
+  position: relative; display: inline-flex; align-items: center; gap: 8px;
+  background: #FFAB24;
+  color: #131B3A;              /* FIXED: was #E0900A at 1.36:1. Now 8.91:1 */
+  font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px;
+  text-decoration: none; padding: 15px 30px; border-radius: 50px; overflow: hidden;
+  box-shadow: 0 0 0 0 rgba(255,171,36,0.55);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  animation: bbxPostPulse 2.6s ease-out infinite;
+}
+.bbx-post-ctaBtn:hover { background: #FFC163; color: #0A1530; transform: translateY(-2px); }
+.bbx-post-ctaBtn::before {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg); transition: left 0.7s ease;
+}
+.bbx-post-ctaBtn:hover::before { left: 130%; }
+@keyframes bbxPostPulse {
+  0% { box-shadow: 0 0 0 0 rgba(255,171,36,0.5); }
+  70% { box-shadow: 0 0 0 14px rgba(255,171,36,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,171,36,0); }
+}
+.bbx-post .bbx-post-ctaFoot { position: relative; margin: 22px 0 0; font-size: 13px; color: #FFFFFF; }
+.bbx-post .bbx-post-ctaFoot a { color: #C9BCEA; text-decoration: underline; }
+.bbx-post .bbx-post-ctaFoot a:hover { color: #FFFFFF; }
+
+/* ---------- Scroll reveal ---------- */
+.bbx-post-reveal {
+  opacity: 0; transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.bbx-post-reveal.bbx-post-inview { opacity: 1; transform: translateY(0); }
+.bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(1) { transition-delay: 0s; }
+.bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(2) { transition-delay: 0.08s; }
+.bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(3) { transition-delay: 0.16s; }
+.bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(4) { transition-delay: 0.24s; }
+.bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(5) { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bbx-post * { animation: none !important; transition: none !important; }
+  .bbx-post-reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 600px) {
+  .bbx-post { font-size: 16px; }
+  .bbx-post-h2 { font-size: 21px; }
+  .bbx-post-card .bbx-post-h2 { font-size: 19px; max-width: 78%; }
+  .bbx-post-cardNum { font-size: 64px; right: 12px; }
+  .bbx-post-ctaTitle { font-size: 21px; }
+  .bbx-post-ctaBody { padding: 32px 20px 36px; }
+  .bbx-post-quote { padding: 26px 20px 22px 50px; }
+  .bbx-post-quoteMark { font-size: 44px; left: 14px; }
+  .bbx-post-metricsGrid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .bbx-post-metricValue { font-size: 21px; }
+}

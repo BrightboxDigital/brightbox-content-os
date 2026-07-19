@@ -223,3 +223,42 @@ return.
 
 Do not add `rel="nofollow"` to the primary sources cited in an article. Linking to Google's own
 documentation as evidence for a claim is exactly what a citation is for.
+
+
+## Article styling, standing rule
+
+**Set by Archie, July 19, 2026. Every article uses the Brightbox blog template.**
+
+Two files, both installed **once**:
+
+| File | Where it goes |
+|---|---|
+| `shared/blog-template.css` | Appearance, Customize, Additional CSS |
+| `shared/blog-template.js` | Site footer |
+
+After that, **every article is markup only**. No `<style>` block and no `<script>` travels with a
+post. Wrap the body in `<div class="bbx-post">` and use the component classes.
+
+### Why the prefix changed
+
+The original template used `.bbx-redesign-` which was named after one article. That meant the whole
+25KB stylesheet had to be pasted into every post, and a design change meant editing every article
+individually. The stable `.bbx-post-` prefix means one stylesheet serves every article and a design
+change updates all of them at once.
+
+### Components available
+
+`byline`, `tldr` (paragraph or list), `metrics` grid, `toc`, `figure` with browser chrome and
+caption, `section` with `eyebrow`, `card` (numbered), `quote`, `list` with icons or numbers,
+`callout`, `faq`, `divider`, `takeaways`, `cta`, `reveal` (scroll animation).
+
+### Rules
+
+- **Never add an H1 in the article markup.** WordPress renders the post title as the H1. A second
+  one creates a duplicate heading.
+- Use `bbx-post-h2` and `bbx-post-h3` on real `<h2>` and `<h3>` elements so the document outline
+  stays correct for screen readers and for Google.
+- Every image needs real alt text describing what the image shows, not the keyword.
+- Placeholders marked `REPLACE_ME` must be swapped before publishing. Never publish a placeholder.
+- The scroll reveal degrades gracefully. With JavaScript blocked everything is still readable.
+- `prefers-reduced-motion` is respected. Do not remove that media query.
