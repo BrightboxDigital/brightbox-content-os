@@ -1,0 +1,87 @@
+<!--
+CLICK TO CALL AND EMAIL TRACKING FOR GA4
+Brightbox Digital. Written July 18, 2026.
+
+WHERE THIS GOES
+  Elementor Pro > Templates > Custom Code > Add New
+    Name:     Phone and email click tracking
+    Location: End of <body>
+    Display Conditions: Entire Site
+
+  Site wide is correct here. The click to call button appears on every page,
+  including blog posts, so a per page snippet would miss most of the clicks.
+
+WHY THIS IS NEEDED
+  GA4's built in `click` event only fires on OUTBOUND links to other domains.
+  It does not fire on tel: or mailto:. Without this, every phone call
+  originating from the website is invisible in GA4.
+
+HOW IT WORKS
+  A single delegated listener on the document catches clicks on any tel: or
+  mailto: link, including ones added to the page after load. It uses the
+  capture phase so the event is sent before the browser hands off to the
+  dialer or mail client.
+
+  GA4 is installed here as gtag.js directly (G-1SF5XB1NRK), not through Google
+  Tag Manager, so this calls gtag() directly. If GTM is ever added, this should
+  be converted to a dataLayer.push instead.
+
+AFTER INSTALLING
+  1. Click a phone link on the live site, on a real phone if possible.
+  2. Check GA4 Realtime for `phone_call_click` within a minute or two.
+  3. Once it appears in Admin > Events, mark `phone_call_click` as a key event.
+     Keep it SEPARATE from generate_lead. Phone and form leads behave very
+     differently and lumping them together hides which channel produces work.
+  4. Do NOT mark email_click as a key event unless email turns out to matter.
+     Start by just measuring it.
+
+KNOWN ISSUE THIS DOES NOT FIX
+  The tel: hrefs on the site are inconsistent and two of the three formats
+  contain a leading encoded space:
+
+      tel:%20260.222.2880        <- leading space
+      tel:%20(260)%20222-2880    <- leading space
+      tel:2602222880             <- clean
+
+  This snippet handles all three. But the hrefs themselves should be
+  normalized to E.164 format:
+
+      tel:+12602222880
+
+  That is the format most reliably understood by every dialer, and it removes
+  ambiguity for international or VOIP callers. See site-fix-backlog.md.
+-->
+
+<script>
+(function () {
+  'use strict';
+
+  document.addEventListener('click', function (e) {
+    var link = e.target && e.target.closest
+      ? e.target.closest('a[href^="tel:"], a[href^="mailto:"], a[href^="TEL:"], a[href^="MAILTO:"]')
+      : null;
+    if (!link) return;
+
+    var href = link.getAttribute('href') || '';
+    var isPhone = /^tel:/i.test(href);
+
+    // Strip the scheme, decode %20 and friends, collapse whitespace.
+    var contactValue = href.replace(/^(tel:|mailto:)/i, '');
+    try { contactValue = decodeURIComponent(contactValue); } catch (err) { /* leave as is */ }
+    contactValue = contactValue.replace(/\s+/g, ' ').trim();
+
+    // For phones, also record a digits-only version so the three different
+    // href formats on the site aggregate into one value in reporting.
+    var normalized = isPhone ? contactValue.replace(/[^0-9+]/g, '') : contactValue;
+
+    if (typeof gtag !== 'function') return;
+
+    gtag('event', isPhone ? 'phone_call_click' : 'email_click', {
+      link_url: href,
+      contact_value: normalized,
+      link_text: (link.innerText || link.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100),
+      page_path: window.location.pathname
+    });
+  }, true); // capture phase: fire before the browser hands off to the dialer
+})();
+</script>

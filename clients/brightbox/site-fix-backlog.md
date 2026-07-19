@@ -106,6 +106,31 @@ Also on the contact page: the nav links to `/fort-wayne-seo/`, which now 301s co
 costs a redirect hop on every click. Update menu links to point at `/seo/` directly. Redirects are
 a safety net for external links, not a substitute for correct internal linking.
 
+### 0d. Phone number hrefs are inconsistent and two formats contain a leading space
+
+The click to call button appears on every page. Across the site the same number is marked up three
+different ways, and two of them have a URL encoded leading space inside the `tel:` value:
+
+```
+tel:%20260.222.2880        leading space
+tel:%20(260)%20222-2880    leading space
+tel:2602222880             clean
+```
+
+Most modern dialers tolerate the leading space and strip punctuation, so this is probably not
+costing calls today. But it is fragile, it depends on forgiving behavior rather than correctness,
+and it makes reporting messier because the same number appears as three distinct values.
+
+**Fix:** normalize every phone link to E.164:
+
+```
+tel:+12602222880
+```
+
+Display text can stay formatted however it reads best, for example (260) 222-2880. Only the `href`
+needs to change. The tracking snippet in `phone-tracking-snippet.html` already normalizes these to
+a digits only value for reporting, so this is about the links themselves, not the measurement.
+
 ---
 
 ## High priority
