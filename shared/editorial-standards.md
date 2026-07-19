@@ -202,3 +202,24 @@ Never use an AI detector to judge quality.
 - [ ] Authorship consistent between byline and markup
 - [ ] No unsupported ranking or lead promises
 - [ ] No outdated platform claims presented as current
+
+
+## Link behaviour, standing rule
+
+**Set by Archie, July 19, 2026. Applies to every Brightbox article.**
+
+| Link type | Behaviour | Markup |
+|---|---|---|
+| **External** | Opens in a **new tab** | `<a href="..." target="_blank" rel="noopener">` |
+| **Internal** | Stays in the **same tab** | `<a href="...">` |
+
+`rel="noopener"` is not optional. Without it, the page you link to can reach back into the opening
+window through `window.opener`. Modern browsers imply it for `target="_blank"`, but older ones do
+not, and it costs nothing to be explicit.
+
+Do not add `target="_blank"` to internal links. Sending a reader to another page on the same site in
+a new tab leaves them accumulating tabs for no reason, and it breaks the back button as a way to
+return.
+
+Do not add `rel="nofollow"` to the primary sources cited in an article. Linking to Google's own
+documentation as evidence for a claim is exactly what a citation is for.

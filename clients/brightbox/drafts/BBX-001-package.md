@@ -1,6 +1,6 @@
 # BBX-001 Article Package
 
-**Status:** Archie Review Needed
+**Status:** Revisions applied 2026-07-19, awaiting final approval
 **Draft:** `clients/brightbox/drafts/BBX-001-draft-v1.html`
 **NeuronWriter query:** `9072fc816ea7d1c1`
 
@@ -200,19 +200,27 @@ Full package produced by `distribute-blog` after approval. Not built yet, delibe
 
 ---
 
-## 9. Items requiring Archie's review
+## 9. Review items, all resolved 2026-07-19
 
-1. **Confirm the handyman figures are current** and that the screenshot's period matches. The article
-   says "last month".
-2. **Confirm the screenshot has no client identifiers** anywhere in the frame.
-3. **The "one in four leads closes" example** in the "what a job is worth" section is illustrative
-   arithmetic, not a claim about this client's close rate. Confirm that reads clearly, or supply his
-   real close rate if he wants it stated.
-4. **The Local Services Ads paragraph** says "a few clients" per his correction from one to three.
-   Confirm the framing is honest.
-5. **Confirm the Fort Wayne comparison** to Indianapolis and Chicago is a fair characterisation of
-   relative competition, since it is stated as fact.
-6. **Decide on image 3.** Two originals already meet the requirement.
+| # | Item | Archie's answer |
+|---|---|---|
+| 1 | Handyman figures current? | Yes, within the last 30 days |
+| 2 | Client identifiers in the screenshot? | None visible |
+| 3 | "One in four leads" reads as illustrative? | Yes, fine as written |
+| 4 | LSA framing honest at "a few clients"? | Yes |
+| 5 | Fort Wayne vs Indianapolis and Chicago fair? | Yes |
+| 6 | Third image? | Dropped. Two originals meet the requirement and a diagram of one arithmetic step would be decoration rather than instruction |
+
+## 10. Revision applied 2026-07-19
+
+**All external links now open in a new tab** with `target="_blank" rel="noopener"`. Internal links
+deliberately unchanged and still open in the same tab.
+
+Verified: 4 external links carry the attributes, 4 internal links do not. This is now a standing rule
+in `shared/editorial-standards.md` and applies to every future article.
+
+No other content changed, so no rescore was needed. Link attributes do not affect the NeuronWriter
+content score.
 
 ---
 
