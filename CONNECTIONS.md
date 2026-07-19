@@ -222,7 +222,74 @@ is sufficient.
 
 ---
 
-## 6. Verify NeuronWriter from a cloud Routine
+## 6. Keyword volume data via the Google Ads API
+
+**Semrush ruled out.** The Semrush MCP server exists at `https://mcp.semrush.com/v2/mcp` and would be
+the cleanest option, but Standard API access requires a qualifying plan plus API units. Archie is not
+on one (confirmed July 19, 2026) and upgrading is not justified for this alone.
+
+### Status July 19, 2026
+
+| Piece | State |
+|---|---|
+| Google Ads MCC account | Exists, **on a different Google account than the Cloud project** |
+| Developer token | Obtained, currently **Explorer** access |
+| Basic access | **Not yet applied for. This is the blocker.** |
+| Google Ads API on Cloud project | Not yet enabled |
+| Service account granted in Google Ads | Not yet done |
+
+### The different email does not matter
+
+Verified against Google's documentation. The three components are independent acquisitions:
+
+- The **Cloud project** hosts credentials and enables the API.
+- The **developer token** comes from the Ads manager account's API Center and is just a string.
+- The **Ads account** is the target of calls, identified by customer ID.
+
+Nothing requires them to share an owner. What links them is granting the service account access
+inside the Google Ads UI, which works across accounts.
+
+### The actual blocker
+
+**Explorer access cannot call `KeywordPlanIdeaService`.** Google lists planning tools among the
+features Explorer restricts, alongside account creation, user management and billing. Basic access
+is required and is reviewed in roughly five business days.
+
+Explorer also caps production calls at 2,880 operations per day. Basic raises that to 15,000, which
+is far beyond what this needs.
+
+### Steps
+
+1. **Apply for Basic access.** Sign into the MCC, `ads.google.com/aw/apicenter`, confirm the API
+   Contact Email, then choose Apply for Basic Access from the access level dropdown. Brand
+   verification of the Cloud project may expedite review.
+2. **Enable the Google Ads API** on the Cloud project. This is separate from the Search Console and
+   Analytics APIs already enabled:
+   `https://console.cloud.google.com/apis/library/googleads.googleapis.com?project=brightbox-digita-1743176991871`
+3. **Grant the service account access in Google Ads.** Signed in as MCC admin: Admin, Access and
+   security, Users, +, then add
+   `content-os-reader@brightbox-digita-1743176991871.iam.gserviceaccount.com`.
+   Read-only is sufficient. Google does not permit granting admin to a service account by default
+   and this workload does not need it. One service account email can be associated with up to 20
+   Google Ads accounts.
+4. **Store the developer token as a secret.** `~/.config/brightbox/google-ads.json`, mode 600:
+
+   ```json
+   {"developer_token": "...", "login_customer_id": "1234567890"}
+   ```
+
+   `login_customer_id` is the MCC's 10-digit customer ID without hyphens. It is **required** when
+   access to a client account runs through a manager account, which is the case here.
+
+**The developer token is a secret. It never goes in this repository and never into chat.**
+
+### Not a blocker for content work
+
+The system is designed to work without volume data. NeuronWriter supplies competitor and term
+analysis where it matters, and topic scoring never uses invented numbers. Discovery ran successfully
+on July 19, 2026 with no keyword tool at all.
+
+## 7. Verify NeuronWriter from a cloud Routine
 
 Not a new connection. NeuronWriter works in local Claude Code, but that does not prove it works from
 a scheduled cloud Routine, which is a different environment.
