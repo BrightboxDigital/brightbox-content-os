@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Wrapper: runs wp_draft.py inside the repo venv.
+# Needed because shebang lines cannot contain spaces and the repo path does.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV="$DIR/../.venv/bin/python3"
+[ -x "$VENV" ] || { echo "venv missing, see scripts/README.md" >&2; exit 1; }
+exec "$VENV" "$DIR/wp_draft.py" "$@"
