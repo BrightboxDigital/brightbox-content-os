@@ -86,7 +86,10 @@ Verified July 19, 2026. Re-verify before relying on any of these.
 - Google Business Profile: **not approved for the API.** Approval applied for July 18, 2026 and
   pending. Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
   Check approval by quota: 0 QPM means pending, 300 QPM means approved.
-- WordPress: **declined by Archie.** Not connecting. Output HTML files only, Archie pastes them in.
+- WordPress: **draft automation available.** `scripts/wp-draft` creates drafts via the REST API,
+  never publishes. Needs an application password at `~/.config/brightbox/wordpress.json`. SEO title,
+  meta description and canonical stay in Rank Math and are set by hand per article; the REST API
+  cannot write Rank Math fields. See `scripts/README-wordpress.md`.
 - Social: **declined by Archie.** Not connecting any platform or scheduler. Build a distribution
   queue only. Brightbox posts manually to Instagram, Facebook, TikTok, LinkedIn and YouTube.
 - Google Cloud project `brightbox-digita-1743176991871` (number `824815042391`). Search Console API
