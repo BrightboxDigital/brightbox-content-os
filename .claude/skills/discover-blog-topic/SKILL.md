@@ -42,8 +42,13 @@ Watch the category balance. If PPC is falling behind, correct toward it.
 
 ## Step 4. Research
 
-Cover the last 30 to 90 days. Prioritize primary sources. The full source list and the Reddit rules
-are in `MASTER-WORKFLOW.md` under Stage 1. Do not skip them.
+Cover the last 30 to 90 days. Prioritize primary sources. The full source list is in
+`MASTER-WORKFLOW.md` under Stage 1.
+
+Reddit signal is available via `./scripts/reddit-research "<topic>" --subs PPC,smallbusiness`.
+Read `shared/source-validation.md` before using it. It surfaces which questions recur; it is never
+evidence, never quotable, and every factual claim it suggests must be verified against a primary
+source. Do not identify users or quote individual posts.
 
 For anything that looks like news, record announcement date, rollout date, who is affected, whether
 it is confirmed, whether it is a test, whether rollout is limited, whether the source is primary,

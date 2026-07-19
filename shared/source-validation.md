@@ -86,3 +86,52 @@ Never let a limited test, a rollout in progress or an industry observation read 
 Sources go stale between drafting and delivery, especially platform documentation. Re-open every
 external URL in the ledger immediately before presenting the article package and update the date
 checked column.
+
+
+## Reddit: permitted as signal, never as evidence
+
+**Decision July 19, 2026, made by Archie.**
+
+Reddit's Responsible Builder Policy was read in full. It requires express written approval for
+commercial use of Reddit data. The policy is genuinely ambiguous about which framing governs this
+case, and the two readings were weighed:
+
+- **Claude's reading:** the Developers section scopes itself to "non-commercial applications," and
+  research feeding a lead generating content program for a for profit business falls outside that.
+- **Archie's reading, and the decision:** the specific prohibition is on selling, licensing, sharing
+  or otherwise commercialising Reddit data. Reading public threads to decide what to write about
+  redistributes nothing and resells nothing, so it is non-commercial research.
+
+**Archie's decision governs.** It is his account and his agreement with Reddit. The disagreement is
+recorded here rather than buried so that if Reddit ever clarifies its position against this use, the
+reasoning is visible and the decision can be revisited rather than re-argued from scratch.
+
+Enforcement risk, if the reading is wrong, is token revocation or app suspension. Reversible.
+
+### Hard constraints on the implementation
+
+`scripts/reddit-research` is built so that policy violations are structurally impossible rather than
+merely discouraged:
+
+- Read only. No posting, commenting, voting or messaging. The script uses application only OAuth and
+  never holds a Reddit username or password, so it cannot act as a user.
+- **Never collects usernames, author fields or comment bodies.** Only public post titles, dates,
+  comment counts and permalinks.
+- Never attempts to infer anything about any person. The policy's privacy section is absolute and
+  the script collects nothing that would make inference possible.
+- Rate limited well below the free tier ceiling.
+
+### Editorial rules, unchanged
+
+Reddit shows **what people are confused about**, never what is true.
+
+- Never treat a Reddit post or comment as authoritative evidence.
+- Never quote or paraphrase an individual post in an article.
+- Never identify or characterise a user.
+- Never use vote counts as data.
+- Every factual claim sourced from a Reddit thread must be independently verified against a primary
+  source before it appears anywhere.
+
+Reddit output belongs in the interview stage, as a prompt for Archie: "this question keeps coming
+up, what do you actually tell people who ask it?" His answer is the article content. The thread is
+only what surfaced the question.
