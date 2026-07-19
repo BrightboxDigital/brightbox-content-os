@@ -44,23 +44,33 @@ files changed and what needs merging.
 
 ## Current connection status
 
-Verified July 18, 2026. Re-verify before relying on any of these.
+Verified July 19, 2026. Re-verify before relying on any of these.
 
-- NeuronWriter: connected. Brightbox project `0bdb5139dc86fbe7` (`brightboxdigital.io`).
+- NeuronWriter: connected. Brightbox project `eea0682a76fd76f0` (`brightboxdigital.io`).
+  **This project is new and empty as of July 19, 2026.** Brightbox's historical queries
+  (`fort wayne google ads`, `fort wayne seo`, `google business profile`, `local seo`,
+  `web design fort wayne`, `website design`, `professional vs ai logo design`) live in the
+  **`Clients`** project `0bdb5139dc86fbe7`, which was renamed from the original mixed project.
+  When checking for prior analysis overlap, search both.
 - Google Drive: connected, read tools.
 - Canva: connected.
-- Google Search Console: **connected and verified.** Property `https://brightboxdigital.io/`.
-- GA4: **connected and verified.** Property `393864986`. Note: **no key events are configured**, so
-  conversion data is unavailable. Report traffic and engagement only, and say plainly that lead
-  data cannot be measured yet. Never infer leads from sessions.
-- Google Business Profile: **not approved for the API.** Approval is pending, not just unconnected.
-  Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
+- Google Search Console: **connected and verified.** Property `https://brightboxdigital.io/`,
+  returning live query data.
+- GA4: **connected and verified.** Property `393864986`. Two key events measure genuine contact
+  intent: `Generate_Lead` (page view on `/thank-you/` after the GoHighLevel form redirect) and
+  `phone_call_click` (custom snippet on `tel:` links, site wide). **Sessions are still not leads.
+  Report the key events, never a proxy.**
+- Google Business Profile: **not approved for the API.** Approval applied for July 18, 2026 and
+  pending. Produce ready to post packages, mark Connection Needed. All GBP posting is manual.
+  Check approval by quota: 0 QPM means pending, 300 QPM means approved.
 - WordPress: **declined by Archie.** Not connecting. Output HTML files only, Archie pastes them in.
 - Social: **declined by Archie.** Not connecting any platform or scheduler. Build a distribution
   queue only. Brightbox posts manually to Instagram, Facebook, TikTok, LinkedIn and YouTube.
-- Google Cloud project `brightbox-digita-1743176991871` exists. Search Console API and Google
-  Analytics Data API are enabled. Service account key is at `~/.config/brightbox/service-account.json`.
-  Access grants inside Search Console and GA4 are still outstanding.
+- Google Cloud project `brightbox-digita-1743176991871` (number `824815042391`). Search Console API
+  and Google Analytics Data API enabled, service account granted access in both. Key at
+  `~/.config/brightbox/service-account.json`, never in this repository.
+
+Run `./scripts/performance-check --check` to confirm Search Console and GA4 before relying on either.
 
 **Editorial disclosure: declined.** Do not add an AI-assistance statement to articles and do not
 re-propose one.
@@ -84,9 +94,16 @@ Checked July 18, 2026. Validate again before using in an article.
 | Blog | https://brightboxdigital.io/blog/ | 200 |
 | Contact | https://brightboxdigital.io/contact/ | 200 |
 
-**Do not use `/fort-wayne-seo/`.** It 301s to `/seo`. Link directly to `https://brightboxdigital.io/seo/`.
+**Do not use `/fort-wayne-seo/`.** It 301s to `/seo/`. Link directly to `https://brightboxdigital.io/seo/`.
+All internal body links were corrected on July 19, 2026, verified zero remaining across 24 pages.
+Do not reintroduce it.
 
-There is currently no author page. `/author/archie/` returns 404. See `clients/brightbox/site-fix-backlog.md`.
+Additional live pages: `/social-media-marketing-fort-wayne/`, `/logo-design-fort-wayne/`,
+`/thank-you/` (noindex, do not link from articles).
+
+There is currently no author page. `/author/archie/` returns 404. A draft exists at
+`clients/brightbox/author-page-draft.html`, pending Archie supplying his track record section.
+See `clients/brightbox/site-fix-backlog.md`.
 
 ## Connections
 

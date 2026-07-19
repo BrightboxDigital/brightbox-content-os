@@ -4,7 +4,7 @@
 **Primary market:** Fort Wayne, Indiana, and Northeast Indiana
 **Website:** https://brightboxdigital.io/
 **Platform:** WordPress with Rank Math SEO
-**NeuronWriter project:** `0bdb5139dc86fbe7` (brightboxdigital.io, English, google.com)
+**NeuronWriter project:** `eea0682a76fd76f0` (brightboxdigital.io, English, google.com)
 
 ## Audience
 

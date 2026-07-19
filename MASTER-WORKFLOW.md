@@ -90,7 +90,7 @@ Do not consume a NeuronWriter analysis credit before this approval.
 
 ## Stage 3. NeuronWriter analysis
 
-1. Confirm project `0bdb5139dc86fbe7`.
+1. Confirm project `eea0682a76fd76f0`.
 2. Create a new analysis only if no suitable one exists. Check `list-queries` first.
 3. Set engine google.com, language English, country United States, plus geographic relevance where
    the query is local.
