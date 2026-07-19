@@ -10,7 +10,7 @@ Audit data, last 10 Google Ads accounts he has run:
 | Finding | Count |
 |---|---|
 | Limited by budget | 6 of 10 |
-| Display Network and Search Partners enabled at audit | 10 of 10 |
+| Display Network and Search Partners enabled at audit | 8 of 10 |
 | Sent ad traffic to the homepage | 7 of 10 |
 | No conversion tracking configured | 7 of 10 |
 | No negative keyword list | 2 of 10 |
@@ -22,8 +22,7 @@ Screenshots supplied:
 2. Conversion action "Submit lead form", marked **Primary**, status **Inactive**, **Misconfigured**,
    0 conversions recorded. No client identifiers visible. Safe to publish as is.
 
-**Verify before drafting:** the 10 of 10 on Display and Search Partners is a striking claim. Confirm
-it means all ten accounts, and confirm whether that was at the point Archie inherited them.
+**Corrected by Archie 2026-07-19:** revised from 10 of 10 down to **8 of 10**. Use 8.
 
 ## Questions outstanding
 
@@ -57,6 +56,44 @@ You said 6 of 10 accounts are limited by budget. Have you checked their Target C
 CPA yet, or opened the Bid Target Adjustment Tool? Even "I have not looked yet, here is what I plan
 to do" is usable and honest.
 
-## Answers
+## Answers, given 2026-07-19
 
-_(paste below)_
+**1. Is $500 a month enough?**
+It depends on three things: competition in Fort Wayne, the profit a job brings in, and the bid price
+for the keywords. If competition is low, yes, they can win with that. Sometimes they need to spend
+more.
+
+**2. What changes on a small budget**
+Research longer tail keywords that are not bid on as heavily, so they cost less. Smaller radius.
+A sniper approach on keywords, showing up for what people are actually searching even if those are
+not the highest volume terms.
+
+**3. Real account**
+A Fort Wayne handyman who also does remodels. Smaller budget. Could not go after big remodel jobs
+because competition is heavy and those keywords are expensive. Went after smaller jobs on longer tail
+keywords instead and gets a steady flow of them on the small budget. Those smaller jobs can lead to
+bigger jobs later, so it is worth it.
+
+**4. When not to run Google Ads**
+Sometimes Meta ads are the better choice. Meta suits a nice-to-have service, where people do not know
+they are looking for it. Google is high intent, people are already searching for the service. On
+Facebook people are scrolling and the service appears in the feed and they think that would be nice
+to have. For that kind of service, Meta over Google.
+
+**5. Fort Wayne specifics**
+Clicks for handyman services in the Fort Wayne area run roughly **$3 to $7 per click**.
+
+**6. August 17 change**
+Has not looked yet. Plans to.
+
+---
+
+## Open items from Claude's review, 2026-07-19
+
+1. **Local Services Ads not mentioned.** Handyman is an eligible LSA category and LSA is pay per
+   lead with a weekly budget. For a small budget local service business this is arguably the most
+   relevant alternative and an informed reader would expect it. Needs Archie's view before drafting.
+2. **The $3 to $7 figure needs a stated basis.** Confirm it comes from accounts Archie runs and
+   roughly when. It will be framed as his observation, never as a market rate.
+3. **The handyman result cannot be published as a number.** "Quite a few" is not substantiable.
+   Will be written qualitatively unless Archie supplies a figure he can stand behind.

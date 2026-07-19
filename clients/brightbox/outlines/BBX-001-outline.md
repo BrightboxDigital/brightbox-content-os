@@ -5,7 +5,7 @@
 **Target word count:** 1,182 (NeuronWriter median and target). **Not** the usual 1,500.
 **Target readability:** 45
 **Publication:** August 1, 2026
-**Status:** Outline Review, material change flagged below
+**Status:** Reframe APPROVED by Archie 2026-07-19. Proceeding on the threshold frame.
 
 ---
 
@@ -114,7 +114,7 @@ Should be honest about when the answer is no.
 ### H2: Why small budgets underperform
 Archie's audit data, stated with the denominator. Out of the last 10 accounts:
 - 6 limited by budget
-- 10 had Display and Search Partners enabled
+- 8 had Display and Search Partners enabled
 - 7 sent ad traffic to the homepage
 - 7 had no conversion tracking configured
 - 2 had no negative keyword list
