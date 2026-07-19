@@ -252,6 +252,22 @@ change updates all of them at once.
 caption, `section` with `eyebrow`, `card` (numbered), `quote`, `list` with icons or numbers,
 `callout`, `faq`, `divider`, `takeaways`, `cta`, `reveal` (scroll animation).
 
+### Content must never depend on JavaScript to be visible
+
+**Bug found and fixed July 19, 2026.** Version 1.1 set `.bbx-post-reveal` to `opacity: 0` and relied
+on the script to reveal it. Pasted into an Elementor widget, the article rendered as a byline and
+nothing else, because the script was not reaching the content.
+
+The stylesheet now shows everything by default. The script adds `bbx-post-jsready` to the wrapper,
+and only that class switches the hidden state on. If the script never runs, for any reason at all,
+the article is still completely readable. It just does not animate.
+
+There is also a 2.5 second safety net that force-reveals anything still hidden, and the script
+retries on `DOMContentLoaded`, after 400ms, and on `load`, to survive page builders that inject
+content late.
+
+**Never invert this.** An animation is worth nothing if the failure mode is a blank article.
+
 ### Never put angle brackets in CSS or JS comments
 
 **Bug found and fixed July 19, 2026.** Version 1.0 of the stylesheet had

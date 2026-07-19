@@ -377,12 +377,26 @@
 .bbx-post .bbx-post-ctaFoot a { color: #C9BCEA; text-decoration: underline; }
 .bbx-post .bbx-post-ctaFoot a:hover { color: #FFFFFF; }
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Scroll reveal ----------
+   PROGRESSIVE ENHANCEMENT, and this matters.
+
+   Content is VISIBLE BY DEFAULT. The hidden state is only applied once the
+   script has confirmed it is running, by adding .bbx-post-jsready to the
+   wrapper. If the script does not run for any reason at all, page builder
+   timing, deferred loading, caching, a plugin conflict, the article is still
+   fully readable.
+
+   Version 1.1 had this backwards: opacity 0 by default, revealed by script.
+   That made the entire article invisible whenever the script did not run.
+   Do not reverse this again. */
 .bbx-post-reveal {
+  opacity: 1; transform: none;
+}
+.bbx-post-jsready .bbx-post-reveal {
   opacity: 0; transform: translateY(22px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
-.bbx-post-reveal.bbx-post-inview { opacity: 1; transform: translateY(0); }
+.bbx-post-jsready .bbx-post-reveal.bbx-post-inview { opacity: 1; transform: translateY(0); }
 .bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(1) { transition-delay: 0s; }
 .bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(2) { transition-delay: 0.08s; }
 .bbx-post-takeawaysGrid .bbx-post-reveal:nth-child(3) { transition-delay: 0.16s; }
@@ -391,7 +405,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .bbx-post * { animation: none !important; transition: none !important; }
-  .bbx-post-reveal { opacity: 1 !important; transform: none !important; }
+  .bbx-post-reveal,
+  .bbx-post-jsready .bbx-post-reveal { opacity: 1 !important; transform: none !important; }
 }
 
 /* ---------- Responsive ---------- */
