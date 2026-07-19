@@ -1,27 +1,21 @@
 /* ==========================================================================
-   BRIGHTBOX DIGITAL — REUSABLE BLOG ARTICLE STYLESHEET
-   Version 1.0, adapted 2026-07-19 from the "Should I Redesign My Website"
-   article by Archie Brady.
+   BRIGHTBOX DIGITAL - REUSABLE BLOG ARTICLE STYLESHEET
+   Version 1.1, 2026-07-19
 
-   WHAT CHANGED FROM THE ORIGINAL AND WHY
-   1. Prefix changed from .bbx-redesign- to .bbx-post-.
-      The original prefix was article specific, which meant the entire
-      stylesheet had to be pasted into every post. With a stable prefix this
-      file goes into Appearance > Customize > Additional CSS ONCE, and every
-      future article is markup only. Saves roughly 25KB per post and means a
-      design change updates every article at once instead of one at a time.
+   IMPORTANT: this file deliberately contains NO angle brackets anywhere,
+   not even inside comments. Angle brackets in CSS can break out of a style
+   block when the CSS is injected into an HTML context or passed through a
+   sanitiser, which dumps the whole stylesheet onto the page as visible text.
+   Version 1.0 had that bug. Do not reintroduce them.
 
-   2. CTA button text colour fixed.
-      Was #E0900A on #FFAB24, a contrast ratio of 1.36:1. That fails WCAG AA
-      at every size and is close to unreadable. Now #131B3A at 8.91:1.
+   WHERE THIS GOES
+   Appearance, then Customize, then Additional CSS. Install once.
+   Every article after that is markup only.
 
-   3. Added components the original did not have: metric grid, callout box,
-      data table, and FAQ block.
-
-   HOW TO USE
-   - Paste this file into Additional CSS once.
-   - Each article uses only markup, wrapped in <div class="bbx-post">.
-   - The companion JS goes in the footer once, not per article.
+   NOTES
+   - Prefix is stable (.bbx-post-) so one stylesheet serves every article.
+   - CTA button colour is 8.91:1 contrast. Do not change it back to #E0900A,
+     which was 1.36:1 and failed WCAG AA at every size.
    ========================================================================== */
 
 /* ---------- Scoped reset ---------- */

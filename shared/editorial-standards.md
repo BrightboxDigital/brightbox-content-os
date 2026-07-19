@@ -252,6 +252,17 @@ change updates all of them at once.
 caption, `section` with `eyebrow`, `card` (numbered), `quote`, `list` with icons or numbers,
 `callout`, `faq`, `divider`, `takeaways`, `cta`, `reveal` (scroll animation).
 
+### Never put angle brackets in CSS or JS comments
+
+**Bug found and fixed July 19, 2026.** Version 1.0 of the stylesheet had
+`div class="bbx-post"` written inside a header comment, complete with angle brackets. When that CSS
+was injected through a code manager plugin, the HTML parser broke out of the style block and dumped
+the entire stylesheet onto the page as visible text.
+
+CSS and JS comments in this repository contain **no angle brackets at all**. Not in examples, not in
+file paths, not in `Appearance > Customize` style breadcrumbs. Write "Appearance, then Customize"
+instead. This is cheap insurance against a failure that looks alarming and is hard to diagnose.
+
 ### Rules
 
 - **Never add an H1 in the article markup.** WordPress renders the post title as the H1. A second
