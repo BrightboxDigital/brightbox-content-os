@@ -76,7 +76,22 @@ have stopped appearing in the GA4 page list.
 
 ---
 
-# 2. GA4 key events
+# 2. GA4 key events  [IN PROGRESS]
+
+## Status July 18, 2026
+
+- Thank-you page live at `/thank-you/`, returns 200 with `noindex, nofollow`. Done.
+- GHL form on-submit redirect configured. Done.
+- `form_embed.js` and the required `data-*` attributes added to the contact page. Done.
+- **Verified working.** GA4 realtime showed `Thank You | Brightbox Digital` page views immediately
+  after a test submission, confirming the redirect reaches the parent window rather than staying
+  inside the iframe.
+- **Outstanding:** the contact page contains **two** GHL iframes and only one is patched. The second
+  has just `id`, `style` and `title`, no data attributes. Visitors served that variant will get an
+  in-iframe redirect and produce no GA4 event. Patch it in Elementor or delete it if unused, then
+  retest at the other breakpoint.
+- **Outstanding:** create the `generate_lead` event and mark it as a key event.
+- **Outstanding:** phone and email tap tracking.
 
 ## Correction to earlier advice
 
