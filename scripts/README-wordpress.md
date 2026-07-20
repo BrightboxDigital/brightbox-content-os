@@ -62,3 +62,29 @@ attaches a featured image. Creates the category if it does not exist.
   instant and does not affect the login password.
 - The password grants whatever the WordPress user can do. Consider a dedicated user with an Editor
   role rather than an Administrator, so a leaked token cannot change site settings.
+
+---
+
+# Fixing the footer JavaScript (if it prints as text on every page)
+
+**Symptom:** the script's code appears as visible text at the bottom of every page, under the footer.
+
+**Cause:** the JS is being output without a `<script>` wrapper, so the browser prints it instead of
+running it. This happens with some Header Footer Code Manager snippet configurations.
+
+**Fix, the reliable way:**
+
+1. Open the footer snippet in Header Footer Code Manager (the one in the Footer location).
+2. Set its **Snippet Type to HTML**, not Javascript.
+3. Replace its entire content with the contents of `shared/blog-template-footer-snippet.html`,
+   which already includes the `<script>` and `</script>` tags.
+4. Save. Clear any caching plugin. Hard refresh a page (Cmd+Shift+R).
+
+The code should now run instead of showing, and the footer text disappears.
+
+**Do not** mix the two. Either:
+- Snippet Type HTML with the `<script>` tags included (use `blog-template-footer-snippet.html`), or
+- Snippet Type Javascript with raw JS and no tags (use `blog-template.js`).
+
+Using Javascript type WITH `<script>` tags double-wraps and breaks it. The HTML-type-with-tags path
+is the more predictable of the two.

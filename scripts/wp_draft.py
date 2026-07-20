@@ -179,10 +179,11 @@ def main():
     post = api(creds, "POST", "posts", payload)
 
     edit_url = f"{creds['site']}/wp-admin/post.php?post={post['id']}&action=edit"
+    preview_url = f"{creds['site']}/?p={post['id']}&preview=true"
     print(f"\n  Draft created. Status: {post['status']}")
     print(f"  Post ID:    {post['id']}")
     print(f"  Edit here:  {edit_url}")
-    print(f"  Preview:    {post.get('link', '')}?preview=true")
+    print(f"  Preview:    {preview_url}")
     print("\n  Nothing was published. Review in wp-admin, then publish manually.")
 
 
