@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Blocks a commit if a likely secret is staged. Cheap insurance, not a scanner.
+# Bypass intentionally with: git commit --no-verify
+set -euo pipefail
+staged=$(git diff --cached --name-only)
+[ -z "$staged" ] && exit 0
+# WordPress app-password shape (6 groups of 4), private keys, and known cred filenames
+if git diff --cached -U0 | grep -nE '([A-Za-z0-9]{4} ){5}[A-Za-z0-9]{4}|-----BEGIN [A-Z ]*PRIVATE KEY-----|"app_password"[[:space:]]*:[[:space:]]*"[^x]' >/dev/null; then
+  echo "BLOCKED: a staged change looks like a live credential." >&2
+  echo "Secrets belong in ~/.config/brightbox/, never in this repo." >&2
+  echo "If this is a false positive, commit with --no-verify." >&2
+  exit 1
+fi
+exit 0
