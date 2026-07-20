@@ -85,6 +85,13 @@ further optimization would cost quality.
 Record initial score, final score, passes, terms added, terms intentionally omitted, and rejected
 recommendations with reasons.
 
+**Two different NeuronWriter tools, do not confuse them.** `evaluate-content` scores the draft but
+saves nothing. `import-content` saves the content into the query editor as a revision. Use
+`evaluate-content` for the scoring passes, then **once the article is final, call `import-content`
+with the clean semantic HTML (h1/h2/h3/p, not the bbx-post styled version) so the content is stored
+in NeuronWriter and Archie can open it in the editor.** If you only evaluate and never import, the
+query shows no content, which is wrong. Import is the last NeuronWriter step, every article.
+
 ## QA
 
 Run the originality review and the full editorial QA checklist. Recheck every external source.
