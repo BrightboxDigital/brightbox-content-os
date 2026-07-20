@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# Generate a branded 1200x630 featured image from an article title.
+# No AI image tool, no back and forth. Consistent brand look every time.
+#
+# Usage:
+#   ./scripts/make-featured --title "Does a Small Google Ads Budget Actually Work?" \
+#       --category "Google Ads and PPC" --out /tmp/BBX-001-featured.png
+#
+# Requires ImageMagick (magick). Brand colours match the blog template.
+
+set -euo pipefail
+
+TITLE=""
+CATEGORY=""
+OUT=""
+FONT="/System/Library/Fonts/Supplemental/Arial Bold.ttf"
+LOGO="/Users/archiebrady/Desktop/Brightbox Digital/Logo/New/BrightBoxDigital REV01-1.png"
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --title) TITLE="$2"; shift 2;;
+    --category) CATEGORY="$2"; shift 2;;
+    --out) OUT="$2"; shift 2;;
+    --font) FONT="$2"; shift 2;;
+    --logo) LOGO="$2"; shift 2;;
+    *) echo "unknown arg: $1" >&2; exit 1;;
+  esac
+done
+
+[ -n "$TITLE" ] || { echo "need --title" >&2; exit 1; }
+[ -n "$OUT" ] || { echo "need --out" >&2; exit 1; }
+command -v magick >/dev/null || { echo "ImageMagick (magick) not found" >&2; exit 1; }
+[ -f "$FONT" ] || { echo "font not found: $FONT" >&2; exit 1; }
+
+EYEBROW=$(printf '%s' "$CATEGORY" | tr '[:lower:]' '[:upper:]')
+TMP=$(mktemp -d)
+trap 'rm -rf "$TMP"' EXIT
+
+# Brand gradient: navy to purple, matching the CTA in blog-template.css
+magick -size 1200x630 gradient:'#0A1530-#4A1E80' "$TMP/bg.png"
+# soft orange corner glow (brand accent #FFAB24), kept subtle
+magick "$TMP/bg.png" \
+  \( -size 1200x630 xc:black -fill '#FFAB24' -draw "circle 1120,-20 1120,150" \
+     -blur 0x70 -evaluate multiply 0.55 \) \
+  -compose screen -composite "$TMP/bg2.png"
+
+# eyebrow (category), skipped cleanly if empty
+if [ -n "$EYEBROW" ]; then
+  magick -background none -fill '#FFC163' -font "$FONT" -pointsize 28 -kerning 3 \
+    label:"$EYEBROW" "$TMP/eyebrow.png"
+fi
+
+# title, auto-wrapped into a capped box so it never collides with the logo
+magick -background none -fill white -font "$FONT" \
+  -size 1010x300 -gravity NorthWest caption:"$TITLE" "$TMP/title.png"
+
+# assemble
+CMD=(magick "$TMP/bg2.png")
+if [ -n "$EYEBROW" ]; then
+  CMD+=("$TMP/eyebrow.png" -gravity NorthWest -geometry +72+82 -composite)
+fi
+CMD+=("$TMP/title.png" -gravity NorthWest -geometry +70+140 -composite)
+if [ -f "$LOGO" ]; then
+  magick "$LOGO" -resize 250x "$TMP/logo.png"
+  CMD+=("$TMP/logo.png" -gravity SouthWest -geometry +68+52 -composite)
+fi
+CMD+=(-quality 90 "$OUT")
+"${CMD[@]}"
+
+echo "featured image written: $OUT"
+magick identify -format "  %wx%h  %b\n" "$OUT"

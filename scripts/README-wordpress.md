@@ -88,3 +88,54 @@ The code should now run instead of showing, and the footer text disappears.
 
 Using Javascript type WITH `<script>` tags double-wraps and breaks it. The HTML-type-with-tags path
 is the more predictable of the two.
+
+---
+
+# Image automation: the one-command workflow
+
+Replaces the manual Squoosh, upload, copy-URL, paste-placeholder loop, and the
+ChatGPT featured-image back and forth.
+
+## The full drafting command
+
+```
+# 1. optimize the raw screenshots (Squoosh replacement: resize + WebP + strip metadata)
+./scripts/prep-images --outdir /tmp/prepped ~/Desktop/handyman.png ~/Desktop/conversion.png
+
+# 2. generate a branded featured image from the title (no AI tool needed)
+./scripts/make-featured --title "Does a Small Google Ads Budget Actually Work?" \
+    --category "Google Ads and PPC" --out /tmp/featured.png
+
+# 3. create the draft with everything uploaded and wired
+./scripts/wp-draft clients/brightbox/approved/BBX-002-styled.html \
+    --title "..." --slug "..." --category "Google Ads and PPC" --excerpt "..." \
+    --body-image /tmp/prepped/handyman.webp \
+    --body-image /tmp/prepped/conversion.webp \
+    --featured /tmp/featured.png
+```
+
+`--body-image` uploads each image and drops it into the next `REPLACE_ME` placeholder in
+document order. Pass one per placeholder. `--featured` uploads and sets the featured image.
+
+## make-featured
+
+Generates a consistent branded 1200x630 image: brand gradient, the article title auto-wrapped,
+the category eyebrow, and the Brightbox logo. Same look every article, no AI generation, instant
+and free. Requires ImageMagick.
+
+Why this instead of an AI-generated image: a blog series is stronger with a consistent, recognisable
+card than with one-off illustrations, and the editorial standard already prefers original brand
+assets over decorative art. If a specific article genuinely needs a custom illustration, make one by
+hand and pass it with `--featured` instead.
+
+## prep-images
+
+Resizes to a max width (default 1600), converts to WebP, strips EXIF and location metadata. That is
+what Squoosh was doing. Uses cwebp, falls back to ImageMagick. Also cleans the filename into a tidy
+slug for the URL.
+
+## What still needs a human
+
+- Cropping client identifiers out of a screenshot before prepping it. Do that first.
+- The Rank Math SEO title and meta description, set in wp-admin.
+- Reviewing and publishing the draft.

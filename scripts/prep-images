@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+# Optimize screenshots for the web the way Squoosh does, but in one command.
+# Resizes to a sensible max width, converts to WebP, strips metadata.
+#
+# Usage:
+#   ./scripts/prep-images ~/Desktop/shot1.png ~/Desktop/shot2.png
+#   ./scripts/prep-images --outdir /tmp/prepped --max-width 1600 --quality 80 shot.png
+#
+# Prints progress to stderr and the resulting .webp paths to stdout, one per line,
+# in input order, so wp-draft can consume them for placeholder replacement.
+#
+# Requires cwebp (brew install webp). Falls back to ImageMagick if cwebp is absent.
+
+set -euo pipefail
+
+OUTDIR=""
+MAXW=1600
+QUALITY=80
+INPUTS=()
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --outdir) OUTDIR="$2"; shift 2;;
+    --max-width) MAXW="$2"; shift 2;;
+    --quality) QUALITY="$2"; shift 2;;
+    -*) echo "unknown arg: $1" >&2; exit 1;;
+    *) INPUTS+=("$1"); shift;;
+  esac
+done
+
+[ ${#INPUTS[@]} -gt 0 ] || { echo "give one or more image files" >&2; exit 1; }
+
+have_cwebp=0
+command -v cwebp >/dev/null && have_cwebp=1
+if [ "$have_cwebp" -eq 0 ] && ! command -v magick >/dev/null; then
+  echo "need cwebp (brew install webp) or ImageMagick" >&2; exit 1
+fi
+
+for src in "${INPUTS[@]}"; do
+  [ -f "$src" ] || { echo "not found: $src" >&2; exit 1; }
+  base=$(basename "$src"); base="${base%.*}"
+  # descriptive, clean filename for tidy URLs and SEO
+  slug=$(printf '%s' "$base" | tr '[:upper:] ' '[:lower:]-' | tr -cd 'a-z0-9-' | sed 's/-\{2,\}/-/g;s/^-//;s/-$//')
+  [ -n "$slug" ] || slug="image"
+  dir="${OUTDIR:-$(dirname "$src")}"
+  mkdir -p "$dir"
+  out="$dir/$slug.webp"
+
+  if [ "$have_cwebp" -eq 1 ]; then
+    cwebp -quiet -q "$QUALITY" -resize "$MAXW" 0 -metadata none "$src" -o "$out"
+  else
+    magick "$src" -resize "${MAXW}x>" -strip -quality "$QUALITY" "$out"
+  fi
+
+  before=$(wc -c < "$src" | tr -d ' ')
+  after=$(wc -c < "$out" | tr -d ' ')
+  echo "  $(basename "$src") -> $(basename "$out")  (${before} -> ${after} bytes)" >&2
+  echo "$out"
+done

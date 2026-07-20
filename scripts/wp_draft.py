@@ -33,6 +33,7 @@ import argparse
 import base64
 import json
 import mimetypes
+import re
 import sys
 import urllib.error
 import urllib.parse
@@ -122,8 +123,8 @@ def upload_media(creds, path):
     try:
         with urllib.request.urlopen(req, timeout=90) as r:
             m = json.load(r)
-            print(f"  uploaded featured image (media id {m['id']})")
-            return m["id"]
+            print(f"  uploaded {p.name} (media id {m['id']})")
+            return {"id": m["id"], "url": m["source_url"]}
     except urllib.error.HTTPError as e:
         die(f"Media upload failed {e.code}\n\n{e.read().decode(errors='replace')[:300]}")
 
@@ -136,6 +137,9 @@ def main():
     ap.add_argument("--category")
     ap.add_argument("--excerpt", default="")
     ap.add_argument("--featured", help="path to a featured image to upload")
+    ap.add_argument("--body-image", action="append", default=[], metavar="PATH",
+                    help="image to upload and slot into the next REPLACE_ME placeholder, "
+                         "in order. Repeat for multiple.")
     ap.add_argument("--check", action="store_true", help="verify credentials and exit")
     args = ap.parse_args()
 
@@ -157,10 +161,26 @@ def main():
         ap.error("need an html_file and --title (or --check)")
 
     html = Path(args.html_file).read_text()
+
+    # Strip any leading HTML comment block (build notes) so its REPLACE_ME prose
+    # does not trip the guard below.
+    html = re.sub(r"^\s*<!--.*?-->\s*", "", html, count=1, flags=re.S)
+
+    # Upload body images and drop each into the next REPLACE_ME placeholder, in order.
+    if args.body_image:
+        placeholders = re.findall(r'src="(REPLACE_ME[^"]*)"', html)
+        if len(args.body_image) != len(placeholders):
+            die(f"{len(args.body_image)} body image(s) given but the article has "
+                f"{len(placeholders)} REPLACE_ME placeholder(s).",
+                "Pass one --body-image per placeholder, in the order they appear.")
+        for img_path, placeholder in zip(args.body_image, placeholders):
+            media = upload_media(creds, img_path)
+            html = html.replace(placeholder, media["url"], 1)
+            print(f"  slotted {Path(img_path).name} into {placeholder[:40]}...")
+
     if "REPLACE_ME" in html:
         die("The article still contains REPLACE_ME image placeholders.",
-            "Swap the screenshot URLs before drafting, or the draft will ship with "
-            "broken images.")
+            "Pass --body-image for each one, or swap the URLs by hand first.")
 
     payload = {
         "status": "draft",          # hard limit. never anything else.
@@ -173,7 +193,7 @@ def main():
     if args.category:
         payload["categories"] = [resolve_category(creds, args.category)]
     if args.featured:
-        payload["featured_media"] = upload_media(creds, args.featured)
+        payload["featured_media"] = upload_media(creds, args.featured)["id"]
 
     print(f"\nCreating DRAFT: {args.title}")
     post = api(creds, "POST", "posts", payload)
