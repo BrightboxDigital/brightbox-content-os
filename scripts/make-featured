@@ -14,7 +14,9 @@ TITLE=""
 CATEGORY=""
 OUT=""
 FONT="/System/Library/Fonts/Supplemental/Arial Bold.ttf"
-LOGO="/Users/archiebrady/Desktop/Brightbox Digital/Logo/New/BrightBoxDigital REV01-1.png"
+# No logo by default. Archie adds branding himself and picks the logo.
+# Pass --logo /path/to/logo.png only if you want one baked in.
+LOGO=""
 
 while [ $# -gt 0 ]; do
   case "$1" in
