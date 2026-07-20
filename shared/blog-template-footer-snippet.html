@@ -49,10 +49,20 @@
             revealObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
 
+      /* Reveal anything already in or above the first screen IMMEDIATELY, so
+         above-the-fold content never waits for a scroll to appear. On mobile
+         the observer often does not fire for already-visible elements until
+         the first scroll, which left the top of the article blank. Only
+         below-the-fold elements are handed to the observer to animate in. */
+      var vh = window.innerHeight || document.documentElement.clientHeight;
       Array.prototype.forEach.call(revealEls, function (el) {
-        revealObserver.observe(el);
+        if (el.getBoundingClientRect().top < vh) {
+          el.classList.add('bbx-post-inview');
+        } else {
+          revealObserver.observe(el);
+        }
       });
 
       /* Safety net. If anything is still hidden after 2.5 seconds, show it.
