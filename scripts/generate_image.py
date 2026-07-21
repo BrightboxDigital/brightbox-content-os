@@ -44,10 +44,12 @@ WP_CFG = CFG / "wordpress.json"
 OPENAI_URL = "https://api.openai.com/v1/images/generations"
 
 # derivative specs: name -> (width, height, format, quality)
+# Social derivatives are JPG, not WebP: LinkedIn does not render WebP images, so a
+# WebP social image shows as broken. WordPress featured stays WebP for web performance.
 DERIVATIVES = {
     "wp_featured": (1200, 675, "webp", 82),
-    "facebook":    (1200, 630, "webp", 82),
-    "linkedin":    (1200, 630, "webp", 82),
+    "facebook":    (1200, 630, "jpg", 86),
+    "linkedin":    (1200, 630, "jpg", 86),
     "instagram":   (1080, 1350, "jpg", 86),
     "square":      (1080, 1080, "jpg", 86),
 }
