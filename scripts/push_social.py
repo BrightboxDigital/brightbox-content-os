@@ -138,7 +138,21 @@ def main():
     ap.add_argument("--list-accounts", action="store_true", help="show connected social accounts and IDs")
     ap.add_argument("--from", dest="posts_file", help="posts.json describing the posts to create")
     ap.add_argument("--media", help="optional public image URL to attach to every post")
+    ap.add_argument("--media-manifest", help="manifest.json from generate-image; attaches the "
+                    "correct platform derivative URL to each draft")
     args = ap.parse_args()
+
+    # platform -> which derivative in the manifest to use
+    PLATFORM_DERIVATIVE = {
+        "facebook": "facebook", "linkedin": "linkedin",
+        "instagram": "instagram", "google": "wp_featured", "pinterest": "square",
+    }
+    manifest_media = {}
+    if args.media_manifest:
+        man = json.loads(Path(args.media_manifest).read_text())
+        for name, info in (man.get("derivatives") or {}).items():
+            if info.get("wp_url"):
+                manifest_media[name] = info["wp_url"]
 
     creds = load_creds()
 
@@ -176,7 +190,13 @@ def main():
             skipped.append(platform)
             print(f"  SKIP {platform}: not connected in GHL Social Planner")
             continue
-        res = create_draft(creds, [acct_id], p["caption"], p.get("media") or args.media)
+        # pick media: explicit per-post > manifest derivative for this platform > global --media
+        media_url = p.get("media")
+        if not media_url and manifest_media:
+            deriv = PLATFORM_DERIVATIVE.get(platform, "wp_featured")
+            media_url = manifest_media.get(deriv) or manifest_media.get("wp_featured")
+        media_url = media_url or args.media
+        res = create_draft(creds, [acct_id], p["caption"], media_url)
         post = (res.get("results") or {}).get("post") or res.get("post") or {}
         pid = post.get("_id") or post.get("id") or "?"
         created += 1

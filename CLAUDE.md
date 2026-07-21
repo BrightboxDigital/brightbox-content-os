@@ -96,6 +96,10 @@ Verified July 19, 2026. Re-verify before relying on any of these.
   manual. Credentials at `~/.config/brightbox/ghl.json`.
 - Google Business Profile posting: **unblocked via GHL** (above). The separate GBP API application is
   now only relevant for reading post insights, not for posting.
+- OpenAI Images: **connected.** `scripts/generate-image` creates the featured image with
+  gpt-image-2 (medium, 1536x1024), makes optimized derivatives, uploads to WordPress, sets the
+  featured image, and feeds `push-social` per-platform media. Key at `~/.config/brightbox/openai.json`
+  or `OPENAI_API_KEY`. Drafts only, never publishes. See `scripts/README-images.md`.
 - Google Cloud project `brightbox-digita-1743176991871` (number `824815042391`). Search Console API
   and Google Analytics Data API enabled, service account granted access in both. Key at
   `~/.config/brightbox/service-account.json`, never in this repository.

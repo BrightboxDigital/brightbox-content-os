@@ -1,11 +1,12 @@
+*.key
 .DS_Store
 .env
 .env.*
-*.key
-credentials.json
-token.json
-node_modules/
-__pycache__/
 .venv/
+__pycache__/
+credentials.json
+node_modules/
+openai.json
 reddit.json
+token.json
 wordpress.json
