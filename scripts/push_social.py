@@ -23,6 +23,7 @@ HARD LIMIT
 
 import argparse
 import json
+import subprocess
 import sys
 import urllib.error
 import urllib.request
@@ -31,6 +32,40 @@ from pathlib import Path
 CREDS = Path.home() / ".config" / "brightbox" / "ghl.json"
 BASE = "https://services.leadconnectorhq.com"
 API_VERSION = "2021-07-28"  # required GHL version header
+
+
+def upload_media_to_ghl(creds, file_path):
+    """Upload a local image to GHL Media Storage and return its hosted URL.
+
+    Uses curl, not urllib: GHL's media endpoint sits behind Cloudflare bot
+    protection that blocks Python's TLS signature but allows curl. Needs the
+    token to carry the medias.write scope.
+    """
+    p = Path(file_path)
+    ct = "image/jpeg" if p.suffix.lower() in (".jpg", ".jpeg") else "image/webp"
+    cmd = [
+        "curl", "-s", "--max-time", "90", "-X", "POST",
+        f"{BASE}/medias/upload-file",
+        "-H", f"Authorization: Bearer {creds['private_token']}",
+        "-H", f"Version: {API_VERSION}",
+        "-H", "Accept: application/json",
+        "-F", f"file=@{p};type={ct}",
+        "-F", f"locationId={creds['location_id']}",
+    ]
+    out = subprocess.run(cmd, capture_output=True, text=True, timeout=120).stdout
+    try:
+        d = json.loads(out)
+    except json.JSONDecodeError:
+        die(f"GHL media upload returned non-JSON for {p.name}", out[:200])
+    url = d.get("url") or d.get("fileUrl") or (d.get("file") or {}).get("url")
+    if not url:
+        if "not authorized for this scope" in out:
+            die("The GHL token lacks the medias.write scope.",
+                "In GHL: Settings, Private Integrations, edit the Content OS integration,\n"
+                "add the 'Medias / Write' scope (and Medias / Read), save, and update the\n"
+                "token in ~/.config/brightbox/ghl.json if it regenerates.")
+        die(f"GHL media upload failed for {p.name}", out[:300])
+    return url
 
 
 def die(msg, hint=None):
@@ -147,12 +182,15 @@ def main():
         "facebook": "facebook", "linkedin": "linkedin",
         "instagram": "instagram", "google": "wp_featured", "pinterest": "square",
     }
-    manifest_media = {}
+    # manifest gives us LOCAL derivative files; we upload each to GHL Media Storage
+    # (not WordPress) so the social sizes never clutter the WP library.
+    manifest_local = {}
     if args.media_manifest:
         man = json.loads(Path(args.media_manifest).read_text())
         for name, info in (man.get("derivatives") or {}).items():
-            if info.get("wp_url"):
-                manifest_media[name] = info["wp_url"]
+            if info.get("path") and Path(info["path"]).exists():
+                manifest_local[name] = info["path"]
+    ghl_media_cache = {}  # derivative name -> uploaded GHL url, upload once each
 
     creds = load_creds()
 
@@ -190,11 +228,16 @@ def main():
             skipped.append(platform)
             print(f"  SKIP {platform}: not connected in GHL Social Planner")
             continue
-        # pick media: explicit per-post > manifest derivative for this platform > global --media
+        # pick media: explicit per-post > this platform's derivative uploaded to GHL > global --media
         media_url = p.get("media")
-        if not media_url and manifest_media:
+        if not media_url and manifest_local:
             deriv = PLATFORM_DERIVATIVE.get(platform, "wp_featured")
-            media_url = manifest_media.get(deriv) or manifest_media.get("wp_featured")
+            local = manifest_local.get(deriv) or manifest_local.get("wp_featured")
+            if local:
+                if deriv not in ghl_media_cache:
+                    ghl_media_cache[deriv] = upload_media_to_ghl(creds, local)
+                    print(f"  uploaded {Path(local).name} to GHL media storage")
+                media_url = ghl_media_cache[deriv]
         media_url = media_url or args.media
         res = create_draft(creds, [acct_id], p["caption"], media_url)
         post = (res.get("results") or {}).get("post") or res.get("post") or {}

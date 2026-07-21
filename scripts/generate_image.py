@@ -314,17 +314,18 @@ def main():
         log(f"derivative {name}: {fname}")
     manifest["derivatives"] = deriv_files
 
-    # 4/5. upload to WP + set featured
+    # 4/5. upload ONLY the featured image to WordPress. Social derivatives stay local;
+    # push-social uploads them to GHL Media Storage so they never clutter the WP library.
     manifest["stage"] = "wordpress"; save_manifest()
     c = wp_creds()
     alt = brief.get("alt_text") or brief.get("title") or "Brightbox Digital blog featured image"
     title = brief.get("image_title") or brief.get("title") or slug
     caption = brief.get("caption", "")
 
-    for name, info in deriv_files.items():
-        up = wp_upload(c, info["path"], info["filename"], title, alt, caption if name == "wp_featured" else "")
-        deriv_files[name]["wp_id"] = up["id"]
-        deriv_files[name]["wp_url"] = up["url"]
+    feat = deriv_files["wp_featured"]
+    up = wp_upload(c, feat["path"], feat["filename"], title, alt, caption)
+    deriv_files["wp_featured"]["wp_id"] = up["id"]
+    deriv_files["wp_featured"]["wp_url"] = up["url"]
 
     featured_id = deriv_files["wp_featured"]["wp_id"]
     wp_api(c, "POST", f"posts/{args.post_id}", {"featured_media": featured_id})
