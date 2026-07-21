@@ -177,10 +177,11 @@ def main():
                     "correct platform derivative URL to each draft")
     args = ap.parse_args()
 
-    # platform -> which derivative in the manifest to use
+    # platform -> which derivative to use. All social platforms get a JPG (never the
+    # WebP featured), since some networks do not render WebP. GBP uses the landscape JPG.
     PLATFORM_DERIVATIVE = {
         "facebook": "facebook", "linkedin": "linkedin",
-        "instagram": "instagram", "google": "wp_featured", "pinterest": "square",
+        "instagram": "instagram", "google": "facebook", "pinterest": "square",
     }
     # manifest gives us LOCAL derivative files; we upload each to GHL Media Storage
     # (not WordPress) so the social sizes never clutter the WP library.
