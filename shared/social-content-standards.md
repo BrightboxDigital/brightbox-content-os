@@ -91,7 +91,11 @@ insights, and delete a post when explicitly authorized.
 **Do not grant or use tools that change business name, categories, address, phone, hours, service
 areas, managers or ownership.**
 
-**Brightbox is not approved for the GBP API as of July 18, 2026.** Approval is a prerequisite, not a
+**GBP posting now routes through GoHighLevel (July 20, 2026).** GBP is connected in the GHL Social
+Planner, so launch and follow-up posts are pushed as drafts via `scripts/push-social`, no longer
+blocked on Google's GBP API approval. The note below is kept for the API-read use case only.
+
+**Brightbox is not approved for the GBP posting API directly as of July 18, 2026.** Approval is a prerequisite, not a
 connection step. Until Google approves the application and Google My Business API v4.9 is enabled,
 every GBP post is manual.
 

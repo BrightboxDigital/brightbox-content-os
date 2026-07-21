@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Wrapper: runs push_social.py inside the repo venv.
+set -euo pipefail
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV="$DIR/../.venv/bin/python3"
+[ -x "$VENV" ] || { echo "venv missing, see scripts/README.md" >&2; exit 1; }
+exec "$VENV" "$DIR/push_social.py" "$@"

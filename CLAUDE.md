@@ -90,8 +90,12 @@ Verified July 19, 2026. Re-verify before relying on any of these.
   never publishes. Needs an application password at `~/.config/brightbox/wordpress.json`. SEO title,
   meta description and canonical stay in Rank Math and are set by hand per article; the REST API
   cannot write Rank Math fields. See `scripts/README-wordpress.md`.
-- Social: **declined by Archie.** Not connecting any platform or scheduler. Build a distribution
-  queue only. Brightbox posts manually to Instagram, Facebook, TikTok, LinkedIn and YouTube.
+- Social: **connected via GoHighLevel Social Planner (July 20, 2026).** `scripts/push-social` pushes
+  drafts to GHL for Facebook, Instagram, LinkedIn (x2) and Google Business Profile. Archie reviews
+  and schedules in GHL; nothing auto-publishes. TikTok and YouTube are not connected in GHL and stay
+  manual. Credentials at `~/.config/brightbox/ghl.json`.
+- Google Business Profile posting: **unblocked via GHL** (above). The separate GBP API application is
+  now only relevant for reading post insights, not for posting.
 - Google Cloud project `brightbox-digita-1743176991871` (number `824815042391`). Search Console API
   and Google Analytics Data API enabled, service account granted access in both. Key at
   `~/.config/brightbox/service-account.json`, never in this repository.
