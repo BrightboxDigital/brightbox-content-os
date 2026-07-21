@@ -71,3 +71,25 @@ a real image of the expected size before anything is uploaded.
 Phase 2. Adds the Brightbox logo, a category label, and a short headline programmatically on top
 of the AI background, using an approved transparent logo file. Not implemented until Archie
 approves the base image look and supplies the logo. The AI model never renders the logo or text.
+
+## Branded overlay (brand-overlay)
+
+Adds Brightbox branding onto an AI-generated background, deterministically, so text is
+always crisp and the logo is the real file (never AI-rendered).
+
+```
+# 1. generate a CLEAN background (prompt for illustration/photo with NO text, NO logos)
+# 2. overlay the branding
+./scripts/brand-overlay --background master.png \
+    --headline "Does a small Google Ads budget actually work?" \
+    --category "Google Ads and PPC" --out /tmp/branded.png
+# 3. run it through the pipeline as a supplied source
+./scripts/generate-image --source /tmp/branded.png --brief <brief.json> --post-id <id> --focal left
+```
+
+Composition: cover-cropped background, a smooth navy scrim on the left for readability, the
+logo on a white chip top-left, an amber category eyebrow, and a large white headline. Brand
+colours match the blog template. Logo file is `shared/brand/logo.png` (override with --logo).
+
+The AI model is never asked to render the logo or the headline text. That is the whole point:
+reliable branding, no garbled AI text.
