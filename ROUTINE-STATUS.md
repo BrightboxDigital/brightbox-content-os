@@ -19,7 +19,20 @@ cannot reach.
      site's own Search Console demand, then three scored candidates.
   4. Saves the report, sets the tracker to `Topic Approval Needed`, commits and pushes to `main`.
   5. Stops at the topic-selection gate for Archie.
+  6. **Sends Archie a push notification (added 2026-07-27)** summarizing what happened, every run,
+     including runs where nothing was due. This is how he learns the sweep ran without checking the
+     tracker manually. Set via a Step 6 in the task's own SKILL.md, not the scheduler's built-in
+     `notifyOnCompletion` flag, because that flag can only be set from a regular interactive
+     session, not from within a scheduled-task run.
 - **Never** writes an article, creates a NeuronWriter analysis, or publishes anything.
+
+**Timing caveat:** the 7/28/90 day checks are relative to each article's own publish date, but the
+sweep only runs twice a month. A milestone can be "newly due" for up to roughly two weeks before the
+next sweep catches it. Example: BBX-001 published 2026-07-19, so its 28-day mark is 2026-08-16. The
+sweep on 2026-08-15 is one day too early to catch it; the next one is 2026-09-01, so the 28-day
+check would actually run 16 days late. This is accepted as fine for now since these reviews are not
+time-critical to the day. If tighter timing matters later, increase the cron frequency (e.g. weekly:
+`0 9 * * 1`) rather than changing the due-date logic.
 
 ## 2. BBX-001 seven-day check
 
