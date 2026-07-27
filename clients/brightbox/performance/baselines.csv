@@ -2,3 +2,4 @@ snapshot_date,label,scope,target,window_days,window_start,window_end,gsc_impress
 2026-07-19,content system launch,site,entire site,90,2026-04-18,2026-07-17,22408,88,0.393,13.67,641,349,54.45,1752,0,Before any article produced by the content OS. GA4 key events configured 2026-07-19 so key event counts start near zero by definition.
 2026-07-19,PPC hub before supporting content,page,google-and-facebook-ads,90,2026-04-18,2026-07-17,47,1,2.128,11.28,11,9,81.82,13,0,Cycle 1 article supports this page. Currently zero supporting blog content.
 2026-07-19,blog section before content OS,page,blog,90,2026-04-18,2026-07-17,159,1,0.629,11.29,123,100,81.3,254,0,All 7 legacy posts combined.
+2026-07-27,BBX-001 7-day post-publication check,page,does-a-small-google-ads-budget-work,7,2026-07-18,2026-07-25,1,0,0,10,15,8,53.33,39,0,"Scheduled 7-day review, 8 days after publication (2026-07-19)."
