@@ -285,7 +285,7 @@ Full package to be produced by `distribute-blog` after this article is approved 
 
 | # | Item | What's needed |
 |---|---|---|
-| 1 | Image choice | Pick Option 2, 3, both, or wait on Option 1 if a real client migration notice arrives before publication (see image brief) |
+| 1 | ~~Image choice~~ | **Resolved 2026-08-01.** A Canva AI-generated timeline diagram was attempted and rejected before use, since it fabricated two migration phases that don't exist in Google's documentation. Archie decided to skip an in-body diagram and will source a featured image himself via ChatGPT, outside this system. Article ships without an in-body image. |
 | 2 | Business type for the two LSA clients | Not specified in the interview and not invented. If naming the category (without identifying the business) would strengthen the "what this looks like from my side" section, let me know and I'll fold it in |
 | 3 | The Performance Max interaction opinion | Confirm you're comfortable with how directly the article labels this as your personal read rather than a confirmed fact. This is a deliberate editorial choice per the originality gate, but it's your name on it |
 | 4 | Target publication date | Set to 2026-08-15 as a placeholder, matching the calendar cadence. Confirm or adjust |
