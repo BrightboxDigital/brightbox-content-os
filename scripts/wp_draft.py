@@ -9,9 +9,16 @@ USAGE
     ./scripts/wp-draft clients/brightbox/approved/BBX-001-styled.html \\
         --title "Does a Small Google Ads Budget Actually Work?" \\
         --slug does-a-small-google-ads-budget-work \\
-        --category "Google Ads and PPC" \\
+        --category "Google Ads" \\
         --excerpt "12 leads at 36 dollars each on a 15 dollar a day budget." \\
-        --featured /path/to/handyman-screenshot.png
+        --featured /path/to/handyman-screenshot.png \\
+        --alt-text "Google Ads campaign showing a 15 dollar daily budget and 12 conversions"
+
+    --category must match an EXISTING WordPress category name exactly (check with
+    --check or the site's category list first). This is not the content-tracker.csv
+    "category" column verbatim; on BBX-002 those two things read the same to a human
+    ("Google Ads and PPC" vs the site's actual "Google Ads" category) but were not the
+    same string, and a real duplicate category got created because of it.
 
     Re-editing an existing draft after a text fix, same status guarantee:
     ./scripts/wp-draft clients/brightbox/approved/BBX-002-styled.html \\
@@ -107,13 +114,22 @@ def resolve_category(creds, name):
     for c in cats:
         if c["name"].lower() == name.lower():
             return c["id"]
-    # not found: create it (a category is safe to create, unlike publishing)
+    # No exact match. Found on BBX-002: "Google Ads and PPC" did not exactly match the
+    # existing "Google Ads" category, so a duplicate got created and the site's two PPC
+    # articles ended up split across two category archive pages. WordPress's own search
+    # above is fuzzy, so anything it returned here is a real candidate worth a human's
+    # eyes before we add a sibling category that reads the same to a reader.
+    if cats:
+        names = ", ".join(f"'{c['name']}' (id {c['id']})" for c in cats)
+        print(f"  WARNING: no exact match for '{name}'. Similar existing categories found: "
+              f"{names}. Creating '{name}' anyway; if one of those is actually the same "
+              f"category, stop and re-run with --category set to its exact name instead.")
     made = api(creds, "POST", "categories", {"name": name})
     print(f"  created category '{name}' (id {made['id']})")
     return made["id"]
 
 
-def upload_media(creds, path):
+def upload_media(creds, path, alt_text=None):
     p = Path(path)
     if not p.exists():
         die(f"Featured image not found: {path}")
@@ -128,9 +144,26 @@ def upload_media(creds, path):
         with urllib.request.urlopen(req, timeout=90) as r:
             m = json.load(r)
             print(f"  uploaded {p.name} (media id {m['id']})")
-            return {"id": m["id"], "url": m["source_url"]}
     except urllib.error.HTTPError as e:
         die(f"Media upload failed {e.code}\n\n{e.read().decode(errors='replace')[:300]}")
+
+    # Alt text is not writable in the same multipart upload above (WordPress needs it as
+    # a separate JSON update on this install), so set it as a follow-up call. Every
+    # featured image gets one: found on BBX-002, where an image uploaded without
+    # --alt-text shipped with alt="" on the live page.
+    if alt_text:
+        body = json.dumps({"alt_text": alt_text}).encode()
+        req2 = urllib.request.Request(f"{url}/{m['id']}", data=body, method="POST")
+        req2.add_header("Authorization", auth_header(creds))
+        req2.add_header("Content-Type", "application/json")
+        req2.add_header("User-Agent", "BrightboxContentOS/1.0")
+        with urllib.request.urlopen(req2, timeout=30) as r:
+            json.load(r)
+        print(f"  set alt text on media {m['id']}")
+    else:
+        print(f"  WARNING: no --alt-text given, media {m['id']} will have empty alt text")
+
+    return {"id": m["id"], "url": m["source_url"]}
 
 
 def main():
@@ -141,9 +174,14 @@ def main():
     ap.add_argument("--category")
     ap.add_argument("--excerpt", default="")
     ap.add_argument("--featured", help="path to a featured image to upload")
+    ap.add_argument("--alt-text",
+                    help="alt text for the --featured image, required whenever --featured is "
+                         "given. Write a real description of the image that naturally works "
+                         "in the article's primary keyword, not a keyword-stuffed phrase.")
     ap.add_argument("--body-image", action="append", default=[], metavar="PATH",
                     help="image to upload and slot into the next REPLACE_ME placeholder, "
-                         "in order. Repeat for multiple.")
+                         "in order. Repeat for multiple. Alt text for these comes from the "
+                         "alt attribute already written into the article HTML, not this flag.")
     ap.add_argument("--update-id", type=int, metavar="POST_ID",
                     help="update this existing post's content instead of creating a new "
                          "one. Status is forced back to draft regardless of the post's "
@@ -208,7 +246,12 @@ def main():
     if args.category:
         payload["categories"] = [resolve_category(creds, args.category)]
     if args.featured:
-        payload["featured_media"] = upload_media(creds, args.featured)["id"]
+        if not args.alt_text:
+            die("--featured given without --alt-text.",
+                "Write real alt text describing the image, incorporating the article's "
+                "primary keyword naturally, and pass it with --alt-text. This is required "
+                "so the image never ships with an empty alt attribute (see BBX-002).")
+        payload["featured_media"] = upload_media(creds, args.featured, args.alt_text)["id"]
 
     if args.update_id:
         print(f"\nUpdating DRAFT {args.update_id} (status forced back to draft)")

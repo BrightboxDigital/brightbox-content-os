@@ -32,18 +32,32 @@ Publishing stays a separate manual step in wp-admin.
 ./scripts/wp-draft clients/brightbox/approved/BBX-001-styled.html \
   --title "Does a Small Google Ads Budget Actually Work?" \
   --slug does-a-small-google-ads-budget-work \
-  --category "Google Ads and PPC" \
+  --category "Google Ads" \
   --excerpt "12 leads at about 37 dollars each on a 15 dollar a day budget." \
-  --featured ~/Desktop/handyman-screenshot.png
+  --featured ~/Desktop/handyman-screenshot.png \
+  --alt-text "Google Ads campaign showing a 15 dollar daily budget and 12 conversions"
 ```
 
-It prints the wp-admin edit URL. Review it, set anything the script did not (Yoast/Rank Math meta,
+**`--category` must be the exact name of an existing WordPress category**, not the content
+category label from `content-tracker.csv`. On BBX-002, passing "Google Ads and PPC" (the
+tracker's label) instead of "Google Ads" (the site's actual category) created a real duplicate
+category, splitting the two PPC articles across two different archive pages. Check the site's
+existing categories first if unsure. The script now warns on any near-miss instead of silently
+creating a sibling, but it still creates one unless you stop it.
+
+**`--alt-text` is required whenever `--featured` is given.** The script refuses to run without
+it, since a featured image uploaded without one ships with an empty `alt` attribute (found on
+BBX-002). Write a real description of the image that naturally works in the article's primary
+keyword.
+
+It prints the wp-admin edit URL. Review it, set anything the script did not (Rank Math meta,
 featured image position, the two in-body screenshots), then publish by hand.
 
 ## What it does and does not do
 
 **Does:** creates a draft, sets title, body HTML, excerpt, slug, category, and optionally uploads and
-attaches a featured image. Creates the category if it does not exist.
+attaches a featured image with alt text. Creates the category if no exact name match exists, after
+warning about any similarly-named category found.
 
 **Does not, by design:**
 

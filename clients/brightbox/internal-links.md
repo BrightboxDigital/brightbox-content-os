@@ -52,6 +52,11 @@ Validate every destination before using it in an article. Status column reflects
 - Same tab.
 - After publishing, add at least two links from existing relevant pages into the new article and
   record them in the tracker.
+- **Set by Archie August 3, 2026: state the specific inbound-link recommendations directly in the
+  chat response at publish time, every time** (which existing page, which section, suggested
+  anchor text, and why). Recording it only in the package file or tracker notes is not enough,
+  since Archie should not have to open a file to find this. Say it plainly, the way BBX-001's
+  small-budget FAQ recommendation was surfaced.
 
 ## Hub and cluster
 

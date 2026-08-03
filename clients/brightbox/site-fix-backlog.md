@@ -188,7 +188,21 @@ post. This is an internal linking and discoverability problem, not a cosmetic on
 `local-services-ads-moving-to-google-ads`, same symptom as the original finding, now on an eighth
 post.
 
-### 4b. Two PPC articles are split across two different categories
+### 4b. RESOLVED 2026-08-03. Two PPC articles were split across two different categories
+
+**Fixed same day.** Archie moved BBX-002 into the existing "Google Ads" category (id 23) in
+wp-admin. Verified via the API: post 5754's `categories` field is now `[23]`, matching BBX-001.
+Category 28 ("Google Ads and PPC") is now empty and orphaned; delete it in wp-admin whenever
+convenient, or leave it, since an empty category costs nothing.
+
+`scripts/wp_draft.py` also updated the same day: `resolve_category` now prints a warning listing
+any similarly-named existing categories before creating a new one, and the docstring's example
+was corrected to use "Google Ads" instead of the tracker's "Google Ads and PPC" label, so this is
+less likely to recur on BBX-003. It still is not fully automatic; the exact category name passed
+to `--category` still has to be a real, existing WordPress category name, checked by whoever runs
+the script.
+
+Original finding, kept for reference:
 
 Confirmed 2026-08-03, technical QA after BBX-002 published. The site has two separate categories
 that both read as "the PPC category" to a human, but are different taxonomy terms with different
@@ -216,15 +230,19 @@ case/punctuation-insensitive match before creating a new one, so this cannot rec
 beyond. Needs Archie's decision on which name is canonical before either the site or the script
 changes.
 
-### 4c. Featured image on BBX-002 has empty alt text
+### 4c. RESOLVED 2026-08-03. Featured image on BBX-002 had empty alt text
 
-Confirmed 2026-08-03. The featured image (`google-lead-service-ads.webp`, media id 5756) renders
-with `alt=""` on the live page. `scripts/wp-draft --featured` only sets `featured_media`; it does not
+**Fixed same day.** Alt text set directly on media id 5756 via the REST API: "Local Services Ads
+listing transitioning into a Google Ads Performance Max campaign for pay-per-lead, with icons for
+plumbing, HVAC, electrical, roofing, and cleaning." Verified live.
+
+`scripts/wp-draft` also updated so this cannot recur silently: `--alt-text` is now a required
+companion to `--featured` and the script refuses to upload a featured image without it. Alt text
+is set via a follow-up call to the media endpoint immediately after upload.
+
+Original finding, kept for reference: the featured image (`google-lead-service-ads.webp`) rendered
+with `alt=""` on the live page. `scripts/wp-draft --featured` only set `featured_media`; it did not
 set alt text, and none was set manually after Archie uploaded the image himself.
-
-**Fix:** set alt text on media id 5756 in the WordPress media library, e.g. "Local Services Ads
-listing transitioning into a Google Ads Performance Max campaign, with icons for plumbing, HVAC,
-electrical, roofing, and cleaning." Low effort, straightforward accessibility and image-SEO fix.
 
 ### 5. Likely cannibalization on Fort Wayne local SEO
 
