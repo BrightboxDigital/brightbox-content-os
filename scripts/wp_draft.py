@@ -13,6 +13,10 @@ USAGE
         --excerpt "12 leads at 36 dollars each on a 15 dollar a day budget." \\
         --featured /path/to/handyman-screenshot.png
 
+    Re-editing an existing draft after a text fix, same status guarantee:
+    ./scripts/wp-draft clients/brightbox/approved/BBX-002-styled.html \\
+        --update-id 5754
+
 CREDENTIALS
     ~/.config/brightbox/wordpress.json, mode 600, never in this repository:
 
@@ -140,6 +144,12 @@ def main():
     ap.add_argument("--body-image", action="append", default=[], metavar="PATH",
                     help="image to upload and slot into the next REPLACE_ME placeholder, "
                          "in order. Repeat for multiple.")
+    ap.add_argument("--update-id", type=int, metavar="POST_ID",
+                    help="update this existing post's content instead of creating a new "
+                         "one. Status is forced back to draft regardless of the post's "
+                         "current status; this never publishes. --title/--slug/--category/"
+                         "--excerpt/--featured are optional here and only touch the fields "
+                         "given.")
     ap.add_argument("--check", action="store_true", help="verify credentials and exit")
     args = ap.parse_args()
 
@@ -157,7 +167,10 @@ def main():
         print("\nWordPress connection working.")
         return
 
-    if not (args.html_file and args.title):
+    if args.update_id:
+        if not args.html_file:
+            ap.error("--update-id needs an html_file to read the new content from")
+    elif not (args.html_file and args.title):
         ap.error("need an html_file and --title (or --check)")
 
     html = Path(args.html_file).read_text()
@@ -184,10 +197,12 @@ def main():
 
     payload = {
         "status": "draft",          # hard limit. never anything else.
-        "title": args.title,
         "content": html,
-        "excerpt": args.excerpt,
     }
+    if args.title:
+        payload["title"] = args.title
+    if args.excerpt:
+        payload["excerpt"] = args.excerpt
     if args.slug:
         payload["slug"] = args.slug
     if args.category:
@@ -195,12 +210,17 @@ def main():
     if args.featured:
         payload["featured_media"] = upload_media(creds, args.featured)["id"]
 
-    print(f"\nCreating DRAFT: {args.title}")
-    post = api(creds, "POST", "posts", payload)
+    if args.update_id:
+        print(f"\nUpdating DRAFT {args.update_id} (status forced back to draft)")
+        post = api(creds, "POST", f"posts/{args.update_id}", payload)
+        print(f"\n  Draft updated. Status: {post['status']}")
+    else:
+        print(f"\nCreating DRAFT: {args.title}")
+        post = api(creds, "POST", "posts", payload)
+        print(f"\n  Draft created. Status: {post['status']}")
 
     edit_url = f"{creds['site']}/wp-admin/post.php?post={post['id']}&action=edit"
     preview_url = f"{creds['site']}/?p={post['id']}&preview=true"
-    print(f"\n  Draft created. Status: {post['status']}")
     print(f"  Post ID:    {post['id']}")
     print(f"  Edit here:  {edit_url}")
     print(f"  Preview:    {preview_url}")
