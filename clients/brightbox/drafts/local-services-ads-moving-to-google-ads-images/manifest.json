@@ -1,0 +1,36 @@
+{
+  "generated_at": "2026-08-03T17:13:30.149838+00:00",
+  "post_id": 5754,
+  "slug": "local-services-ads-moving-to-google-ads",
+  "brief_title": "Local Services Ads Move to Google Ads: What Changes",
+  "prompt": null,
+  "master": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-master.png",
+  "derivatives": {
+    "wp_featured": {
+      "path": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-wp-featured.webp",
+      "filename": "local-services-ads-moving-to-google-ads-wp-featured.webp",
+      "wp_id": 5798,
+      "wp_url": "https://brightboxdigital.io/wp-content/uploads/2026/08/local-services-ads-moving-to-google-ads-wp-featured.webp"
+    },
+    "facebook": {
+      "path": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-facebook.jpg",
+      "filename": "local-services-ads-moving-to-google-ads-facebook.jpg"
+    },
+    "linkedin": {
+      "path": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-linkedin.jpg",
+      "filename": "local-services-ads-moving-to-google-ads-linkedin.jpg"
+    },
+    "instagram": {
+      "path": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-instagram.jpg",
+      "filename": "local-services-ads-moving-to-google-ads-instagram.jpg"
+    },
+    "square": {
+      "path": "/Users/archiebrady/Desktop/Brightbox Content OS/clients/brightbox/drafts/local-services-ads-moving-to-google-ads-images/local-services-ads-moving-to-google-ads-square.jpg",
+      "filename": "local-services-ads-moving-to-google-ads-square.jpg"
+    }
+  },
+  "wp_featured_set": true,
+  "stage": "complete",
+  "source": "/tmp/bbx-dist/bbx002-source.webp",
+  "wp_featured_media_id": 5798
+}

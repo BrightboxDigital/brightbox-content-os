@@ -10,6 +10,15 @@ USAGE
     ./scripts/push-social --list-accounts
     ./scripts/push-social --from clients/brightbox/distribution/<folder>/posts.json
 
+POSTS.JSON, one object per platform draft:
+    {"platform": "instagram", "caption": "...", "media_files": ["/abs/path/slide1.jpg", "..."]}
+
+    "media_files" (list of local paths) makes a true multi-image carousel draft,
+    confirmed working against GHL's API 2026-08-03: all images in the list appear
+    on the saved post, uploaded to GHL Media Storage automatically. Use "media"
+    (single URL string) for a one-image post instead, or omit both to fall back
+    to a --media-manifest derivative.
+
 CREDENTIALS
     ~/.config/brightbox/ghl.json, mode 600, never in this repository:
         {"location_id": "...", "private_token": "..."}
@@ -154,7 +163,10 @@ def match_platform(account_platform, wanted):
     return account_platform in aliases
 
 
-def create_draft(creds, account_ids, summary, media_url=None):
+def create_draft(creds, account_ids, summary, media_urls=None):
+    """media_urls: a list of one or more hosted image URLs. GHL's post media field
+    already takes a list (carried over from the single-image caller below), so
+    passing more than one is what makes a multi-image / carousel draft."""
     body = {
         "accountIds": account_ids,
         "summary": summary,
@@ -162,8 +174,8 @@ def create_draft(creds, account_ids, summary, media_url=None):
         "type": "post",
         "userId": creds["user_id"],
     }
-    if media_url:
-        body["media"] = [{"url": media_url}]
+    if media_urls:
+        body["media"] = [{"url": u} for u in media_urls]
     return api(creds, "POST", f"/social-media-posting/{creds['location_id']}/posts", body)
 
 
@@ -229,18 +241,28 @@ def main():
             skipped.append(platform)
             print(f"  SKIP {platform}: not connected in GHL Social Planner")
             continue
-        # pick media: explicit per-post > this platform's derivative uploaded to GHL > global --media
-        media_url = p.get("media")
-        if not media_url and manifest_local:
+        # pick media: explicit per-post list (carousel) > explicit single URL >
+        # this platform's derivative uploaded to GHL > global --media
+        media_urls = []
+        if p.get("media_files"):
+            for local in p["media_files"]:
+                if local not in ghl_media_cache:
+                    ghl_media_cache[local] = upload_media_to_ghl(creds, local)
+                    print(f"  uploaded {Path(local).name} to GHL media storage")
+                media_urls.append(ghl_media_cache[local])
+        elif p.get("media"):
+            media_urls = [p["media"]]
+        elif manifest_local:
             deriv = PLATFORM_DERIVATIVE.get(platform, "wp_featured")
             local = manifest_local.get(deriv) or manifest_local.get("wp_featured")
             if local:
                 if deriv not in ghl_media_cache:
                     ghl_media_cache[deriv] = upload_media_to_ghl(creds, local)
                     print(f"  uploaded {Path(local).name} to GHL media storage")
-                media_url = ghl_media_cache[deriv]
-        media_url = media_url or args.media
-        res = create_draft(creds, [acct_id], p["caption"], media_url)
+                media_urls = [ghl_media_cache[deriv]]
+        if not media_urls and args.media:
+            media_urls = [args.media]
+        res = create_draft(creds, [acct_id], p["caption"], media_urls)
         post = (res.get("results") or {}).get("post") or res.get("post") or {}
         pid = post.get("_id") or post.get("id") or "?"
         created += 1
