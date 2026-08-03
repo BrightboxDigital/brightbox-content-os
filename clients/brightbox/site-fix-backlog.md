@@ -183,6 +183,49 @@ the GBP ultimate guide, the AI logo design post, and the Fort Wayne SEO guide.
 **Fix:** enable pagination or raise the posts per page count. Confirm category archives list every
 post. This is an internal linking and discoverability problem, not a cosmetic one.
 
+**Confirmed still broken 2026-08-03**, checked as part of BBX-002's post publication technical QA.
+`https://brightboxdigital.io/blog/` returns 200 but contains no link or title text for
+`local-services-ads-moving-to-google-ads`, same symptom as the original finding, now on an eighth
+post.
+
+### 4b. Two PPC articles are split across two different categories
+
+Confirmed 2026-08-03, technical QA after BBX-002 published. The site has two separate categories
+that both read as "the PPC category" to a human, but are different taxonomy terms with different
+slugs:
+
+| Category | id | slug | Posts in it |
+|---|---|---|---|
+| Google Ads | 23 | `google-ads` | BBX-001 (`does-a-small-google-ads-budget-work`) |
+| Google Ads and PPC | 28 | `google-ads-and-ppc` | BBX-002 (`local-services-ads-moving-to-google-ads`) |
+
+Category 28 did not exist before BBX-002. `scripts/wp-draft` creates a category by exact name match
+if none exists (`resolve_category`, `scripts/wp_draft.py`), and "Google Ads and PPC" (the content
+category name used in `content-tracker.csv` and throughout this repo) did not exactly match the
+existing "Google Ads" category on the site, so a new one was created rather than reused.
+
+**Effect:** `/blog/category/google-ads/` and `/blog/category/google-ads-and-ppc/` each show only one
+of the two PPC articles. Neither shows both. This directly undermines the hub and cluster model in
+`internal-links.md`, where the PPC hub is supposed to have a growing set of supporting articles
+visible together.
+
+**Fix:** pick one category as canonical (`google-ads` already has BBX-001 and an established slug;
+recommend keeping it and moving BBX-002 into it, then deleting or merging category 28) and update
+`scripts/wp_draft.py`'s category name to match exactly, or update `resolve_category` to do a
+case/punctuation-insensitive match before creating a new one, so this cannot recur on BBX-003 and
+beyond. Needs Archie's decision on which name is canonical before either the site or the script
+changes.
+
+### 4c. Featured image on BBX-002 has empty alt text
+
+Confirmed 2026-08-03. The featured image (`google-lead-service-ads.webp`, media id 5756) renders
+with `alt=""` on the live page. `scripts/wp-draft --featured` only sets `featured_media`; it does not
+set alt text, and none was set manually after Archie uploaded the image himself.
+
+**Fix:** set alt text on media id 5756 in the WordPress media library, e.g. "Local Services Ads
+listing transitioning into a Google Ads Performance Max campaign, with icons for plumbing, HVAC,
+electrical, roofing, and cleaning." Low effort, straightforward accessibility and image-SEO fix.
+
 ### 5. Likely cannibalization on Fort Wayne local SEO
 
 `local-seo-in-2025` and `fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025` appear to
