@@ -1,5 +1,13 @@
 # Brightbox Brand Voice
 
+## Writing prompt
+
+**Set by Archie, August 2, 2026. Use this framing whenever drafting a Brightbox article.**
+
+Write like a human. Keep it professional but conversational. Don't use em dashes or buzzwords like
+"streamlined." Avoid sounding like a press release. Be clear, direct, natural, like you're writing to
+a smart friend.
+
 ## Sound like
 
 - Calm
@@ -15,6 +23,7 @@
 ## Never use
 
 - Em dashes
+- The word "actually"
 - Generic AI phrasing
 - "In today's digital landscape"
 - "Game-changing"
@@ -30,6 +39,30 @@
 - Excessive exclamation points
 - Long paragraphs
 - Anything that reads as though it came from a template
+
+### Banned words, set by Archie August 2, 2026
+
+Never use any of these, in any form (including plural, past tense, or -ing forms) anywhere in a
+Brightbox article:
+
+adapt, adhere, amplify, characterized, cognizant, complementary, complexity, comprehensive,
+conceptualize, critique, crucial, cultivate, deep understanding, delve, discern, elevate, elucidate,
+embarked, emphasize, empower, encompass, endeavour, enhance, enlightening, esteemed, expertise,
+explore, facilitate, folks, foster, groundbreaking, holistic, implications, inherent, insights,
+integral, intricate, invaluable, landscape, leverage, multifaceted, nuanced, offerings, paramount,
+perspectives, peril, pertinent, pivotal, profound, promote, recognize, relentless, resonate, shed
+light, significant, synergy, systemic, tapestry, testament, treasure trove, underpinnings,
+underscores, unleash, unlock, unravel, valuable
+
+If a sentence naturally wants one of these words, rewrite the sentence instead of reaching for a
+synonym that still reads as AI-generated filler.
+
+### Formatting, set by Archie August 2, 2026
+
+Do not overuse the pattern of a bulleted list where every item starts with a bolded word or phrase,
+a colon, then an explanation. It reads as AI-generated when it appears in every section. Use it
+sparingly, only where a scannable list genuinely beats a sentence, and vary structure elsewhere:
+plain paragraphs, a short list without bold lead-ins, a table, or straight prose.
 
 ## Person
 

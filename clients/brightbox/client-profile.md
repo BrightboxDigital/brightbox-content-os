@@ -79,9 +79,18 @@ Source of truth: `~/Desktop/Brightbox Digital/`. Confirmed by Archie, July 18, 2
 
 Rules for image briefs:
 
-- Prefer an original screenshot, diagram or annotated example over anything in `Stock Images/`.
-  Stock is the fallback, not the default.
+**More images per article, set by Archie August 2, 2026.** Prefer more images over fewer, beyond the
+editorial minimum. For every image slot: use an original screenshot, diagram or annotated example if
+Archie can supply one. If he cannot, propose a specific idea for what the image should show, then
+search for and propose real stock image candidates rather than leaving the slot as a placeholder or
+skipping it. Present the stock options to Archie for approval before use; never invent a filename or
+a live image URL.
+
 - Portfolio images show real client work. Confirm permission with Archie before any brief calls for one.
 - Strip location and device metadata from photographs before publishing.
 - Canva and Google Drive connectors are available for producing diagrams and checklists.
 - Reference an asset by folder path in the brief. Never invent a filename or a live image URL.
+- **Never let an AI-generated graphic display fabricated data as if real** (invented metrics, fake
+  reviews, fake dashboard numbers, and similar). Flag this to Archie before use if it happens, per
+  the July 2026 Canva timeline-diagram incident on BBX-002, where an AI-generated infographic
+  invented two migration phases that did not exist in any source.

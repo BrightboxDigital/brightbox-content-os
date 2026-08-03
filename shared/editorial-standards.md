@@ -103,13 +103,20 @@ substitute for contextual citation. Never imply a source supports more than it d
 
 ### Images
 
-Two to three meaningful images. At least one should ideally be an original asset: screenshot,
-diagram, checklist, workflow, annotated example, client work with permission, or an author photo.
+More than the old two to three minimum where it genuinely helps the reader (standing preference for
+Brightbox, set by Archie August 2, 2026). At least one should ideally be an original asset:
+screenshot, diagram, checklist, workflow, annotated example, client work with permission, or an
+author photo.
 
 For each: placement, purpose, concept, alt text, caption where useful, aspect ratio, filename,
 source or creation method, privacy details to remove, and whether the author must supply it.
 
-Avoid decorative stock imagery where an original instructional asset would serve the reader better.
+When no original asset is available for a slot, do not leave it empty or skip the image. Propose a
+specific concept for what it should show, then search for and present real stock image candidates
+for approval. Decorative stock is acceptable when it is genuinely the best option for a slot, not
+only as a last resort, but an original instructional asset still beats generic stock when one is
+available. Never publish an AI-generated graphic that displays fabricated data as if real (invented
+metrics, fake reviews, fake numbers). Flag it to Archie and get explicit approval before using one.
 
 ### FAQ
 
