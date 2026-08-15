@@ -244,6 +244,30 @@ Original finding, kept for reference: the featured image (`google-lead-service-a
 with `alt=""` on the live page. `scripts/wp-draft --featured` only set `featured_media`; it did not
 set alt text, and none was set manually after Archie uploaded the image himself.
 
+### 4d. OPEN. BBX-002's URL structure changed after publication, breaking its recorded published_url
+
+Found 2026-08-15 during the BBX-002 7-day monitoring check.
+`https://brightboxdigital.io/blog/local-services-ads-moving-to-google-ads/`, the URL recorded as
+`published_url` in `content-tracker.csv` and used throughout the distribution package, now returns
+**301** and redirects to `https://brightboxdigital.io/local-services-ads-moving-to-google-ads/` (the
+`/blog/` segment dropped). The new URL is healthy: 200, follow/index, self-referencing canonical,
+in `post-sitemap.xml`.
+
+**Effect:** the one live inbound link into the article, from `/google-and-facebook-ads/`, still
+points at the old pre-redirect URL and pays an unnecessary redirect hop on every click. The
+tracker's own `published_url` field is now stale.
+
+Separately, but found during the same check: the tracker's notes claim Archie added a second inbound
+link, from the BBX-001 article, on 2026-08-03. That link does not exist on the live BBX-001 page,
+checked by fetching its full HTML and searching for the BBX-002 slug and title. Only the
+`/google-and-facebook-ads/` link is actually live.
+
+**Fix:** confirm whether the `/blog/` prefix removal was an intentional, permanent permalink change
+(if so, more posts may be affected and worth a site-wide check) or something to reverse. Then update
+the `/google-and-facebook-ads/` link and the tracker's `published_url` to point at the current URL
+directly, and add the BBX-001 inbound link if it was meant to exist but doesn't. Full detail in
+`performance/BBX-002-7day-2026-08-15.md`.
+
 ### 5. Likely cannibalization on Fort Wayne local SEO
 
 `local-seo-in-2025` and `fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025` appear to
