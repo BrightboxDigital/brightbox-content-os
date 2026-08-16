@@ -268,6 +268,15 @@ the `/google-and-facebook-ads/` link and the tracker's `published_url` to point 
 directly, and add the BBX-001 inbound link if it was meant to exist but doesn't. Full detail in
 `performance/BBX-002-7day-2026-08-15.md`.
 
+**Update 2026-08-16, likely resolved:** BBX-003 published natively at
+`https://brightboxdigital.io/aeo-geo-llms-txt-myths/`, no `/blog/` prefix at all, not a redirect.
+Two data points now (BBX-002's post-hoc redirect, BBX-003's native URL) both point the same
+direction: the `/blog/` prefix removal reads as a real, permanent site change, not a one-off. Acting
+on that: `scripts/build-utm` was hardcoding the old `/blog/<slug>/` pattern and has been fixed to
+generate `/<slug>/` directly. Still open: confirm with Archie whether this was an intentional
+permalink structure change, and whether BBX-001's older `/blog/does-a-small-google-ads-budget-work/`
+URL should also be checked for the same redirect behavior.
+
 ### 5. Likely cannibalization on Fort Wayne local SEO
 
 `local-seo-in-2025` and `fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025` appear to
