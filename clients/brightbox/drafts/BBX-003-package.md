@@ -20,10 +20,12 @@ real way to check AI visibility (with its real limitations: impressions only, li
 closes with what Brightbox actually tells clients to focus on. No case study or invented example is
 included, since Archie confirmed he has none yet, stated plainly rather than papered over.
 
-**Word count:** 1,193. **Content score:** 55 on first evaluation, 58 after importing with SEO title
-and meta description and adding the AEO/GEO/SEO acronym definitions (a genuine reader-clarity
-addition, not stuffing). Stopped after one content revision of the three permitted passes; see
-section 8.
+**Word count:** 1,346. **Content score:** 55 on first evaluation, 58 after importing with SEO title,
+meta description, and the AEO/GEO/SEO acronym definitions, then 57 after a second revision that
+corrected a quote-accuracy issue Archie's own screenshots caught and added a genuinely useful
+resource (Google's own guidance on evaluating third-party SEO advice) his screenshot surfaced. The
+one-point dip on the second pass is expected and not chased back up: it was an accuracy and
+usefulness fix, not a scoring move. Two of three permitted passes used; see section 8.
 
 ---
 
@@ -83,37 +85,38 @@ confirmed he doesn't have one yet.
 
 ## 5. Image brief
 
-**No original image exists yet.** Two options, both genuinely original (not stock, not fabricated
-data), Archie's choice:
+**Both screenshots captured 2026-08-15**, saved to `clients/brightbox/drafts/BBX-003-images/`:
+`google-guide-llms-txt-source.png` and `google-guide-aeo-geo-source.png`. Both are real screenshots
+of the live guide page, already hand-annotated by Archie with a red underline on the key sentence.
+Taking these caught the quote-accuracy issue described in section 6, so they've already earned their
+place in the article beyond just illustration.
 
-### Option 1 (recommended): annotated screenshot of Google's own guide
-A real screenshot of the "Mythbusting generative AI search" section of Google's AI optimization
-guide (developers.google.com/search/docs/fundamentals/ai-optimization-guide), lightly annotated to
-highlight the exact sentence quoted in the article ("Doing so will neither harm nor help..."). This
-is a genuine screenshot of a real, currently live page, not a mockup or invented data. Strongest
-option because it lets a skeptical reader see Google said this themselves, in Google's own
-interface, rather than trusting the article's paraphrase.
+### Option 1 (recommended): the llms.txt screenshot
+`google-guide-llms-txt-source.png`, showing the "LLMS.txt files and other 'special' markup" bullet
+and the callout beneath it. Strongest option because it lets a skeptical reader see Google say this
+themselves, in Google's own interface, rather than trusting the article's paraphrase.
 
-- **Placement:** in the "Google's direct answer on llms.txt" section, near the blockquote
+- **Placement:** in the "Google's direct answer on llms.txt" section, near the two blockquotes
 - **Purpose:** visual proof of the primary source claim
-- **Alt text:** "Screenshot of Google's Search Central AI optimization guide, showing the section stating llms.txt files do not help or hurt Google Search visibility"
-- **Filename:** `google-ai-optimization-guide-llms-txt-screenshot.png`
-- **Source:** live screenshot of the cited URL, taken at delivery time, re-verified before publication per the source recheck rule
+- **Alt text:** "Screenshot of Google's Search Central AI optimization guide, showing that llms.txt files do not help or hurt Google Search visibility"
+- **Filename for publishing:** `google-ai-optimization-guide-llms-txt-screenshot.png`
+- **Source:** real screenshot of the cited URL, annotated by Archie, taken 2026-08-15
 
-### Option 2: simple myth-versus-reality graphic
-A two-column comparison graphic built from facts already validated in the article, no invented
-numbers: "What people are told" (you need llms.txt / AEO is a new discipline) versus "What Google's
-guide actually says" (ignored, still SEO). Buildable in Canva, no client data or identifiers needed.
+### Option 2: the AEO/GEO screenshot
+`google-guide-aeo-geo-source.png`, showing the "What about 'AEO' and 'GEO'?" callout, including
+Google's own link to its third-party SEO advice guidance. Matched exactly against the article's
+quote with no correction needed.
 
-- **Placement:** near the top, after the TL;DR, as a visual summary
-- **Purpose:** gives skimmers the core answer before they read the full explanation
-- **Alt text:** "Comparison graphic: common AEO, GEO, and llms.txt claims next to what Google's guide actually states"
-- **Filename:** `aeo-geo-llms-txt-myth-vs-reality.png`
+- **Placement:** in the "Is AEO or GEO a different discipline from SEO?" section, near its blockquote
+- **Purpose:** visual proof of the second primary claim, and shows the third-party-advice link in Google's own context
+- **Alt text:** "Screenshot of Google's guide stating that optimizing for generative AI search is still SEO, with a link to its guidance on evaluating third-party SEO advice"
+- **Filename for publishing:** `google-ai-optimization-guide-aeo-geo-screenshot.png`
+- **Source:** real screenshot of the cited URL, annotated by Archie, taken 2026-08-15
 
-**Recommendation:** use both. Option 1 for credibility and originality (a real screenshot beats a
-generic diagram here), Option 2 as a scannable summary graphic. Meets the "more than two to three
-images, at least one original" standard on its own; no stock photography needed or appropriate for
-a topic this specific to Google's own documentation.
+**Recommendation:** use both, one per section, exactly as captured. Meets the "more than two to
+three images, at least one original" standard; no stock photography needed or appropriate for a
+topic this specific to Google's own documentation. Redact nothing since both screenshots are of a
+public Google page with no personal or account data visible.
 
 ---
 
@@ -121,16 +124,19 @@ a topic this specific to Google's own documentation.
 
 | # | Claim | Source | Type | Checked | Supports exact wording? |
 |---|---|---|---|---|---|
-| 1 | "You don't need to create new machine readable files, AI text files, markup, or Markdown to appear in Google Search," quoted | [Google AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), section "Mythbusting generative AI search: what you don't need to do" | Primary | 2026-08-15 | Yes, quoted verbatim |
-| 2 | "Doing so will neither harm nor help your site's visibility or rankings in Google Search, as Google Search ignores them," quoted | Same | Primary | 2026-08-15 | Yes, quoted verbatim |
-| 3 | "From Google Search's perspective, optimizing for generative AI search is optimizing for the search experience, and thus still SEO," quoted | Same guide, section "Is SEO still relevant for generative AI search?" | Primary | 2026-08-15 | Yes, quoted verbatim |
+| 1 | "You don't need to create new machine readable files, AI text files, markup, or Markdown to appear in Google Search (including its generative AI capabilities), as Google Search itself doesn't use them," quoted | [Google AI optimization guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), bullet "LLMS.txt files and other 'special' markup" | Primary | 2026-08-15, against Archie's own screenshot | Yes, quoted verbatim. **Corrected 2026-08-15:** the first draft spliced this sentence to a different callout's sentence with an ellipsis as if one continuous quote. Archie's screenshot showed they are two separate statements in two separate visual blocks; fixed to quote each accurately and separately (see claim 2) |
+| 2 | "It's completely fine if you decide to create and maintain LLMS.txt files (or other similar files) for other services or systems that use these files. Doing so will neither harm nor help your site's visibility or rankings in Google Search, as Google Search ignores them," quoted | Same guide, separate highlighted callout directly below the bullet above | Primary | 2026-08-15, against Archie's own screenshot | Yes, quoted verbatim as its own distinct statement |
+| 3 | "From Google Search's perspective, optimizing for generative AI search is optimizing for the search experience, and thus still SEO," quoted | Same guide, callout "What about 'AEO' and 'GEO'?" under "Is SEO still relevant for generative AI search?" | Primary | 2026-08-15, against Archie's own screenshot | Yes, quoted verbatim, matched exactly against the screenshot with no correction needed |
 | 4 | Guide last updated July 10, 2026 | Same, page metadata | Primary | 2026-08-15 | Yes, page shows this date |
-| 5 | Google Search Console announced a dedicated Generative AI performance report, separating AI Overviews and AI Mode impressions from standard search data, on June 3, 2026 | [Google Search Central Blog](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports), "Introducing Search Generative AI performance reports in Search Console" | Primary | 2026-08-15 | Yes. Note: this URL returns 404 to the WebFetch tool specifically (same JS-rendering quirk documented for support.google.com URLs in BBX-001/BBX-002), but returns 200 via direct curl and its content was independently corroborated across multiple search results citing the same date, title, and byline (Hillel Maoz and Moshe Samet) |
-| 6 | Report is "rolling out this report to a subset of website owners, allowing for thorough testing before rolling it further," quoted | [Search Console Help, Generative AI performance report](https://support.google.com/webmasters/answer/16984139) | Primary | 2026-08-15 | Yes, quoted verbatim |
-| 7 | Report currently shows impressions only, no clicks, CTR, or average position; dimensions are pages, countries, dates, devices | Same | Primary | 2026-08-15 | Yes |
-| 8 | Archie's honest answer to clients asking about llms.txt: not necessary per Google, doesn't affect anything at this point | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes, his own words, lightly cleaned for punctuation only |
-| 9 | Archie's honest answer to clients asking about AEO: "it's still just SEO," keep doing what we're doing | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes |
-| 10 | What Brightbox tells clients to focus on: SEO fundamentals, on-page/off-page/technical, mostly unchanged with some tactics still evolving | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes |
+| 5 | Google's guide links its own AEO/GEO answer directly to a page titled "Google Search's guidance on using third-party SEO tools, services, and advice," which advises comparing third-party claims against Google's own guidelines and treating claims of guaranteed rankings or Google approval skeptically | [developers.google.com/search/docs/fundamentals/third-party-seo](https://developers.google.com/search/docs/fundamentals/third-party-seo) | Primary | 2026-08-15 | Yes. URL confirmed via Archie's screenshot (visible as a link in the AEO/GEO callout), confirmed live (200), and its content independently summarized. Added to the draft after Archie's screenshot surfaced it; not part of the original research |
+| 6 | Google Search Console announced a dedicated Generative AI performance report, separating AI Overviews and AI Mode impressions from standard search data, on June 3, 2026 | [Google Search Central Blog](https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports), "Introducing Search Generative AI performance reports in Search Console" | Primary | 2026-08-15 | Yes. Note: this URL returns 404 to the WebFetch tool specifically (same JS-rendering quirk documented for support.google.com URLs in BBX-001/BBX-002), but returns 200 via direct curl and its content was independently corroborated across multiple search results citing the same date, title, and byline (Hillel Maoz and Moshe Samet) |
+| 7 | Report is "rolling out this report to a subset of website owners, allowing for thorough testing before rolling it further," quoted | [Search Console Help, Generative AI performance report](https://support.google.com/webmasters/answer/16984139) | Primary | 2026-08-15 | Yes, quoted verbatim |
+| 8 | Report currently shows impressions only, no clicks, CTR, or average position; dimensions are pages, countries, dates, devices | Same | Primary | 2026-08-15 | Yes |
+| 9 | Archie's honest answer to clients asking about llms.txt: not necessary per Google, doesn't affect anything at this point | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes, his own words, lightly cleaned for punctuation only |
+| 10 | Archie's honest answer to clients asking about AEO: "it's still just SEO," keep doing what we're doing | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes |
+| 11 | What Brightbox tells clients to focus on: SEO fundamentals, on-page/off-page/technical, mostly unchanged with some tactics still evolving | Archie, interview 2026-08-15 | Primary, first party | 2026-08-15 | Yes |
+
+**Process note on claims 1-3.** These were originally sourced through the WebFetch tool, which returns an AI-summarized paraphrase rather than the raw page, and it had assembled claim 1's quote inaccurately by bridging two separate statements with an ellipsis. Archie's own screenshots, taken directly from the live page, caught this and are now the authoritative source for the exact wording. This is a good argument for treating WebFetch-sourced "verbatim" quotes as provisional until checked against a direct screenshot or fetch, not as verified on first pull, going forward.
 
 ### Claims deliberately excluded
 
@@ -263,7 +269,7 @@ Full package to be produced by `distribute-blog` after this article is approved 
 
 | # | Item | What's needed |
 |---|---|---|
-| 1 | Image choice | Option 1 (annotated screenshot of Google's guide) recommended, Option 2 (myth-vs-reality graphic) as a strong pairing. Your call, or both |
+| 1 | ~~Image choice~~ | **Resolved 2026-08-15.** Both screenshots you took are in the draft now, one per section. No further choice needed unless you want to swap or add one |
 | 2 | Target publication date | Set to 2026-08-15 as a placeholder, matching today. Confirm or adjust to a real slot |
 | 3 | URL structure | BBX-002's URL quietly changed after publication (see checklist item above). Worth confirming what the current, intended permalink structure actually is before this one goes live, so it isn't affected by whatever caused that |
 | 4 | Scope check | The article deliberately does not mention any local vendor pitching AEO/GEO services, since you confirmed in the interview you haven't seen that locally. Confirm this narrower, more honest framing reads right to you, rather than feeling like it's missing something |
