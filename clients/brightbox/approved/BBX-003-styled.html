@@ -1,0 +1,246 @@
+<!-- ======================================================================
+     BRIGHTBOX DIGITAL — BBX-003
+     "AEO, GEO, and llms.txt: What Google's Guide Says"
+     Approved by Archie Brady, 2026-08-15. Target publish 2026-08-15.
+
+     PASTE THIS into a WordPress "Custom HTML" block for the post body.
+
+     PREREQUISITES, both one-time only, already installed for BBX-001:
+       1. shared/blog-template.css  -> Appearance > Customize > Additional CSS
+       2. shared/blog-template.js   -> site footer
+
+     Already in place. This article is markup only. No <style> or
+     <script> block travels with it.
+
+     The H1 comes from the WordPress post title. Do not add one here or
+     the page will have two.
+
+     IMAGES: two real screenshots, taken and annotated by Archie
+     2026-08-15, at clients/brightbox/drafts/BBX-003-images/
+     (google-guide-llms-txt-source.png, google-guide-aeo-geo-source.png).
+     Not fabricated, not stock. REPLACE_ME below marks that they still
+     need uploading to WordPress media and swapping to the resulting
+     URLs; wp-draft will refuse to run while a REPLACE_ME src is present,
+     which is intentional so this can't accidentally publish without
+     them.
+     ====================================================================== -->
+
+<div class="bbx-post">
+
+  <!-- Byline -->
+  <p class="bbx-post-byline">
+    <span>By Archie Brady</span>
+    <span class="bbx-post-bylineDot"></span>
+    <span>Brightbox Digital</span>
+    <span class="bbx-post-bylineDot"></span>
+    <span>SEO &amp; AI Search</span>
+    <span class="bbx-post-bylineDot"></span>
+    <span>Fort Wayne, Indiana</span>
+  </p>
+
+  <!-- TL;DR -->
+  <div class="bbx-post-tldr bbx-post-reveal">
+    <div class="bbx-post-tldrChrome">
+      <span class="bbx-post-tldrDot"></span>
+      <span class="bbx-post-tldrDot"></span>
+      <span class="bbx-post-tldrDot"></span>
+      <span class="bbx-post-tldrLabel">TL;DR</span>
+    </div>
+    <ul class="bbx-post-tldrList">
+      <li>Google's Search Central guide states plainly that llms.txt files do not help or hurt your visibility in Google Search, including its AI features.</li>
+      <li>Optimizing for AI search is not a separate discipline from SEO. Google's own words: it's "still SEO."</li>
+      <li>The guide was updated July 10, 2026, specifically to correct claims like these.</li>
+      <li>If you want to check how you show up in AI search results, Google's new Search Console report is where to look, though access is still limited and it only shows impressions so far.</li>
+      <li>Nothing about how we approach SEO for clients has changed because of any of this.</li>
+    </ul>
+  </div>
+
+  <!-- Section 1: intro -->
+  <section class="bbx-post-section bbx-post-reveal" id="two-questions">
+    <p class="bbx-post-eyebrow">01 — Where this comes from</p>
+    <h2 class="bbx-post-h2">Two Questions We Keep Getting</h2>
+    <p class="bbx-post-p">Two questions have come up more than once from clients lately: do I need something called an llms.txt file, and is this new AEO or GEO thing different from the SEO we're already doing? Neither came from a sales pitch or a cold email. Both came from business owners who'd seen the terms somewhere and wanted a straight answer.</p>
+    <p class="bbx-post-p">Google gave one. On July 10, 2026, its Search Central team updated the <a class="bbx-post-link" href="https://developers.google.com/search/docs/fundamentals/ai-optimization-guide" target="_blank" rel="noopener">official guide to optimizing for generative AI search</a>, adding a section written specifically to correct claims like these. It's short, direct, and settles both questions without hedging.</p>
+  </section>
+
+  <!-- Section 2: llms.txt -->
+  <section class="bbx-post-section bbx-post-reveal" id="llms-txt">
+    <p class="bbx-post-eyebrow">02 — Myth one</p>
+    <h2 class="bbx-post-h2">Google's Direct Answer on llms.txt</h2>
+    <p class="bbx-post-p">Under a bullet titled "LLMS.txt files and other 'special' markup," in the guide's section on what you don't need to do for generative AI search, Google states:</p>
+    <blockquote class="bbx-post-quote">"You don't need to create new machine readable files, AI text files, markup, or Markdown to appear in Google Search (including its generative AI capabilities), as Google Search itself doesn't use them."</blockquote>
+    <p class="bbx-post-p">That covers llms.txt directly. An llms.txt file is exactly this kind of file: a plain text list, similar in idea to a robots.txt file, that some sites publish for AI systems to read.</p>
+
+    <figure class="bbx-post-figure bbx-post-reveal">
+      <div class="bbx-post-figureChrome">
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureUrl">developers.google.com — ai-optimization-guide</span>
+      </div>
+      <div class="bbx-post-figureImgWrap">
+        <img class="bbx-post-figureImg" src="REPLACE_ME_google_ai_optimization_guide_llms_txt_screenshot.png" alt="Screenshot of Google's Search Central AI optimization guide, showing that llms.txt files do not help or hurt Google Search visibility" loading="lazy" />
+      </div>
+      <p class="bbx-post-figureCaption">Straight from Google's own guide, updated July 10, 2026.</p>
+    </figure>
+
+    <p class="bbx-post-p">The same page adds a separate, more direct note right underneath, specifically about maintaining one anyway:</p>
+    <blockquote class="bbx-post-quote">"It's completely fine if you decide to create and maintain LLMS.txt files (or other similar files) for other services or systems that use these files. Doing so will neither harm nor help your site's visibility or rankings in Google Search, as Google Search ignores them."</blockquote>
+    <p class="bbx-post-p">Put together, Google is saying, about its own search engine specifically, that publishing an llms.txt file changes nothing, whether or not you keep one around for some other reason.</p>
+
+    <div class="bbx-post-callout">
+      <svg class="bbx-post-calloutIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+      <p class="bbx-post-calloutBody">
+        <span class="bbx-post-calloutLabel">Watch Out</span>
+        One qualification worth being precise about, since it's easy to overstate this: the statement above is about Google Search specifically. It doesn't say anything about how other AI systems, like a chatbot's own web browsing feature, might treat these files. If a client already has an llms.txt file for some other reason, there's no reason grounded in this guide to remove it. There's also no reason grounded in this guide to spend time adding one for Google.
+      </p>
+    </div>
+
+    <div class="bbx-post-callout">
+      <svg class="bbx-post-calloutIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <p class="bbx-post-calloutBody">
+        <span class="bbx-post-calloutLabel">Brightbox Perspective</span>
+        Our honest answer when a client asks: it's not necessary, according to Google, and it doesn't affect anything for Google Search at this point. We can build one if someone wants it, but it more than likely won't change how the site shows up.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3: AEO/GEO -->
+  <section class="bbx-post-section bbx-post-reveal" id="aeo-geo">
+    <p class="bbx-post-eyebrow">03 — Myth two</p>
+    <h2 class="bbx-post-h2">Is AEO or GEO a Different Discipline From SEO?</h2>
+    <p class="bbx-post-p">AEO, short for Answer Engine Optimization, and GEO, short for Generative Engine Optimization, get pitched as new practices built for the age of AI search, distinct from ordinary search engine optimization. On whether either one counts as its own field, the same guide answers directly, under "Is SEO still relevant for generative AI search?":</p>
+    <blockquote class="bbx-post-quote">"From Google Search's perspective, optimizing for generative AI search is optimizing for the search experience, and thus still SEO."</blockquote>
+
+    <figure class="bbx-post-figure bbx-post-reveal">
+      <div class="bbx-post-figureChrome">
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureDot"></span>
+        <span class="bbx-post-figureUrl">developers.google.com — ai-optimization-guide</span>
+      </div>
+      <div class="bbx-post-figureImgWrap">
+        <img class="bbx-post-figureImg" src="REPLACE_ME_google_ai_optimization_guide_aeo_geo_screenshot.png" alt="Screenshot of Google's guide stating that optimizing for generative AI search is still SEO, with a link to its guidance on evaluating third-party SEO advice" loading="lazy" />
+      </div>
+      <p class="bbx-post-figureCaption">Google's own framing: not a new discipline, still SEO.</p>
+    </figure>
+
+    <p class="bbx-post-p">Not a variation of SEO. Not a companion discipline sitting next to it. The same thing, by Google's own framing.</p>
+
+    <div class="bbx-post-callout">
+      <svg class="bbx-post-calloutIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <p class="bbx-post-calloutBody">
+        <span class="bbx-post-calloutLabel">Brightbox Perspective</span>
+        When a client asks how different AEO or GEO is from what we already do, the honest answer is the same one Google gives. It's still SEO. We keep doing what we've been doing.
+      </p>
+    </div>
+
+    <p class="bbx-post-p">Worth knowing if someone approaches you with an AEO or GEO pitch: Google's guide points readers directly to its own <a class="bbx-post-link" href="https://developers.google.com/search/docs/fundamentals/third-party-seo" target="_blank" rel="noopener">guidance on evaluating third-party SEO advice and services</a> right next to this answer. It's a useful gut check before paying for anything sold under either label.</p>
+  </section>
+
+  <!-- Section 4: what we tell clients -->
+  <section class="bbx-post-section bbx-post-reveal" id="what-we-tell-clients">
+    <p class="bbx-post-eyebrow">04 — The actual advice</p>
+    <h2 class="bbx-post-h2">What We Tell Clients to Focus On</h2>
+    <p class="bbx-post-p">Setting the myths aside, the guidance we give clients hasn't moved. It comes down to three things: on-page content that answers the real question a visitor showed up with, off-page signals that a business is real and established, and technical SEO that keeps a site easy to crawl and index, so there's something for any search system, AI or otherwise, to find in the first place.</p>
+    <p class="bbx-post-p">Some specific tactics are shifting as everyone learns how AI systems select and cite sources, and that part is genuinely still being worked out, including by us. But the fundamentals a site needs to have in place haven't changed, and a business already doing SEO well is not behind.</p>
+  </section>
+
+  <!-- Section 5: how to check -->
+  <section class="bbx-post-section bbx-post-reveal" id="how-to-check">
+    <p class="bbx-post-eyebrow">05 — Measuring it</p>
+    <h2 class="bbx-post-h2">How to Check Whether You Show Up in AI Search</h2>
+    <p class="bbx-post-p">Google also gave site owners a direct way to look at this. On <a class="bbx-post-link" href="https://developers.google.com/search/blog/2026/06/gen-ai-performance-reports" target="_blank" rel="noopener">June 3, 2026, its Search Console team announced a dedicated Generative AI performance report</a>, separate from standard search data, showing how often a site's pages appear inside AI Overviews and AI Mode.</p>
+
+    <div class="bbx-post-callout">
+      <svg class="bbx-post-calloutIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      <p class="bbx-post-calloutBody">
+        <span class="bbx-post-calloutLabel">Important</span>
+        Two things worth knowing before you go looking for it. First, it currently shows impressions only, meaning how often a page appeared, not clicks, click-through rate, or average position. Second, per <a class="bbx-post-link" href="https://support.google.com/webmasters/answer/16984139" target="_blank" rel="noopener">Google's own documentation for the report</a>, it's "rolling out this report to a subset of website owners, allowing for thorough testing before rolling it further." Not every Search Console account has it yet, and a site also needs enough impressions in AI features before there's anything to show. If it's not there for you yet, that's expected, not something broken.
+      </p>
+    </div>
+  </section>
+
+  <hr class="bbx-post-divider" />
+
+  <!-- FAQ -->
+  <section class="bbx-post-section bbx-post-reveal" id="faq">
+    <p class="bbx-post-eyebrow">06 — Common questions</p>
+    <h2 class="bbx-post-h2">Frequently Asked Questions</h2>
+    <div class="bbx-post-faq">
+      <div class="bbx-post-faqItem">
+        <h3 class="bbx-post-faqQ">Do I need an llms.txt file to show up in Google Search?</h3>
+        <p class="bbx-post-faqA">No. Google's guide states it neither helps nor hurts visibility, since Google Search ignores the file entirely.</p>
+      </div>
+      <div class="bbx-post-faqItem">
+        <h3 class="bbx-post-faqQ">Will Google penalize my site for having an llms.txt file?</h3>
+        <p class="bbx-post-faqA">No. The same guide is direct that it causes no harm either way.</p>
+      </div>
+      <div class="bbx-post-faqItem">
+        <h3 class="bbx-post-faqQ">Is SEO still relevant now that AI search exists?</h3>
+        <p class="bbx-post-faqA">Yes. Whether someone finds a business through a traditional search engine or a new AI search feature, Google's own words are that optimizing for it is still SEO, not a separate practice.</p>
+      </div>
+      <div class="bbx-post-faqItem">
+        <h3 class="bbx-post-faqQ">What should I focus on if I'm worried about AI search visibility?</h3>
+        <p class="bbx-post-faqA">The same SEO fundamentals as always: content that answers real questions, legitimate off-page signals, and a technically sound, crawlable site. That's what feeds both traditional results and AI features.</p>
+      </div>
+      <div class="bbx-post-faqItem">
+        <h3 class="bbx-post-faqQ">Where can I check whether I show up in AI Overviews?</h3>
+        <p class="bbx-post-faqA">Search Console's new Generative AI performance report, where it's available. It shows impressions only for now, and the rollout is still limited.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Short version -->
+  <section class="bbx-post-section bbx-post-reveal">
+    <h2 class="bbx-post-h2">Where This Leaves You</h2>
+    <p class="bbx-post-p">None of this means AI search doesn't matter. It clearly does, and how it selects and cites sources is worth watching. It just means the response to it isn't a new file or a new discipline. It's the same SEO work, done well.</p>
+  </section>
+
+  <!-- Key takeaways -->
+  <div class="bbx-post-takeaways bbx-post-reveal" id="takeaways">
+    <p class="bbx-post-takeawaysEyebrow">Bottom line</p>
+    <h2 class="bbx-post-takeawaysTitle">Key Takeaways</h2>
+    <div class="bbx-post-takeawaysGrid">
+      <div class="bbx-post-takeawayCard bbx-post-reveal">
+        <span class="bbx-post-takeawayIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span>Google's Search Central guide, updated July 10, 2026, states plainly that llms.txt files do not help or hurt visibility in Google Search.</span>
+      </div>
+      <div class="bbx-post-takeawayCard bbx-post-reveal">
+        <span class="bbx-post-takeawayIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span>AEO and GEO are not a new discipline by Google's own definition. Optimizing for AI search is still SEO.</span>
+      </div>
+      <div class="bbx-post-takeawayCard bbx-post-reveal">
+        <span class="bbx-post-takeawayIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span>Search Console's new Generative AI performance report is where to check AI visibility directly, though it's a limited rollout and shows impressions only for now.</span>
+      </div>
+      <div class="bbx-post-takeawayCard bbx-post-reveal">
+        <span class="bbx-post-takeawayIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span>The SEO fundamentals, on-page, off-page, and technical, are still what feeds visibility in both traditional and AI-driven results.</span>
+      </div>
+      <div class="bbx-post-takeawayCard bbx-post-reveal">
+        <span class="bbx-post-takeawayIcon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        <span>If a business is already doing SEO well, it doesn't need a separate AI SEO package to keep up.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="bbx-post-cta bbx-post-reveal" id="cta">
+    <span class="bbx-post-ctaOrb bbx-post-ctaOrb1"></span>
+    <span class="bbx-post-ctaOrb bbx-post-ctaOrb2"></span>
+    <div class="bbx-post-ctaChrome">
+      <span class="bbx-post-ctaDot"></span>
+      <span class="bbx-post-ctaDot"></span>
+      <span class="bbx-post-ctaDot"></span>
+      <span class="bbx-post-ctaEyebrow">Ready when you are</span>
+    </div>
+    <div class="bbx-post-ctaBody">
+      <h2 class="bbx-post-ctaTitle">Want a Clear Look at Where Your Site Stands?</h2>
+      <p class="bbx-post-ctaText">If you want a clear look at where your own site stands, our <a class="bbx-post-link" href="https://brightboxdigital.io/seo/">SEO work</a> starts with exactly that kind of review. You can also <a class="bbx-post-link" href="https://brightboxdigital.io/portfolio/">see real examples</a> of what that looks like across client sites.</p>
+      <a class="bbx-post-ctaBtn" href="https://brightboxdigital.io/contact/">Get in Touch</a>
+      <p class="bbx-post-ctaFoot">Or email me directly at <a href="mailto:archie@brightboxdigital.io">archie@brightboxdigital.io</a></p>
+    </div>
+  </div>
+
+</div>
