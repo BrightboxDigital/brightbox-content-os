@@ -40,7 +40,7 @@ usefulness fix, not a scoring move. Two of three permitted passes used; see sect
 | Secondary topics | Answer Engine Optimization, Generative Engine Optimization, Google's AI optimization guide, Search Console Generative AI performance report, SEO fundamentals for AI search |
 | Search intent | Informational, myth-checking: do I need to do this AEO/GEO/llms.txt thing, in Google's own words |
 | Content category | SEO and AI Search |
-| Suggested excerpt | Google's own guide says plainly whether llms.txt files help AI search visibility and whether AEO/GEO is different from SEO. Here's the exact answer, and what to actually focus on instead. |
+| Suggested excerpt | Google's own guide says plainly whether llms.txt files help AI search visibility and whether AEO/GEO is different from SEO. Here's the exact answer, and what to focus on instead. |
 | Author | Archie Brady |
 | Published | 2026-08-15 (placeholder, matches target publication date) |
 | Updated | none, new article |

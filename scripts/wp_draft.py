@@ -218,14 +218,23 @@ def main():
     html = re.sub(r"^\s*<!--.*?-->\s*", "", html, count=1, flags=re.S)
 
     # Upload body images and drop each into the next REPLACE_ME placeholder, in order.
+    # Alt text for each comes from that <img> tag's own alt attribute, already written
+    # into the article HTML, so the media library entry matches what's on the page
+    # instead of shipping empty (found on BBX-003: this loop uploaded without alt text
+    # even though the --body-image help text already promised it would use the HTML's).
     if args.body_image:
-        placeholders = re.findall(r'src="(REPLACE_ME[^"]*)"', html)
-        if len(args.body_image) != len(placeholders):
+        img_tags = re.findall(r'<img[^>]*src="(REPLACE_ME[^"]*)"[^>]*>', html)
+        if len(args.body_image) != len(img_tags):
             die(f"{len(args.body_image)} body image(s) given but the article has "
-                f"{len(placeholders)} REPLACE_ME placeholder(s).",
+                f"{len(img_tags)} REPLACE_ME placeholder(s).",
                 "Pass one --body-image per placeholder, in the order they appear.")
-        for img_path, placeholder in zip(args.body_image, placeholders):
-            media = upload_media(creds, img_path)
+        for img_path, tag in zip(args.body_image, img_tags):
+            placeholder = tag
+            full_tag_match = re.search(
+                r'<img[^>]*src="' + re.escape(tag) + r'"[^>]*>', html)
+            alt_match = re.search(r'alt="([^"]*)"', full_tag_match.group(0)) if full_tag_match else None
+            alt_text = alt_match.group(1) if alt_match else None
+            media = upload_media(creds, img_path, alt_text)
             html = html.replace(placeholder, media["url"], 1)
             print(f"  slotted {Path(img_path).name} into {placeholder[:40]}...")
 
