@@ -5,11 +5,9 @@
       "Read(//Users/archiebrady/Desktop/Brightbox Content OS/**)",
       "Edit(//Users/archiebrady/Desktop/Brightbox Content OS/**)",
       "Write(//Users/archiebrady/Desktop/Brightbox Content OS/**)",
-
       "Bash(./scripts/performance-check:*)",
       "Bash(./scripts/snapshot-baseline:*)",
       "Bash(./scripts/validate-links:*)",
-
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
@@ -22,7 +20,6 @@
       "Bash(git ls-remote:*)",
       "Bash(git rev-parse:*)",
       "Bash(git branch:*)",
-
       "Bash(curl -s:*)",
       "Bash(curl -sI:*)",
       "Bash(curl -sL:*)",
@@ -35,7 +32,6 @@
       "Bash(tail:*)",
       "Bash(wc:*)",
       "Bash(chmod +x:*)",
-
       "WebSearch",
       "WebFetch(domain:support.google.com)",
       "WebFetch(domain:developers.google.com)",
@@ -43,15 +39,16 @@
       "WebFetch(domain:business.google.com)",
       "WebFetch(domain:ads.google.com)",
       "WebFetch(domain:brightboxdigital.io)",
-
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__list-queries",
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__list-projects",
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__get-query",
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__evaluate-content",
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__get-competitors-content",
       "mcp__b649cfc1-f901-4d2c-aa9c-8f3202d402cd__get-content",
-
-      "mcp__scheduled-tasks__list_scheduled_tasks"
+      "mcp__scheduled-tasks__list_scheduled_tasks",
+      "mcp__Claude_Browser__get_page_text",
+      "Bash(./scripts/wp-draft --check)",
+      "Bash(./scripts/reddit-research:*)"
     ]
   }
 }
