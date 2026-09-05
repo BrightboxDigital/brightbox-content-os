@@ -188,6 +188,16 @@ post. This is an internal linking and discoverability problem, not a cosmetic on
 `local-services-ads-moving-to-google-ads`, same symptom as the original finding, now on an eighth
 post.
 
+**Update 2026-09-04, checked during the monitoring sweep:** the archive now surfaces exactly 3 posts —
+`aeo-geo-llms-txt-myths`, `local-services-ads-moving-to-google-ads`, and a post at
+`fort-wayne-seo-rank-business-locally-2026` (a slug not seen before; the site-inventory.csv record for
+the Fort Wayne SEO guide has it at `fort-wayne-seo-guide-how-to-rank-your-business-locally-in-2025`,
+so this looks like a slug or title change made outside this system, not yet reflected in the
+inventory). BBX-001 (`does-a-small-google-ads-budget-work`) is not among the 3 shown, despite being
+older than BBX-002 and BBX-003 which are. This isn't simply "shows the newest N" — worth a fresh full
+recount rather than assuming the original 4-of-7 figure still holds; not re-audited in full this run,
+flagging the discrepancy rather than guessing at the current total.
+
 ### 4b. RESOLVED 2026-08-03. Two PPC articles were split across two different categories
 
 **Fixed same day.** Archie moved BBX-002 into the existing "Google Ads" category (id 23) in
@@ -276,6 +286,27 @@ on that: `scripts/build-utm` was hardcoding the old `/blog/<slug>/` pattern and 
 generate `/<slug>/` directly. Still open: confirm with Archie whether this was an intentional
 permalink structure change, and whether BBX-001's older `/blog/does-a-small-google-ads-budget-work/`
 URL should also be checked for the same redirect behavior.
+
+**Update 2026-09-04, reversed again — not permanent.** Checked all three published articles during
+the scheduled 28-day (BBX-001, BBX-002) and 7-day (BBX-003) monitoring sweep. The `/blog/` prefix is
+now canonical for all three, including BBX-003, which was bare-slug native as recently as three weeks
+ago:
+
+| Article | 2026-08-16 conclusion | 2026-09-04 finding |
+|---|---|---|
+| BBX-001 | always `/blog/` (unaffected) | `/blog/` still canonical; bare-slug now 301s in |
+| BBX-002 | bare-slug canonical (found 2026-08-15) | `/blog/` canonical; bare-slug now 301s in |
+| BBX-003 | bare-slug native, no redirect | `/blog/` canonical; bare-slug now 301s in |
+
+All three return 200, `follow, index`, and self-referencing canonical at their current `/blog/` URL,
+so nothing is broken for indexing. But the permalink structure has now moved twice in three weeks
+without anyone changing it deliberately (`scripts/build-utm`'s fix on 2026-08-16, made to generate
+bare-slug URLs, is now generating URLs that need a redirect hop again). This reads less like a
+one-off migration and more like something actively flapping — a plugin setting, a caching layer, or
+a redirect rule with inconsistent priority. Worth investigating the cause directly rather than
+re-detecting the current direction every monitoring cycle. Full detail in
+`performance/BBX-001-28day-2026-09-04.md`, `performance/BBX-002-28day-2026-09-04.md`, and
+`performance/BBX-003-7day-2026-09-04.md`.
 
 ### 5. Likely cannibalization on Fort Wayne local SEO
 
