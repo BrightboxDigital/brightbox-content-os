@@ -37,4 +37,9 @@ gaps found during the baseline audit. Do not treat any of them as verified.
 
 ## Rejected or on hold
 
-Nothing yet. Record rejections here with the reason so the same idea is not re-proposed.
+Record rejections here with the reason so the same idea is not re-proposed.
+
+| Topic | Status | Reason |
+|---|---|---|
+| GBP messaging, SMS and WhatsApp developments (calendar cycle 6) | **On hold 2026-10-15** | GBP chat and call history were retired July 2024. A 2026 "messaging is back" claim appears only on an agency blog (launchcodex.com), with no Google confirmation found. Revisit only with a primary Google source. |
+| Google is retiring call-only ads | **Rescored 2026-10-15: 26/35** (was 29) | Still valid: Google Ads Help 16598240 says existing call-only ads stop receiving impressions Feb 2027. Down-scored for a year of saturated trade coverage. Actionable only until ~Jan 2027; latest sensible slot is cycle 9 (2026-12-01). |
