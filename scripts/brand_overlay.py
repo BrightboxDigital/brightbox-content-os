@@ -101,7 +101,9 @@ def main():
             subprocess.run(["magick", "-background", "none", "-fill", AMBER, "-font", FONT,
                             "-pointsize", "27", "-kerning", "3",
                             f"label:{args.category.upper()}", str(eyebrow)], check=True)
-            stack += [str(eyebrow), "-splice", "0x18"]  # transparent gap below eyebrow
+            # -splice adds rows at the top unless gravity is South. The old "0x18" was landing above the
+            # eyebrow, so it sat almost on the headline (flagged by Archie 2026-10-16).
+            stack += [str(eyebrow), "-gravity", "South", "-splice", "0x26"]  # gap below eyebrow
         stack += [str(headline_img), "-gravity", "West", "-append", str(text)]
         subprocess.run(stack, check=True)
 
