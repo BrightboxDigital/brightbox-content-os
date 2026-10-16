@@ -49,8 +49,11 @@ Pinterest drafts need a board and a destination link. Add to the post object:
 "pinterest": {"board_id": "1063412599452826831", "link": "https://...", "title": "max 100 chars"}
 ```
 
-push-social sends this as `pinterestPostDetails` (`boardIds` keyed by account id, `link`, `title`).
-Verified on BBX-005 by reading the draft back from GHL. Board ids:
+push-social sends this as `pinterestPostDetails`, in the exact shape GHL's own UI saves:
+`boardIds` and `pinterestBoards` keyed by the account's **OAuth id** (the part before the first `_`),
+and `link` **without** `https://` (the UI adds it). The first BBX-005 push keyed by the full account id
+and kept the scheme: the API accepted it, but the UI showed no board and an invalid link, and Archie
+fixed it by hand. The current shape was copied from his fixed draft. Not yet confirmed on a fresh push. Board ids:
 `GET /social-media-posting/oauth/{locationId}/pinterest/boards/{oauthId}`.
 Current boards: Website Design `1063412599452826831`, SEO `1063412599453532981`.
 Use a 1000x1500 (2:3) image via `media_files`; the default square derivative pins poorly.

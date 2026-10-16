@@ -178,12 +178,20 @@ def create_draft(creds, account_ids, summary, media_urls=None, pinterest=None):
     if media_urls:
         body["media"] = [{"url": u} for u in media_urls]
     if pinterest:
-        # GHL requires pinterestPostDetails for Pinterest accounts: boardIds maps the
-        # account id to a board id, link is the pin's destination URL. Board ids come from
-        # GET /social-media-posting/oauth/{locationId}/pinterest/boards/{oauthId}.
-        details = {"boardIds": {aid: pinterest["board_id"] for aid in account_ids}}
+        # Shape copied from a pin Archie fixed in the GHL UI (read back 2026-10-16). The first
+        # attempt keyed boardIds by the full account id and sent the link with https://; the API
+        # accepted it but the UI showed no board and an invalid link.
+        #   - boards are keyed by the OAuth id (the part of the account id before the first "_")
+        #   - the UI also reads pinterestBoards, a list form of the same mapping
+        #   - link is stored WITHOUT the scheme; the UI prepends https:// itself
+        # Board ids: GET /social-media-posting/oauth/{locationId}/pinterest/boards/{oauthId}.
+        oauth_ids = [aid.split("_", 1)[0] for aid in account_ids]
+        details = {
+            "boardIds": {oid: pinterest["board_id"] for oid in oauth_ids},
+            "pinterestBoards": [{"accountId": oid, "boards": [pinterest["board_id"]]} for oid in oauth_ids],
+        }
         if pinterest.get("link"):
-            details["link"] = pinterest["link"]
+            details["link"] = pinterest["link"].split("://", 1)[-1]
         if pinterest.get("title"):
             details["title"] = pinterest["title"][:100]
         body["pinterestPostDetails"] = details
