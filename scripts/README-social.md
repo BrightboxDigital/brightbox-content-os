@@ -40,3 +40,17 @@ Not connected: tiktok, youtube. Those stay manual.
 GBP is connected in the GHL Social Planner, so Google Business Profile launch and follow-up posts
 route through GHL as drafts. This removes the dependency on Google's own GBP API approval for
 posting. Insights/reads may still want the GBP API later, but posting no longer waits on it.
+
+## Pinterest (added 2026-10-16)
+
+Pinterest drafts need a board and a destination link. Add to the post object:
+
+```json
+"pinterest": {"board_id": "1063412599452826831", "link": "https://...", "title": "max 100 chars"}
+```
+
+push-social sends this as `pinterestPostDetails` (`boardIds` keyed by account id, `link`, `title`).
+Verified on BBX-005 by reading the draft back from GHL. Board ids:
+`GET /social-media-posting/oauth/{locationId}/pinterest/boards/{oauthId}`.
+Current boards: Website Design `1063412599452826831`, SEO `1063412599453532981`.
+Use a 1000x1500 (2:3) image via `media_files`; the default square derivative pins poorly.

@@ -12,6 +12,7 @@ USAGE
 
 POSTS.JSON, one object per platform draft:
     {"platform": "instagram", "caption": "...", "media_files": ["/abs/path/slide1.jpg", "..."]}
+    Pinterest posts also need: "pinterest": {"board_id": "...", "link": "https://...", "title": "..."}
 
     "media_files" (list of local paths) makes a true multi-image carousel draft,
     confirmed working against GHL's API 2026-08-03: all images in the list appear
@@ -163,7 +164,7 @@ def match_platform(account_platform, wanted):
     return account_platform in aliases
 
 
-def create_draft(creds, account_ids, summary, media_urls=None):
+def create_draft(creds, account_ids, summary, media_urls=None, pinterest=None):
     """media_urls: a list of one or more hosted image URLs. GHL's post media field
     already takes a list (carried over from the single-image caller below), so
     passing more than one is what makes a multi-image / carousel draft."""
@@ -176,6 +177,16 @@ def create_draft(creds, account_ids, summary, media_urls=None):
     }
     if media_urls:
         body["media"] = [{"url": u} for u in media_urls]
+    if pinterest:
+        # GHL requires pinterestPostDetails for Pinterest accounts: boardIds maps the
+        # account id to a board id, link is the pin's destination URL. Board ids come from
+        # GET /social-media-posting/oauth/{locationId}/pinterest/boards/{oauthId}.
+        details = {"boardIds": {aid: pinterest["board_id"] for aid in account_ids}}
+        if pinterest.get("link"):
+            details["link"] = pinterest["link"]
+        if pinterest.get("title"):
+            details["title"] = pinterest["title"][:100]
+        body["pinterestPostDetails"] = details
     return api(creds, "POST", f"/social-media-posting/{creds['location_id']}/posts", body)
 
 
@@ -262,7 +273,7 @@ def main():
                 media_urls = [ghl_media_cache[deriv]]
         if not media_urls and args.media:
             media_urls = [args.media]
-        res = create_draft(creds, [acct_id], p["caption"], media_urls)
+        res = create_draft(creds, [acct_id], p["caption"], media_urls, p.get("pinterest"))
         post = (res.get("results") or {}).get("post") or res.get("post") or {}
         pid = post.get("_id") or post.get("id") or "?"
         created += 1
