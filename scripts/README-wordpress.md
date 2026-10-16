@@ -68,6 +68,15 @@ warning about any similarly-named category found.
 - **Set Rank Math SEO fields.** The SEO title and meta description from the article package still go
   in by hand, or through Rank Math's own fields. The REST API does not write them reliably.
 
+  **Update 2026-10-16:** Rank Math's own endpoint does work with the application password:
+  `POST /wp-json/rankmath/v1/updateMeta` with `{"objectType":"post","objectID":<id>,"meta":{"rank_math_title":...,
+  "rank_math_description":...,"rank_math_focus_keyword":...}}`. Used on BBX-005 and verified in the live `<head>`.
+  Always verify after setting.
+
+- **Edit GK page builder pages.** Service pages such as `/web-design-fort-wayne/` are rendered by the
+  GK page builder, not `post_content`. Its API (`gk-page-builder/v1/pages/<id>/fields`) returns 403 for
+  the application password, so editing those pages is manual. Blog posts still render from `post_content`.
+
 ## Security
 
 - The application password is a credential. It lives only in `~/.config/brightbox/`, mode 600, never
