@@ -66,6 +66,10 @@ already assumes several.
 Read the NeuronWriter project for existing queries using `list-queries`. **Read only.** Do not call
 `new-query`.
 
+In Codex, use `./scripts/neuronwriter list-queries --project brightbox` and repeat with
+`--project clients`. If the local API configuration is missing, write `NeuronWriter overlap not
+checked` in the report and continue.
+
 ## Step 6. Score
 
 Seven categories, 0 to 5 each, 35 maximum. One line of justification per score.

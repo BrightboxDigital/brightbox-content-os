@@ -26,6 +26,9 @@ Project `eea0682a76fd76f0`. Run `list-queries` first and reuse a suitable existi
 than burning a credit. Engine google.com, English, United States, plus geographic relevance for
 local queries.
 
+In Codex, use `./scripts/neuronwriter` for these operations and read
+`scripts/README-neuronwriter.md` before the first call. `new-query` requires `--confirm-credit`.
+
 Retrieve competitors, recommended length, terms and usage ranges, heading recommendations, related
 questions, competitor structures, and content score guidance. Record the query ID in the tracker.
 

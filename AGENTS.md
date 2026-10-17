@@ -13,6 +13,9 @@ Read before doing anything:
 4. `CODEX-HANDOFF.md`: how the scheduled discovery routine runs, access requirements, the routine
    prompt, and lessons learned.
 
+Codex-native entry points for the four workflows live in `.agents/skills/`. They intentionally route
+to the historical `.claude/skills/` files above, which remain the canonical workflow instructions.
+
 The short version:
 
 - Only `discover-blog-topic` (plus the monitoring sweep) may run unattended. Everything else needs
@@ -22,4 +25,6 @@ The short version:
 - Record baselines with `./scripts/snapshot-baseline` the moment you see a number. Append-only.
 - Never put secrets in this repo. Credentials live in `~/.config/brightbox/`.
 - Run scripts through their bash wrappers in `./scripts`. They use `.venv/`.
+- Use `./scripts/neuronwriter` for NEURONwriter. The unattended routine is read-only; `new-query`
+  requires an approved keyword and `--confirm-credit` in an interactive session.
 - Commit as `Archie Brady <bradaj01@gmail.com>` and push to `main`.
