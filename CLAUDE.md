@@ -73,6 +73,8 @@ files changed and what needs merging.
 Verified July 19, 2026. Re-verify before relying on any of these.
 
 - NeuronWriter: connected. Brightbox project `eea0682a76fd76f0` (`brightboxdigital.io`).
+  Codex uses the official NeuronWriter MCP connection directly. It must not probe or fall back to
+  the legacy local REST client before MCP.
   **This project is new and empty as of July 19, 2026.** Brightbox's historical queries
   (`fort wayne google ads`, `fort wayne seo`, `google business profile`, `local seo`,
   `web design fort wayne`, `website design`, `professional vs ai logo design`) live in the

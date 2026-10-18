@@ -289,13 +289,11 @@ The system is designed to work without volume data. NeuronWriter supplies compet
 analysis where it matters, and topic scoring never uses invented numbers. Discovery ran successfully
 on July 19, 2026 with no keyword tool at all.
 
-## 7. Verify NeuronWriter from a cloud Routine
+## 7. NeuronWriter in the local Codex Routine
 
-Not a new connection. NeuronWriter works in local Claude Code, but that does not prove it works from
-a scheduled cloud Routine, which is a different environment.
-
-**This must pass before the Routine is created.** Test it by running a Routine once manually and
-confirming it can call `list-projects`.
+NeuronWriter is connected through the official MCP server and was verified from the same local
+Codex environment used by the scheduled Routine on 2026-10-17. Codex should call MCP directly. It
+must not try the legacy REST script or a local NeuronWriter API key before MCP.
 
 ---
 
@@ -308,7 +306,7 @@ confirming it can call `list-projects`.
 | 3 | GA4 | Low | Same day | High | Yes |
 | 4 | WordPress | Low | Same day | Low | Optional |
 | 5 | Social | High | Weeks | Low | Skip |
-| 6 | NeuronWriter in Routine | Low | Same day | Blocking | Required before scheduling |
+| 6 | NeuronWriter in Routine | Complete | Verified 2026-10-17 | High | MCP connected |
 
 **Suggested sequence for one sitting:** create the Cloud project, submit the GBP application to start
 the clock, then connect Search Console and GA4 while you are already in the console. That is roughly

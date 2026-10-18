@@ -25,6 +25,8 @@ The short version:
 - Record baselines with `./scripts/snapshot-baseline` the moment you see a number. Append-only.
 - Never put secrets in this repo. Credentials live in `~/.config/brightbox/`.
 - Run scripts through their bash wrappers in `./scripts`. They use `.venv/`.
-- Use `./scripts/neuronwriter` for NEURONwriter. The unattended routine is read-only; `new-query`
-  requires an approved keyword and `--confirm-credit` in an interactive session.
+- Use the connected official NeuronWriter MCP tools directly. Do not try the legacy
+  `./scripts/neuronwriter` REST client first and do not require a local NeuronWriter API key.
+  The unattended routine may call only read operations such as `list_queries`. `new_query` is
+  interactive only and requires Archie's approved keyword in the current session.
 - Commit as `Archie Brady <bradaj01@gmail.com>` and push to `main`.

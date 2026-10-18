@@ -1,4 +1,10 @@
-# NEURONwriter API
+# Legacy NEURONwriter REST client
+
+Codex does not use this client. Codex uses the connected official NeuronWriter MCP tools directly
+for discovery and the interactive create-blog workflow. Do not probe this client before MCP and do
+not treat a missing `~/.config/brightbox/neuronwriter.json` file as a connection failure.
+
+This script remains only for older non-Codex environments that explicitly need the REST API.
 
 `scripts/neuronwriter` provides the NEURONwriter operations used by the Brightbox content workflow.
 It keeps the API key outside the repository and adds explicit confirmation flags to the two risky

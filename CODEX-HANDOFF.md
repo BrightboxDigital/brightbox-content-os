@@ -245,20 +245,13 @@ google-auth 2.56.0, requests 2.34.2.
 Verify before every run: `./scripts/performance-check --check` should report **both** Search
 Console and GA4 OK.
 
-### NeuronWriter: the one connection that needs rebuilding
+### NeuronWriter connection
 
-In Claude, NeuronWriter was an MCP connector. Codex has two options:
-
-1. **MCP**, if NeuronWriter's MCP server can be added to Codex. Codex supports MCP servers in
-   `~/.codex/config.toml` under `[mcp_servers.<name>]`. Only `list-queries` is needed for this routine.
-2. **NeuronWriter's REST API.** It needs an API key from your NeuronWriter account settings
-   (Gold plan or higher). Put the key in `~/.config/brightbox/neuronwriter.json`, never the repo. The
-   documented call is a `POST` to `https://app.neuronwriter.com/neuron-api/0.5/writer/list-queries`
-   with header `X-API-KEY` and body `{"project": "<id>"}`. **Check this against NeuronWriter's current
-   API docs before relying on it.** I'm working from memory of their API, not a test.
-
-If neither is set up, the routine should say "NeuronWriter overlap not checked" rather than skip it
-silently.
+Codex uses the connected official NeuronWriter MCP server directly. It was verified in the local
+Routine environment on 2026-10-17. Discovery calls MCP `list_queries` for both project IDs and does
+not run the legacy `./scripts/neuronwriter` REST client, probe the REST API, or look for a local API
+key. If the MCP connection itself is unavailable, the routine says `NeuronWriter overlap not
+checked` rather than skipping it silently.
 
 ### Notification
 
@@ -274,9 +267,8 @@ Claude had a `PushNotification` tool. Codex doesn't. Pick one:
 
 ## 5. The prompt to give Codex
 
-Use this as the scheduled task's prompt. It's the current Claude routine, adapted: the
-notification step, the Python note and the NeuronWriter fallback are changed. Everything else is
-unchanged.
+Use this as the scheduled task's prompt. It is the current Claude routine adapted for local Codex,
+including direct NeuronWriter MCP routing and the candidate quality gate.
 
 ```text
 This is an automated run of a scheduled task. The user is not present to answer questions.
@@ -336,9 +328,10 @@ Pull real demand signal from the site's own Search Console: run ./scripts/perfor
 --days 90, record it with ./scripts/snapshot-baseline --site --days 90 --label "discovery run <date>",
 and pull the full query list sorted by impressions (the script only prints the top 15 by clicks).
 Do NOT invent search volume; if you have no number, describe the evidence qualitatively and name its source.
-Check NeuronWriter READ-ONLY for overlapping prior work (list queries). The Brightbox project is
+Check NeuronWriter READ-ONLY through the connected MCP `list_queries` tool. The Brightbox project is
 eea0682a76fd76f0; older Brightbox queries also live in the "Clients" project 0bdb5139dc86fbe7. Do NOT
-create a new query. If NeuronWriter is unreachable, say "NeuronWriter overlap not checked" in the report.
+create a new query. Do not run the legacy REST script or look for an API key. If the MCP connection
+is unreachable, say "NeuronWriter overlap not checked" in the report.
 
 ## Step 4: Produce three scored candidates
 Score each 0 to 5 in seven categories (Brightbox service relevance, Fort Wayne/local relevance,
@@ -350,10 +343,17 @@ internal pages supported, potential cannibalization, opportunity for original ex
 with a one-line justification per category, and the validated sources used. Label one "Recommended"
 and say why it beat the other two.
 
+Apply the candidate quality gate in `.claude/skills/discover-blog-topic/SKILL.md`. Prefer evergreen,
+commercially relevant customer problems and buying decisions. A documentation change, product
+announcement, stale sentence, expired date, or broken link is a maintenance finding, not a topic
+candidate. Follow the planned calendar category unless another category has materially stronger
+audience and business evidence. Do not rely on hypothetical firsthand experience. If three ideas do
+not pass the gate, report that plainly and do not pad the list or create a tracker approval row.
+
 ## Step 5: Save, commit, and stop
-Write the discovery report to clients/brightbox/research/YYYY-MM-DD-discovery.md. Add or update the
-tracker row with status "Topic Approval Needed" (edit the CSV with a CSV library so quoting is
-preserved). Commit and push to the main branch with a clear message, using git author name
+Write the discovery report to clients/brightbox/research/YYYY-MM-DD-discovery.md. Only when at least
+one candidate passes the quality gate, add or update the tracker row with status "Topic Approval
+Needed" (edit the CSV with a CSV library so quoting is preserved). Commit and push to the main branch with a clear message, using git author name
 "Archie Brady" and email bradaj01@gmail.com, because the next run starts from main.
 Then present to Archie: any monitoring findings from Step 2, then the three candidates, and end by
 asking him to choose Topic 1, Topic 2, Topic 3, request different ideas, or update an existing
@@ -445,7 +445,7 @@ are the extra facts learned:
 2. [ ] Open the repo folder `/Users/archiebrady/Desktop/Brightbox Content OS`. Confirm Codex picks up `AGENTS.md`.
 3. [ ] Allow the task to **read `~/.config/brightbox/`** and to **use the network**.
 4. [ ] Run `./scripts/performance-check --check` from Codex. Both should say OK.
-5. [ ] Connect NeuronWriter (MCP in `~/.codex/config.toml`, or REST key in `~/.config/brightbox/neuronwriter.json`).
+5. [x] Connect and verify the official NeuronWriter MCP server in Codex.
 6. [ ] Confirm `git push origin main` works from Codex with the existing credentials.
 7. [ ] Choose the notification method and test it once.
 8. [ ] Create the scheduled task: cron `0 9 1,15 * *`, timezone America/Indiana/Indianapolis, prompt from section 5.

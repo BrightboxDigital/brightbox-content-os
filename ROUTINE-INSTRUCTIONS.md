@@ -7,8 +7,8 @@ contains the required files, NeuronWriter access is verified from the Routine en
 access is confirmed, connector permissions are reviewed, and Archie approves both the prompt and the
 schedule.
 
-NeuronWriter currently works in local Claude Code. **It has not been verified from a cloud Routine
-environment.** That check must pass before this Routine is created.
+NeuronWriter is connected to Codex through the official MCP server and has been verified from the
+local Codex environment used by this Routine.
 
 ---
 
@@ -32,6 +32,8 @@ Read CLAUDE.md and MASTER-WORKFLOW.md first, then every file in clients/brightbo
 
 Hard limits for this run:
 - Do not create a NeuronWriter analysis. Read only, list-queries at most.
+- Use the connected NeuronWriter MCP directly. Do not run the legacy `./scripts/neuronwriter` REST
+  client, probe the REST API, or look for a local NeuronWriter API key.
 - Do not write an article.
 - Do not publish anything to any external system.
 - Do not modify the live website.
@@ -48,10 +50,14 @@ to 90 days from primary sources, check existing Brightbox content for overlap, d
 article or an update is stronger, and produce three candidates scored across the seven categories.
 Recommend one and explain why it beat the other two.
 
+Apply the candidate quality gate in `.claude/skills/discover-blog-topic/SKILL.md`. Do not turn a
+minor maintenance correction into a topic candidate, do not treat product news as proof of reader
+interest, and do not pad the output if three ideas fail the gate.
+
 Never invent search volume, trend data or competitor metrics.
 
-Save the report to clients/brightbox/research/YYYY-MM-DD-discovery.md and set the tracker row to
-Topic Approval Needed.
+Save the report to clients/brightbox/research/YYYY-MM-DD-discovery.md. Set the tracker row to Topic
+Approval Needed only when at least one candidate passes the quality gate.
 
 End the run by listing exactly which files changed and stating that they must be merged to main
 before the next run, since the next Routine starts from the default branch and will not see an

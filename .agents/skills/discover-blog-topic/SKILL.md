@@ -9,6 +9,7 @@ Read `../../../.claude/skills/discover-blog-topic/SKILL.md` completely and follo
 workflow. Also follow `../../../AGENTS.md`, `../../../CLAUDE.md`, and `../../../MASTER-WORKFLOW.md`.
 
 The historical `.claude` path is intentional. Do not copy or reinterpret its rules here. For
-NEURONwriter read-only overlap checks, use `../../../scripts/neuronwriter` as documented in
-`../../../scripts/README-neuronwriter.md`. Never run `new-query`, `evaluate-content`, or
-`import-content` from an unattended discovery task.
+NeuronWriter overlap checks, call the connected official MCP `list_queries` tool directly for
+projects `eea0682a76fd76f0` and `0bdb5139dc86fbe7`. Do not run the legacy
+`../../../scripts/neuronwriter` REST client and do not look for a local NeuronWriter API key.
+Never call `new_query`, `evaluate_content`, or `import_content` from an unattended discovery task.
