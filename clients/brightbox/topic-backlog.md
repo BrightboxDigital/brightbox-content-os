@@ -41,5 +41,5 @@ Record rejections here with the reason so the same idea is not re-proposed.
 
 | Topic | Status | Reason |
 |---|---|---|
-| GBP messaging, SMS and WhatsApp developments (calendar cycle 6) | **On hold 2026-10-15** | GBP chat and call history were retired July 2024. A 2026 "messaging is back" claim appears only on an agency blog (launchcodex.com), with no Google confirmation found. Revisit only with a primary Google source. |
+| GBP messaging, SMS and WhatsApp developments (calendar cycle 6) | **Revalidated 2026-10-17** | Google's current primary help pages confirm that the old Google-hosted chat and call history remain retired, while eligible claimed and verified profiles in select regions can add an external SMS or WhatsApp contact option. This is not "messaging is back." Viable only with that distinction and an actual Brightbox-profile availability check before drafting. |
 | Google is retiring call-only ads | **Rescored 2026-10-15: 26/35** (was 29) | Still valid: Google Ads Help 16598240 says existing call-only ads stop receiving impressions Feb 2027. Down-scored for a year of saturated trade coverage. Actionable only until ~Jan 2027; latest sensible slot is cycle 9 (2026-12-01). |

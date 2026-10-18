@@ -148,7 +148,7 @@ def ga4_report(creds, property_id, start, end, page_filter=None):
 
     # 'conversions' was renamed 'keyEvents'. Try the new name, fall back to the old.
     for conv_metric in ("keyEvents", "conversions"):
-        req = RunReportRequest(
+        detail_req = RunReportRequest(
             property=f"properties/{property_id}",
             date_ranges=[DateRange(start_date=start.isoformat(), end_date=end.isoformat())],
             dimensions=[Dimension(name="pagePath")],
@@ -160,8 +160,19 @@ def ga4_report(creds, property_id, start, end, page_filter=None):
             ],
             limit=25,
         )
+        totals_req = RunReportRequest(
+            property=f"properties/{property_id}",
+            date_ranges=[DateRange(start_date=start.isoformat(), end_date=end.isoformat())],
+            dimensions=[],
+            metrics=[
+                Metric(name="sessions"),
+                Metric(name="engagedSessions"),
+                Metric(name="screenPageViews"),
+                Metric(name=conv_metric),
+            ],
+        )
         if page_filter:
-            req.dimension_filter = FilterExpression(
+            page_filter_expr = FilterExpression(
                 filter=Filter(
                     field_name="pagePath",
                     string_filter=Filter.StringFilter(
@@ -169,8 +180,12 @@ def ga4_report(creds, property_id, start, end, page_filter=None):
                     ),
                 )
             )
+            detail_req.dimension_filter = page_filter_expr
+            totals_req.dimension_filter = page_filter_expr
         try:
-            return client.run_report(req), conv_metric
+            detail_resp = client.run_report(detail_req)
+            totals_resp = client.run_report(totals_req)
+            return detail_resp, totals_resp, conv_metric
         except Exception as e:
             if conv_metric == "keyEvents" and "keyEvents" in str(e):
                 continue  # older property, retry with 'conversions'
@@ -251,15 +266,15 @@ def print_gsc(rows, totals, label):
         print(f"  {q:<44}{fmt_int(r['impressions']):>7}{fmt_int(r['clicks']):>8}{r['position']:>7.1f}")
 
 
-def print_ga4(resp, conv_metric, label):
+def print_ga4(resp, totals_resp, conv_metric, label):
     print(f"\n{'=' * 68}\nGA4: {label}\n{'=' * 68}")
     if not resp.rows:
         print("\nNo sessions recorded for this period.")
         return
-    tot = [0.0] * 4
-    for row in resp.rows:
-        for i in range(4):
-            tot[i] += float(row.metric_values[i].value)
+    if not totals_resp.rows:
+        print("\nNo site totals returned for this period.")
+        return
+    tot = [float(v.value) for v in totals_resp.rows[0].metric_values]
     rate = (tot[1] / tot[0] * 100) if tot[0] else 0
     print(
         f"\n  Sessions {fmt_int(tot[0])}"
@@ -297,7 +312,9 @@ def main():
         site = resolve_gsc_property(svc, cfg)
         print(f"Search Console:  OK  ({site})")
         try:
-            resp, _ = ga4_report(creds, cfg["ga4_property_id"], date.today() - timedelta(days=7), date.today())
+            resp, _, _ = ga4_report(
+                creds, cfg["ga4_property_id"], date.today() - timedelta(days=7), date.today()
+            )
             print(f"GA4:             OK  (property {cfg['ga4_property_id']}, {len(resp.rows)} rows last 7 days)")
         except Exception as e:
             die("GA4 call failed.", ga4_diagnosis(e, cfg))
@@ -327,8 +344,10 @@ def main():
         print(f"\nSearch Console request failed: {e}", file=sys.stderr)
 
     try:
-        resp, conv = ga4_report(creds, cfg["ga4_property_id"], start, end, page_filter)
-        print_ga4(resp, conv, label)
+        resp, totals_resp, conv = ga4_report(
+            creds, cfg["ga4_property_id"], start, end, page_filter
+        )
+        print_ga4(resp, totals_resp, conv, label)
     except Exception as e:
         print(f"\nGA4 request failed.\n\n{ga4_diagnosis(e, cfg)}", file=sys.stderr)
 
