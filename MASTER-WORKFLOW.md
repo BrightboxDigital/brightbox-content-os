@@ -33,7 +33,10 @@ Skill: `discover-blog-topic`. This is the only stage allowed to run unattended.
 Prioritize primary sources: Google Search Central docs and blog, Search Status Dashboard, Search
 Console docs, Google Ads Help and announcements, Google Business Profile Help and API docs, Google
 Maps docs, Chrome Developers, web.dev, official WordPress docs, official platform release notes,
-Google Trends, search result questions, reputable primary research.
+Google Trends, search result questions, reputable primary research. Use Semrush through Archie's
+signed-in Chrome browser for search-market validation such as Keyword Overview and Keyword Magic
+Tool. Never use the Semrush plugin, MCP, REST API or API units, and never change Semrush account or
+project settings.
 
 Reddit is for discovering questions and language only: r/SEO, r/TechSEO, r/localseo, r/PPC,
 r/web_design, r/smallbusiness. Never treat a comment as evidence. Never identify a user. Never copy

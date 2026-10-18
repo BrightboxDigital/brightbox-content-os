@@ -1,14 +1,16 @@
 # Proposed Scheduled Routine
 
-**Status: draft for Archie's review. Not created. Not activated.**
+**Status: created and paused while manual testing is completed. Not activated.**
 
-Per the setup rules, this Routine must not be created until repository setup is complete, `main`
-contains the required files, NeuronWriter access is verified from the Routine environment, network
-access is confirmed, connector permissions are reviewed, and Archie approves both the prompt and the
-schedule.
+Per the setup rules, this Routine must remain paused until `main` contains the required files,
+NeuronWriter access is verified from the Routine environment, Semrush browser access is verified,
+network access is confirmed, permissions are reviewed, and the prompt passes a manual test.
 
 NeuronWriter is connected to Codex through the official MCP server and has been verified from the
 local Codex environment used by this Routine.
+
+Semrush is accessed through Archie's signed-in Chrome browser, not through a plugin, MCP or API.
+Browser access to the Brightbox Digital project was verified October 17, 2026.
 
 ---
 
@@ -34,6 +36,8 @@ Hard limits for this run:
 - Do not create a NeuronWriter analysis. Read only, list-queries at most.
 - Use the connected NeuronWriter MCP directly. Do not run the legacy `./scripts/neuronwriter` REST
   client, probe the REST API, or look for a local NeuronWriter API key.
+- Use Semrush only through Archie's signed-in Chrome browser. Do not use the Semrush plugin, MCP,
+  REST API, API key or API units. Read data only; do not change projects, settings or billing.
 - Do not write an article.
 - Do not publish anything to any external system.
 - Do not modify the live website.
@@ -72,6 +76,7 @@ Grant only what discovery needs:
 
 - Web search and fetch
 - NeuronWriter, read only. `list-projects`, `list-queries`, `get-query`. **Not `new-query`.**
+- Chrome browser access to Archie's existing signed-in Semrush session, read only
 - Repository read and write
 
 Do not enable Google Business Profile, WordPress, GA4, Search Console or any social connector on
@@ -102,7 +107,9 @@ Do not create a NeuronWriter analysis. Stop after presenting three scored candid
 ```
 
 Confirm that it reads the trackers, respects the waiting-status gate, produces three properly scored
-candidates with real sources, and stops without creating an analysis. Then run it a second time
+candidates with real sources, uses Semrush through Chrome rather than the plugin or API, and stops
+without creating an analysis. If Chrome or the Semrush session is unavailable, it must say
+`Semrush browser research not checked` and must not invent metrics. Then run it a second time
 after setting a tracker row to `Topic Approval Needed`, and confirm it correctly refuses to start
 new work.
 

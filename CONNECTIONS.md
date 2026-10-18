@@ -222,11 +222,16 @@ is sufficient.
 
 ---
 
-## 6. Keyword volume data via the Google Ads API
+## 6. Keyword research via Semrush in Chrome
 
-**Semrush ruled out.** The Semrush MCP server exists at `https://mcp.semrush.com/v2/mcp` and would be
-the cleanest option, but Standard API access requires a qualifying plan plus API units. Archie is not
-on one (confirmed July 19, 2026) and upgrading is not justified for this alone.
+**Current method, verified October 17, 2026:** use Archie's signed-in Chrome session at
+`semrush.com`. The Brightbox Digital project, Keyword Overview, Keyword Magic Tool and Fort Wayne
+position tracking are accessible there. Codex must use browser control for Semrush and must not use
+the Semrush plugin, MCP server, REST API, API key or API units. Access is read-only; never change
+projects, settings, users, subscriptions or billing.
+
+The Google Ads API notes below are retained as historical setup notes, not as the active keyword
+research route. Semrush browser access does not depend on them.
 
 ### Status July 19, 2026
 

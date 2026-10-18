@@ -13,3 +13,5 @@ NeuronWriter overlap checks, call the connected official MCP `list_queries` tool
 projects `eea0682a76fd76f0` and `0bdb5139dc86fbe7`. Do not run the legacy
 `../../../scripts/neuronwriter` REST client and do not look for a local NeuronWriter API key.
 Never call `new_query`, `evaluate_content`, or `import_content` from an unattended discovery task.
+Use Semrush only through Archie's signed-in Chrome browser. Do not use the Semrush plugin, MCP,
+REST API or API units. Browser research is read-only.

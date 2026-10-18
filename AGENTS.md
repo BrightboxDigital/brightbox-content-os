@@ -29,4 +29,7 @@ The short version:
   `./scripts/neuronwriter` REST client first and do not require a local NeuronWriter API key.
   The unattended routine may call only read operations such as `list_queries`. `new_query` is
   interactive only and requires Archie's approved keyword in the current session.
+- Use Semrush through Archie's signed-in Chrome browser only. Do not call the Semrush plugin, MCP,
+  REST API or any API-key workflow. Semrush research is read-only and must not change projects,
+  settings or billing.
 - Commit as `Archie Brady <bradaj01@gmail.com>` and push to `main`.

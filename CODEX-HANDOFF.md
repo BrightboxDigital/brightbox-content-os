@@ -142,14 +142,18 @@ So the **Nov 1** run should do BBX-001 90-day, BBX-002 90-day and BBX-005 7-day.
    API deprecations page, Google Business Profile Help, web.dev, official platform release notes.
    For anything that looks like news, record the announcement date, rollout date, who is affected,
    whether it's confirmed or a test, whether the source is primary, and what's uncertain.
-3. **Pull demand from the site's own Search Console:** `./scripts/performance-check --site --days 90`,
+3. **Validate the search market in Semrush through Chrome:** use Archie's existing signed-in Chrome
+   session for Keyword Overview, Keyword Magic Tool and relevant Brightbox project data. Do not use
+   the Semrush plugin, MCP, REST API, API key or API units. Record the visible database or location,
+   date and exact metric shown. If browser access is unavailable, say so and do not invent metrics.
+4. **Pull demand from the site's own Search Console:** `./scripts/performance-check --site --days 90`,
    then `./scripts/snapshot-baseline --site --days 90 --label "discovery run <date>, site demand signal"`.
    The script only shows the **top 15 queries by clicks**. For real demand signal, pull the full query
    list sorted by impressions (see section 6). Never invent volume.
-4. **Check NeuronWriter read-only** (`list-queries`) for overlap in both projects:
+5. **Check NeuronWriter read-only** (`list-queries`) for overlap in both projects:
    Brightbox `eea0682a76fd76f0` and the older Clients project `0bdb5139dc86fbe7`.
    **Don't create a query.**
-5. **Check overlap** against `site-inventory.csv` and decide honestly whether an update beats a new URL.
+6. **Check overlap** against `site-inventory.csv` and decide honestly whether an update beats a new URL.
 
 ### Step 4. Three scored candidates
 
@@ -214,6 +218,7 @@ Codex's sandbox has to be allowed to **read `~/.config/brightbox/`**, which is o
 | Search Console property | `https://brightboxdigital.io/` | Stored in `clients/brightbox/analytics-config.json` |
 | GA4 property | `393864986` | Key events: `Generate_Lead`, `phone_call_click`. Sessions are not leads |
 | NeuronWriter | Projects `eea0682a76fd76f0` (Brightbox), `0bdb5139dc86fbe7` (Clients) | Read-only for this routine |
+| Semrush | Brightbox Digital project in Archie's signed-in Chrome profile | Browser only, read-only. Never use plugin, MCP or API |
 | GitHub | `BrightboxDigital/brightbox-content-os`, branch `main` | Needs push rights from the Mac (existing git credentials) |
 
 ### Network
@@ -223,6 +228,7 @@ The run needs outbound internet for:
 - Google APIs: `searchconsole.googleapis.com`, `analyticsdata.googleapis.com`, `oauth2.googleapis.com`
 - `brightboxdigital.io`, for live page checks and the sitemap
 - Web research
+- Archie's signed-in Chrome browser for Semrush research
 - NeuronWriter
 - `github.com`, for the push
 
@@ -252,6 +258,15 @@ Routine environment on 2026-10-17. Discovery calls MCP `list_queries` for both p
 not run the legacy `./scripts/neuronwriter` REST client, probe the REST API, or look for a local API
 key. If the MCP connection itself is unavailable, the routine says `NeuronWriter overlap not
 checked` rather than skipping it silently.
+
+### Semrush connection
+
+Semrush is browser-only. Use Archie's signed-in Chrome profile and the existing Brightbox Digital
+project. Browser access was verified October 17, 2026. Do not call the Semrush plugin, MCP, REST API
+or any API-key workflow. The routine may read keyword and project data but must never change
+projects, settings, users, subscriptions or billing. If Chrome or the signed-in session is not
+available to an unattended run, report `Semrush browser research not checked` and do not substitute
+invented numbers or the API connector.
 
 ### Notification
 

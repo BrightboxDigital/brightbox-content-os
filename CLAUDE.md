@@ -80,6 +80,11 @@ Verified July 19, 2026. Re-verify before relying on any of these.
   `web design fort wayne`, `website design`, `professional vs ai logo design`) live in the
   **`Clients`** project `0bdb5139dc86fbe7`, which was renamed from the original mixed project.
   When checking for prior analysis overlap, search both.
+- Semrush: **connected through Archie's signed-in Chrome browser.** Use the Semrush website through
+  browser control for Keyword Overview, Keyword Magic Tool, project data and related research. Do
+  not use the Semrush plugin, MCP, REST API or API units. Browser access was verified October 17,
+  2026 against the Brightbox Digital project. Treat all use as read-only: never change projects,
+  settings, users, subscriptions or billing.
 - Google Drive: connected, read tools.
 - Canva: connected.
 - Google Search Console: **connected and verified.** Property `https://brightboxdigital.io/`,
