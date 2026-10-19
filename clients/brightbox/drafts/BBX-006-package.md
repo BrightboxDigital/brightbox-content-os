@@ -1,7 +1,7 @@
 # BBX-006 Delivery Package — Google Business Profile Video Verification
 
-Draft v1, 2026-10-18. Status: **Archie Review Needed**. Not published and not sent to WordPress or
-GHL.
+Draft v1, approved 2026-10-18. Status: **WordPress Draft Created**. WordPress post 9751 remains a
+draft. Nothing has been published or sent to GHL.
 
 ## 1. Article summary
 
@@ -121,10 +121,11 @@ and the existing local ranking factors article.
 
 ## 9. Technical publishing checklist
 
-- [ ] Build the styled `.bbx-post` version after article approval; remove the body H1
-- [ ] Create or approve the four image assets and confirm all alt text
-- [ ] Create a WordPress draft only after article and image approval
-- [ ] Set Rank Math SEO title, meta description, focus keyword, canonical, and social previews
+- [x] Build the styled `.bbx-post` version after article approval; remove the body H1
+- [x] Create and approve the four image assets and confirm all alt text
+- [x] Create WordPress draft 9751 after article and image approval
+- [x] Set Rank Math SEO title, meta description, and focus keyword
+- [ ] Confirm canonical and social previews in the rendered WordPress draft
 - [ ] Author Archie Brady; author link `/about/`
 - [ ] Category Local SEO and Google Business Profile
 - [ ] Confirm the final slug and `/blog/` prefix
@@ -155,13 +156,16 @@ I ask support to review the case.
 record again, line up three kinds of proof: location, real business equipment, and proof that you
 manage the business. Keep the video short, clear, and continuous.
 
-## 11. Items requiring Archie's review
+## 11. Approval record and remaining stop
 
-1. Confirm the first-person section matches your experience, especially the wording that reaching a
-   person has "often moved the process forward" rather than guaranteeing success.
-2. Confirm you are comfortable mentioning website back-end access as extra proof, clearly labeled as
-   your practice rather than a standard item in Google's examples.
-3. Approve or revise the four image concepts.
-4. Confirm the main CTA points to the Google Business Profile service page.
-5. Choose: approve the article, request revisions, add more personal experience, change the CTA,
-   recheck a source, change the images, or abandon the topic.
+Archie approved the complete package on 2026-10-18 with "approve everything." The clean semantic
+HTML was imported into NeuronWriter exactly once at score 73, and query `605919e730b9455c` was
+marked done. The approved styled article is at
+`clients/brightbox/approved/BBX-006-styled.html`. The four approved image assets are in
+`clients/brightbox/approved/BBX-006-images/`.
+
+WordPress draft 9751 was created with the three inline images and featured image. A REST read-back
+verified draft status, the approved slug, category 27 (`Google Business Profile`), no body H1, three
+body images, and no remaining placeholders. Rank Math title, description, and focus keyword were
+set. Publishing still requires Archie's separate explicit instruction after reviewing the rendered
+draft. GHL distribution remains blocked until the article is live and passes technical validation.
