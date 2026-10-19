@@ -6,7 +6,8 @@
 
 **Format:** Six-slide carousel, selected by Archie on 2026-10-18
 
-**Status:** Built and visually checked. Awaiting Archie's approval before any GHL drafts are created.
+**Status:** Approved by Archie and pushed to GHL as five drafts on 2026-10-18. Nothing was scheduled
+or published.
 
 ## Format rationale
 
@@ -174,25 +175,19 @@ asset. No draft will be created for either platform. If Archie wants to reuse th
 use photo mode with the Instagram caption, while YouTube would need a separate narrated video or a
 Community post.
 
-## GBP follow-up, prepared but separate
+## GHL draft record
 
-**Suggested schedule:** 2026-10-28 at 11:00 AM Eastern
+Archie approved the complete package on 2026-10-18. `posts.json` was pushed once and read back from
+GHL. Each post remained a draft, each saved caption exactly matched the approved payload, and the
+long Instagram, Facebook, and LinkedIn captions retained their blank lines between paragraphs.
 
-**Destination:**
-`https://brightboxdigital.io/blog/google-business-profile-video-verification/?utm_source=google&utm_medium=organic&utm_campaign=gbp_blog&utm_content=google-business-profile-video-verification-followup`
+| Platform | GHL account | Draft post ID | Media |
+|---|---|---|---:|
+| Instagram | brightboxdigital | `6ad58a7656a601d469748ed7` | 6 |
+| Facebook | Brightbox Digital | `6ad58a7956a601d469749257` | 6 |
+| LinkedIn | Archie Brady personal profile | `6ad58a79e422a0c51118aa85` | 6 |
+| Google Business Profile | Brightbox Digital | `6ad58a7909c2edbdd1821adc` | 1 |
+| Pinterest | Brightbox Digital, SEO board | `6ad58a7a750d52e837756632` | 1 |
 
-> One common verification mistake is showing equipment without clearly establishing where the
-> business operates. Even when a service-area business hides its address from customers, Google
-> still needs evidence that connects the business to its real base. Start with a street sign,
-> landmark, or building number, then move to the workspace, vehicle, equipment, and management
-> proof. See the full one-take route.
-
-The follow-up is held in `posts-gbp-followup.json`. It should not be pushed until Archie approves
-it and confirms that follow-up GBP posts are still wanted.
-
-## Approval required before GHL
-
-Nothing has been pushed yet. Archie can approve the complete package, request copy or design
-changes, change the proposed dates, change the LinkedIn target, approve only selected platforms, or
-skip a platform. After approval, `posts.json` creates GHL drafts only. Scheduling and publishing
-remain under Archie's control in GHL.
+The Pinterest board and destination link were also verified on read-back. Scheduling and publishing
+remain under Archie's control in GHL. GBP follow-up posts are not part of the workflow.

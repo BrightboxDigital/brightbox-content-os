@@ -37,9 +37,10 @@ Not connected: tiktok, youtube. Those stay manual.
 
 ## The GBP unblock
 
-GBP is connected in the GHL Social Planner, so Google Business Profile launch and follow-up posts
-route through GHL as drafts. This removes the dependency on Google's own GBP API approval for
-posting. Insights/reads may still want the GBP API later, but posting no longer waits on it.
+GBP is connected in the GHL Social Planner, so Google Business Profile launch posts route through
+GHL as drafts. GBP follow-up posts are not part of the Brightbox workflow. This removes the
+dependency on Google's own GBP API approval for posting. Insights/reads may still want the GBP API
+later, but posting no longer waits on it.
 
 ## Pinterest (added 2026-10-16)
 

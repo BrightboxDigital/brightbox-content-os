@@ -446,8 +446,8 @@ are the extra facts learned:
   cut the headline.
 - **GHL / push-social:** drafts only. LinkedIn goes to the first connected account (Archie's
   personal profile), not the company page. The Pinterest payload shape was copied from a draft Archie
-  fixed in the UI. See `scripts/README-social.md`. GBP follow-up posts were dropped by Archie on
-  2026-10-16 for BBX-005. Whether they stop for good is still to be decided.
+  fixed in the UI. See `scripts/README-social.md`. Archie removed GBP follow-up posts from the
+  Brightbox workflow on 2026-10-18; create only the GBP launch post.
 - **Archie's standing preferences:** show captions and images in chat before any push-social run, even
   for drafts. After publishing, live QA and inbound linking are complete, proactively ask whether he
   is ready to start social content creation and offer the Reel or carousel choice. Do not wait for

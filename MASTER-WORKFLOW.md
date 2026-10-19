@@ -243,9 +243,9 @@ finished, ask Archie whether he is ready to start social content creation and pr
 choice from `distribute-blog` Step 1. Do not end the publishing workflow and wait for Archie to
 remember or separately request distribution.
 
-GBP launch post after the article is live and validated. GBP follow-up 7 to 10 days later, with
-standalone value. The first four launch posts and first four follow-up posts each require Archie's
-approval. Nothing auto-publishes without explicit authorization.
+Create a GBP launch post after the article is live and validated. GBP follow-up posts are not part
+of the Brightbox workflow. The first four launch posts require Archie's approval. Nothing
+auto-publishes without explicit authorization.
 
 ---
 

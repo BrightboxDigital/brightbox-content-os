@@ -1,6 +1,6 @@
 ---
 name: distribute-blog
-description: Build the social video or carousel package, platform specific captions, and the Google Business Profile launch and follow-up posts for a published article. Use after an article is approved, live and technically validated. Interactive only.
+description: Build the social video or carousel package, platform specific captions, and the Google Business Profile launch post for a published article. Use after an article is approved, live and technically validated. Interactive only.
 ---
 
 # Distribute Blog
@@ -44,8 +44,9 @@ engagement action. Do not reuse one caption everywhere.
 
 ## Step 4. GBP launch post
 
-**GBP is not connected.** Generate the complete ready to post package, mark status
-`Connection Needed`, and never claim it was published.
+GBP routes through GoHighLevel Social Planner. Generate the complete ready-to-post package and,
+after Archie approves it in the current session, use `scripts/push-social` to create a draft only.
+Never claim that a GHL draft was scheduled or published.
 
 Contents: concise hook, one useful takeaway, natural local relevance where appropriate, Learn More
 CTA, live article URL, UTM parameters, publicly accessible image. No phone number in the copy. No
@@ -58,28 +59,22 @@ utm_source=google&utm_medium=organic&utm_campaign=gbp_blog&utm_content=[article-
 Validate the article URL, canonical destination, image URL, CTA, UTM parameters and current GBP
 content policies before presenting it.
 
-## Step 5. GBP follow-up post
+## Step 5. Approval
 
-Scheduled 7 to 10 days after launch. Built from an FAQ, quick tip, common mistake, local
-consideration or key takeaway. Must stand alone. Must not duplicate the launch post.
-`utm_content=[article-slug]-followup`.
-
-## Step 6. Approval
-
-The first four launch posts and first four follow-ups each require Archie's approval. Show copy,
-image, CTA, destination URL and proposed date. Ask him to approve and publish, request revisions,
-change image, change CTA, or skip.
+The first four launch posts require Archie's approval. Show copy, image, CTA, destination URL and
+proposed date. Ask him to approve the GHL draft push, request revisions, change image, change CTA,
+or skip.
 
 Set status `GBP Approval Needed`. Wait.
 
 After four successful posts, ask whether future launch posts may publish automatically. Never enable
 automatic external publishing without explicit approval.
 
-## Step 7. Record
+## Step 6. Record
 
 Save everything to `clients/brightbox/distribution/YYYY-MM-DD-slug/`. Update the tracker with reel
-format, script status, recording status, social distribution status, GBP statuses and IDs, and the
-UTM campaign.
+format, script status, recording status, social distribution status, GBP launch status and ID, and
+the UTM campaign. GBP follow-up posts are not part of the workflow.
 
 Since nothing can auto-publish yet, this becomes a queue for Archie to work through manually.
 

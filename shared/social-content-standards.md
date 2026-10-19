@@ -92,8 +92,8 @@ insights, and delete a post when explicitly authorized.
 areas, managers or ownership.**
 
 **GBP posting now routes through GoHighLevel (July 20, 2026).** GBP is connected in the GHL Social
-Planner, so launch and follow-up posts are pushed as drafts via `scripts/push-social`, no longer
-blocked on Google's GBP API approval. The note below is kept for the API-read use case only.
+Planner, so launch posts are pushed as drafts via `scripts/push-social`, no longer blocked on
+Google's GBP API approval. The note below is kept for the API-read use case only.
 
 **Brightbox is not approved for the GBP posting API directly as of July 18, 2026.** Approval is a prerequisite, not a
 connection step. Until Google approves the application and Google My Business API v4.9 is enabled,
@@ -128,20 +128,11 @@ utm_content=[article-slug]-launch
 Validate before posting: article URL, canonical destination, image URL, CTA, UTM parameters, and
 current GBP content policies.
 
-### Follow-up post
-
-Seven to ten days after launch. Built from one of: an FAQ, a quick tip, a common mistake, a local
-consideration, or an important takeaway. It must stand alone. It must not duplicate the launch post.
-
-```
-utm_content=[article-slug]-followup
-```
-
 ### Approval
 
-The first four launch posts and the first four follow-up posts each require Archie's approval.
-Show copy, image, CTA, destination URL and proposed date, then ask him to approve and publish,
-request revisions, change image, change CTA, or skip.
+The first four launch posts require Archie's approval. Show copy, image, CTA, destination URL and
+proposed date, then ask him to approve the GHL draft push, request revisions, change image, change
+CTA, or skip. GBP follow-up posts are not part of the Brightbox workflow.
 
 After four successful posts, ask whether future launch posts may publish automatically. Do not
 enable automatic external publishing without explicit approval.
