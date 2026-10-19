@@ -238,6 +238,11 @@ Search Console is not connected. Produce exact manual inspection instructions an
 
 Skill: `distribute-blog`. See `shared/social-content-standards.md`.
 
+**Proactive handoff:** as soon as publishing, live QA and the inbound-link completion gate are
+finished, ask Archie whether he is ready to start social content creation and present the format
+choice from `distribute-blog` Step 1. Do not end the publishing workflow and wait for Archie to
+remember or separately request distribution.
+
 GBP launch post after the article is live and validated. GBP follow-up 7 to 10 days later, with
 standalone value. The first four launch posts and first four follow-up posts each require Archie's
 approval. Nothing auto-publishes without explicit authorization.

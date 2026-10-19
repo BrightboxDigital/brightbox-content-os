@@ -449,8 +449,10 @@ are the extra facts learned:
   fixed in the UI. See `scripts/README-social.md`. GBP follow-up posts were dropped by Archie on
   2026-10-16 for BBX-005. Whether they stop for good is still to be decided.
 - **Archie's standing preferences:** show captions and images in chat before any push-social run, even
-  for drafts. Push back on his claims before they're published. Take his statements about his own
-  site and systems as fact.
+  for drafts. After publishing, live QA and inbound linking are complete, proactively ask whether he
+  is ready to start social content creation and offer the Reel or carousel choice. Do not wait for
+  him to bring up GHL. Push back on his claims before they're published. Take his statements about
+  his own site and systems as fact.
 
 ---
 

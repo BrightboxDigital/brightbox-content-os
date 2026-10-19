@@ -13,6 +13,10 @@ The article must be approved, live, and past the technical indexing QA in
 `shared/technical-seo-checklist.md`. Do not build distribution for an article that is not live, and
 never for one Archie has not approved.
 
+The publishing workflow must initiate this handoff proactively. Once live QA and inbound linking
+are complete, ask Archie whether he is ready to start social content creation and present the format
+choice below. Do not wait for him to raise GHL or distribution in a later message.
+
 ## Step 1. Pick the format
 
 Choose from: Archie recorded face to camera Reel, screen recording, branded motion graphic, four to
