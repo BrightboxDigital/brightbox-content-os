@@ -222,6 +222,13 @@ index settings.
 
 After the article is live, run `shared/technical-seo-checklist.md`.
 
+**Inbound-link completion gate:** before reporting the publishing workflow complete, add and verify
+at least two contextual links from relevant existing Brightbox pages or posts into the new article.
+Record the exact source URLs and anchor text in `content-tracker.csv`. A recommendation or a
+`pending` note does not satisfy this requirement. If a preferred page cannot be edited through the
+available WordPress connection, use another genuinely relevant editable page or clearly stop and
+ask Archie to make the manual edit. Do not silently defer this step.
+
 Search Console is not connected. Produce exact manual inspection instructions and set status
 `Search Console Check Needed`. Never claim submission guarantees indexing.
 

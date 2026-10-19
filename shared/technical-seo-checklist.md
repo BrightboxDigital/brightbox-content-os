@@ -32,7 +32,8 @@ Run after an article is live. Nothing here modifies the site. Findings go to the
 - [ ] Title and H1 are unique across the site
 - [ ] Linked from the blog archive
 - [ ] Linked from its category page
-- [ ] At least two relevant existing pages link to it
+- [ ] At least two relevant existing pages link to it; verify the contextual links live and record
+      each source URL and anchor in the tracker before declaring publication complete
 - [ ] XML sitemap contains the canonical URL
 - [ ] Article structured data matches the visible page
 - [ ] Structured data has no critical errors

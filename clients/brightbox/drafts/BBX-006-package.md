@@ -96,8 +96,14 @@ business days for review. No outcome statistic was added.
 | Google Business Profile setup and optimization | https://brightboxdigital.io/google-business-profile-optimization/ | Loads |
 
 All internal links stay in the same tab. The five external Google Help links open in a new tab with
-`rel="noopener"`. Suggested inbound links after publishing: the Google Business Profile service page
-and the existing local ranking factors article.
+`rel="noopener"`.
+
+Live inbound links added 2026-10-19:
+
+| Source | Section | Anchor | Verification |
+|---|---|---|---|
+| https://brightboxdigital.io/blog/google-business-profile-the-ultimate-guide/ | Getting Your Profile Set Up Right | Google Business Profile video verification checklist | Live, HTTP 200 |
+| https://brightboxdigital.io/blog/local-seo-in-2025/ | Google Business Profile Optimization | service-business video verification guide | Live, HTTP 200 |
 
 ## 8. NeuronWriter optimization report
 
@@ -136,6 +142,7 @@ and the existing local ranking factors article.
 - [x] Self-referencing canonical; `index, follow`
 - [x] Check rendered desktop layout, image sizing, and link behavior
 - [x] Confirm social preview title, description, large image, and canonical URL
+- [x] Add and verify two contextual inbound links from relevant existing articles
 - [ ] Confirm the live URL appears in `post-sitemap.xml`; Rank Math's sitemap remained stale immediately after publish and a SiteGround cache purge
 - [x] Publish only after a separate explicit instruction from Archie
 
@@ -189,4 +196,7 @@ The connected Search Console MCP token was expired, so the signed-in Search Cons
 used instead. URL Inspection reported `URL is unknown to Google`, expected for a new page, and one
 indexing request was submitted successfully on 2026-10-19. Google confirmed that the URL was added
 to its priority crawl queue; this does not guarantee indexing. GHL remains untouched pending the
-distribution approval workflow.
+distribution approval workflow. Two contextual inbound links were then added and verified live:
+the existing Google Business Profile visibility guide links with the anchor `Google Business
+Profile video verification checklist`, and the Local SEO guide links with the anchor
+`service-business video verification guide`.

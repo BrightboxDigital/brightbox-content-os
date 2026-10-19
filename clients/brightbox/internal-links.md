@@ -39,6 +39,7 @@ Validate every destination before using it in an article. Status column reflects
 | Google Business Profile Ultimate Guide | /blog/google-business-profile-the-ultimate-guide/ | GBP fundamentals. Refresh candidate, verify claims before linking |
 | AI Logo Design | /blog/ai-logo-design-should-you-use-an-ai-logo-generator/ | AI tools versus professional design |
 | Local SEO in 2025 | /blog/local-seo-in-2025/ | local SEO basics. Refresh candidate, contains unvalidated statistics |
+| Google Business Profile Video Verification | /blog/google-business-profile-video-verification/ | GBP verification, recorded-video evidence, service-area business setup, rejection recovery |
 | Is Your Website Secure | /blog/is-your-website-secure/ | SSL and site security. Consolidation candidate |
 | Fort Wayne Web Design 2025 | /blog/fort-wayne-web-design-2025/ | local web design value. Refresh candidate |
 
