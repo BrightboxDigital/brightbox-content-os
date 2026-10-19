@@ -1,7 +1,8 @@
 # BBX-006 Delivery Package — Google Business Profile Video Verification
 
-Draft v1, approved 2026-10-18. Status: **WordPress Draft Created**. WordPress post 9751 remains a
-draft. Nothing has been published or sent to GHL.
+Draft v1, approved 2026-10-18. Status: **Published 2026-10-19**. WordPress post 9751 is live at
+https://brightboxdigital.io/blog/google-business-profile-video-verification/. Nothing has been sent
+to GHL.
 
 ## 1. Article summary
 
@@ -29,12 +30,12 @@ not claim that support or any checklist guarantees approval.
 | Category | Local SEO and Google Business Profile |
 | Excerpt | A practical one-take video checklist for service businesses, including what evidence to show, how to protect private information, and what to do after a rejection. |
 | Author | Archie Brady |
-| Publication date | [set at publish] |
+| Publication date | 2026-10-19 |
 | Updated date | [none, new post] |
-| Canonical | https://brightboxdigital.io/blog/google-business-profile-video-verification/ [confirm at publish] |
+| Canonical | https://brightboxdigital.io/blog/google-business-profile-video-verification/ [confirmed] |
 
-Rank Math title, description, focus keyword, canonical, and social preview fields must be checked by
-hand in the WordPress draft.
+Rank Math title, description, focus keyword, canonical, and social preview fields were checked in
+the published post.
 
 ## 3. Final article in semantic HTML
 
@@ -125,17 +126,18 @@ and the existing local ranking factors article.
 - [x] Create and approve the four image assets and confirm all alt text
 - [x] Create WordPress draft 9751 after article and image approval
 - [x] Set Rank Math SEO title, meta description, and focus keyword
-- [ ] Confirm canonical and social previews in the rendered WordPress draft
-- [ ] Author Archie Brady; author link `/about/`
-- [ ] Category Local SEO and Google Business Profile
-- [ ] Confirm the final slug and `/blog/` prefix
-- [ ] Confirm all TOC anchors work
-- [ ] Internal links same tab; external links new tab with `rel="noopener"`
-- [ ] Article or BlogPosting schema; no FAQPage schema
-- [ ] Self-referencing canonical; `index, follow`
-- [ ] Check mobile rendering, image sizing, and link behavior
-- [ ] Confirm the site template supplies share buttons
-- [ ] Publish only after a separate explicit instruction from Archie
+- [x] Confirm canonical and social previews in the rendered WordPress post
+- [x] Author Archie Brady
+- [x] Category Google Business Profile
+- [x] Confirm the final slug and `/blog/` prefix
+- [x] Confirm all TOC anchors work
+- [x] Internal links same tab; external links new tab with `rel="noopener"`
+- [x] BlogPosting schema; no FAQPage schema
+- [x] Self-referencing canonical; `index, follow`
+- [x] Check rendered desktop layout, image sizing, and link behavior
+- [x] Confirm social preview title, description, large image, and canonical URL
+- [ ] Confirm the live URL appears in `post-sitemap.xml`; Rank Math's sitemap remained stale immediately after publish and a SiteGround cache purge
+- [x] Publish only after a separate explicit instruction from Archie
 
 ## 10. Social and GBP distribution preview
 
@@ -167,12 +169,24 @@ marked done. The approved styled article is at
 WordPress draft 9751 was created with the three inline images and featured image. A REST read-back
 verified draft status, the approved slug, category 27 (`Google Business Profile`), no body H1, three
 body images, and no remaining placeholders. Rank Math title, description, and focus keyword were
-set. Publishing still requires Archie's separate explicit instruction after reviewing the rendered
-draft. GHL distribution remains blocked until the article is live and passes technical validation.
+set. At that stage, publishing still required Archie's separate explicit instruction, and GHL
+distribution remained blocked until the article was live and passed technical validation.
 
 On 2026-10-18, Archie flagged two presentation issues in the rendered draft: the CTA text sat against
 the outer border, and ordinary lists and three proof sections were over-componentized. The CTA was
 rebuilt with the required `bbx-post-ctaBody` wrapper and standard button markup. The three proof
 cards became ordinary numbered H3 sections; two boxed numbered lists became semantic lists; two
 minor callouts became paragraphs; and the takeaways became one grouped block rather than five
-bordered items. The updated WordPress preview was visually checked. The draft remains unpublished.
+bordered items. The updated WordPress preview was visually checked before publication.
+
+Archie explicitly approved publishing on 2026-10-18. WordPress recorded the live publication date
+as 2026-10-19. Live QA passed: HTTP 200, one H1, `follow, index`, self-referencing canonical, correct
+Rank Math title and description, BlogPosting schema, no FAQPage schema, three body images plus the
+featured image, correct Open Graph and Twitter large-image metadata, working TOC anchors, and the
+lighter layout. SiteGround cache was purged. The only pending technical item is sitemap propagation:
+Rank Math's `post-sitemap.xml` still showed its pre-publication version immediately after publish.
+The connected Search Console MCP token was expired, so the signed-in Search Console browser was
+used instead. URL Inspection reported `URL is unknown to Google`, expected for a new page, and one
+indexing request was submitted successfully on 2026-10-19. Google confirmed that the URL was added
+to its priority crawl queue; this does not guarantee indexing. GHL remains untouched pending the
+distribution approval workflow.
