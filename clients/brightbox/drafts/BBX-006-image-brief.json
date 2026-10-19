@@ -1,0 +1,43 @@
+{
+  "title": "Google Business Profile Video Verification Checklist",
+  "keyword": "google business profile verification",
+  "featured_image": {
+    "concept": "A service business owner holding a phone in recording mode beside a clean branded work van, with tools arranged nearby and a visible street sign in the background. The phone screen shows only a simple recording frame with no fake Google interface, ratings, numbers, or customer data.",
+    "source": "Original AI-assisted illustration or licensed stock composite after Archie approves the concept",
+    "aspect_ratio": "3:2",
+    "size": "1536x1024",
+    "focal_point": "right",
+    "filename": "google-business-profile-video-verification-checklist",
+    "alt_text": "Service business owner recording a verification video beside a branded work van and equipment",
+    "caption": ""
+  },
+  "inline_images": [
+    {
+      "placement": "After The Google Business Profile video verification checklist",
+      "concept": "Brightbox three-part checklist diagram: location evidence, proof the business operates, and proof of management. Use icons and short labels only, with no invented approval rate or data.",
+      "source": "Original Brightbox diagram",
+      "aspect_ratio": "16:9",
+      "filename": "gbp-video-verification-three-part-checklist",
+      "alt_text": "Three-part Google Business Profile video checklist covering location, business operations, and management proof",
+      "privacy": "No client details or real documents"
+    },
+    {
+      "placement": "After A practical one-take recording route",
+      "concept": "Simple route diagram moving from street marker to work vehicle or workspace, then tools and equipment, and finally a locked business-only asset or matching document.",
+      "source": "Original Brightbox diagram",
+      "aspect_ratio": "16:9",
+      "filename": "service-business-video-verification-recording-route",
+      "alt_text": "One-take recording route from a street marker to equipment and proof of business management",
+      "privacy": "Use generic icons and no real address"
+    },
+    {
+      "placement": "After What to do if the video is rejected or stalls",
+      "concept": "Annotated screenshot of Google's official video-verification help page showing Review issues and the examples of missing evidence.",
+      "source": "Real screenshot from support.google.com/business/answer/14271705",
+      "aspect_ratio": "16:9",
+      "filename": "google-business-profile-review-issues-help",
+      "alt_text": "Google help instructions for reviewing issues after a business verification video is rejected",
+      "privacy": "Crop out browser profile details and unrelated tabs"
+    }
+  ]
+}

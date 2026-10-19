@@ -65,6 +65,21 @@ current Google Business Profile Help during source research.
 The originality gate passes on the checklist and business-model decision framework. The interview
 will determine which firsthand elements can honestly be added.
 
+## Interview result — 2026-10-18
+
+Archie's answers clear the firsthand portion of the originality gate. He has helped multiple service
+businesses through video verification and has personally had submissions fail despite showing the
+requested evidence. His experience supports four additions to the draft:
+
+- Keep the recording short and make each proof point easy to see.
+- Show the requested evidence, then add clear legitimate proof such as signage, paperwork, business
+  cards, equipment, entry access, or website administration access where relevant.
+- Do not promise that a complete video will pass on the first attempt.
+- After repeated failures, describe Archie's experience with seeking human review, while separately
+  verifying Google's current official support path and avoiding a guaranteed outcome.
+
+There is no publishable screenshot or client case, so none will be invented or implied.
+
 ## Editorial outline
 
 **H1:** How to Verify a Google Business Profile: A Video Checklist for Service Businesses
