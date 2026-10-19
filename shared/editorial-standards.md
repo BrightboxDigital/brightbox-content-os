@@ -259,6 +259,26 @@ change updates all of them at once.
 caption, `section` with `eyebrow`, `card` (numbered), `quote`, `list` with icons or numbers,
 `callout`, `faq`, `divider`, `takeaways`, `cta`, `reveal` (scroll animation).
 
+### Keep component density low
+
+The article should read like an article, not a stack of interface panels. Default to ordinary
+headings, paragraphs, unordered lists, and ordered lists. Use a styled component only when it adds
+real hierarchy or emphasis that plain editorial structure cannot provide.
+
+- Do not turn every paragraph, numbered point, proof item, FAQ, or list item into a card.
+- Do not use the styled `bbx-post-list` for routine lists. Reserve it for one short, high-value list
+  where the visual treatment materially improves scanning.
+- Use at most one card group in a typical article, and skip cards entirely when numbered H3
+  sections communicate the structure clearly.
+- Prefer grouping several related takeaways inside one restrained block over giving every takeaway
+  its own bordered box.
+- Keep callouts rare: normally one or two per article, only for a warning, exception, or genuinely
+  important action.
+- Figures, the TL;DR, one pull quote, one takeaway block, and the final CTA already create visual
+  rhythm. Do not add cards merely to create more separation.
+- Use the complete component markup from the shared template. In particular, CTA content belongs
+  inside `bbx-post-ctaBody`; placing text directly inside `bbx-post-cta` removes its padding.
+
 ### Content must never depend on JavaScript to be visible
 
 **Bug found and fixed July 19, 2026.** Version 1.1 set `.bbx-post-reveal` to `opacity: 0` and relied

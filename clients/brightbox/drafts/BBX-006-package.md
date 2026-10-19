@@ -169,3 +169,10 @@ verified draft status, the approved slug, category 27 (`Google Business Profile`
 body images, and no remaining placeholders. Rank Math title, description, and focus keyword were
 set. Publishing still requires Archie's separate explicit instruction after reviewing the rendered
 draft. GHL distribution remains blocked until the article is live and passes technical validation.
+
+On 2026-10-18, Archie flagged two presentation issues in the rendered draft: the CTA text sat against
+the outer border, and ordinary lists and three proof sections were over-componentized. The CTA was
+rebuilt with the required `bbx-post-ctaBody` wrapper and standard button markup. The three proof
+cards became ordinary numbered H3 sections; two boxed numbered lists became semantic lists; two
+minor callouts became paragraphs; and the takeaways became one grouped block rather than five
+bordered items. The updated WordPress preview was visually checked. The draft remains unpublished.
